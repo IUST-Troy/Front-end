@@ -71,9 +71,10 @@ const Header = () => {
                         <Grid item >
                             <Box px={10}>
                                 <UserInfo
-                                    Uname="Alireza BayatKhani"
+                                    firstName="Alireza"
+                                    lastName="BayatKhani"
                                     id="LordRevan"
-                                    avatarpath={myimg}
+                                    // avatarpath={}
                                 />
                             </Box>
                         </Grid>
