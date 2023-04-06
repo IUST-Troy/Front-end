@@ -14,6 +14,7 @@ import {
     Snackbar,
 } from "@mui/material";
 import { useState } from "react";
+import {ToastContainer, toast} from 'react-toastify'
 import MuiAlert from '@mui/material/Alert'
 import { ExitToApp, Edit, Dashboard, History } from "@material-ui/icons";
 
@@ -28,7 +29,22 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
         setUserMenu(null);
     };
 
+
+
+
+    const LogOutNotification = () => toast.success("logged out sucessfully , redirecting to sign in page" , {
+        position: "top-center",
+        autoClose : 1500,
+        hideProgressBar:false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'colored',
+    })
+
     const LogOutClickHandler = () => {
+        LogOutNotification()
         setLoggingOut(true)
     };
 
@@ -40,12 +56,16 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
         
     };
 
-    const Alert = React.forwardRef(function Alert(props, ref) {
-        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-      });
+
+
+    
+
+    // const Alert = React.forwardRef(function Alert(props, ref) {
+    //     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    //   });
     return (
         <>
-            <Snackbar
+            {/* <Snackbar
                 open={loggingOut}
                 onClose={LogOutHandler}
                 autoHideDuration={1500}
@@ -55,7 +75,8 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                 <Alert severity="success" sx={{ width: '100%' }}>
                 Success, redirecting to login page...
                 </Alert>
-            </Snackbar>
+            </Snackbar> */}
+            <ToastContainer/>
             <Grid container alignItems="center">
                 <Grid item>
                     <Box px={1}>
@@ -185,6 +206,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                             </Typography>
                         </MenuItem>
                         <MenuItem
+                            disabled={loggingOut}
                             onClick={LogOutClickHandler}
                             sx={{
                                 m: (0.5, 1),

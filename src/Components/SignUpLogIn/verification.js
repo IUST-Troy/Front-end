@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../Styles/SignUpLogIn/SignUpLogIn.css'
+import '../../Styles/SignUpLogIn/SignUpLogIn.scss'
 
 export default class Verification extends Component {
   constructor(props) {
