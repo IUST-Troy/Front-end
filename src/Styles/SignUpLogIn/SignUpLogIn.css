@@ -1,15 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-/* *{
+*{
   box-sizing: border-box;
-} */
+}
 
 body {
   
-  background: url('../../Static/lolo.jpg')no-repeat;
-  background-position: center;
+  background: url('../../Static/lolo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position:center;
   background-size: cover;
-  min-height: 100vh;
+
+  min-width: none;
   display: grid;
   font-weight: 400;
   font-family:'Roboto', sans-serif;
@@ -28,11 +31,7 @@ body, html, .App, #root, .auth-wrapper {
   
 }
 
-/* .navbar-light {
-  background-color: #BAE8DBff;
-  box-shadow: 0 1.25% 7.06% rgba(340, 35, 58, 0.2);
 
-} */
 
 .auth-wrapper {
   display: flex;
@@ -44,27 +43,31 @@ body, html, .App, #root, .auth-wrapper {
 
 
 .auth-inner {
-  width: 90%;
-  max-width: 385px;
-  margin: auto;
+  width: 90%; 
+   max-width: 385px; 
+   margin: auto; 
   
-   background: transparent;
+     background: transparent;
    background: rgba(186, 232, 219, 0.6); 
-   backdrop-filter: blur(3px); 
-   border: 0.15rem solid rgba(255,255,255,0.5); 
-  box-shadow: 0px 14px 80px rgba(340 , 350, 558, 0.52);
-  padding: 2.5rem 3.125rem 2.8125rem 3.4375rem;
+   
+   /* backdrop-filter: blur(3px); */
+   
+   
+    border: 0.15rem solid rgba(255,255,255,0.5);   
+   box-shadow: 0px 14px 80px rgba(340 , 350, 558, 0.52); 
+  padding: 2.5rem 3.125rem 2.8125rem 3.4375rem; 
   border-radius: 2.5rem;
   transition: all .3s;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
   -ms-transition: all .3s;
   -o-transition: all .3s;
-  -webkit-border-radius: 2.5rem;
+   -webkit-border-radius: 2.5rem;
   -moz-border-radius: 2.5rem;
   -ms-border-radius: 2.5rem;
-  -o-border-radius: 2.5rem;
+  -o-border-radius: 2.5rem;  
 }
+
 .auth-wrapper .form-control:focus {
   border-color : #008BA8ff;
   border-width: 0.15rem;
@@ -74,9 +77,8 @@ body, html, .App, #root, .auth-wrapper {
 .auth-wrapper .form-control{
   flex-direction: column;
   border-radius: 0.75rem;
-  /* display: inline-block; */
   vertical-align: middle;
-  /* margin-bottom: -4%; */
+
 }
 
 .auth-wrapper h3 {
@@ -86,28 +88,7 @@ body, html, .App, #root, .auth-wrapper {
   padding-bottom: 10%;
   margin-top: -6%;
 }
-/* .auth-wrapper .labelo{
-  
-  flex-direction: column;
-  border-radius: 0.75rem;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 10%;
-  margin-left: 5%;
-} */
-/* .input-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-} */
 
-/* .error {
-  position: absolute;
-  top: -20px;
-  left: 0;
-  color: red;
-  font-size: 14px;
-} */
 .popup {
   position: relative;
   display: inline-block;
@@ -153,10 +134,7 @@ select{
   margin-bottom: 3%;
   
 }
-/* .mb-2 input[type="password"],
-select{
-  margin-bottom: 9%;
-} */
+
 
 .custom-control-label {
   font-weight: 400;
@@ -181,7 +159,7 @@ select{
   color:rgb(33, 98, 88) ;
   font-weight: 1000;
 }
-/* #BAE8DBff #1BA291ff #008BA8ff #BA66BBff #654479ff #B193CFff #F7C1E3ff/ */
+
 .mb-3 ion-icon{
   color: #008BA8ff;
   opacity: 1000;
@@ -235,7 +213,7 @@ button[disabled]{
 }
 .error {
   color: red;
-  /* border-color: red; */
+
   padding-top: 1%;
   font-size: 70%;
 
@@ -246,24 +224,11 @@ button[disabled]{
   backdrop-filter: blur(3px);
   border: 0.15rem solid rgba(255, 255, 255, 0.5);
   position: fixed;
-  /* margin-bottom: -10%; */
-  /* right: 120%; */
-  top: -120px;
+
+  /* top: -120px;
   right: -140px;
   width: 140%;
-  
-  /* margin-top:  -30%; */
-  
+   */
 
-  /* position: relative;
-  
-  left: -20%;
 
-  background-color: #333;
-  color: #fff;
-  margin-top: -30%;
-  width: 140%;
-  
-  border-radius: 5px; */
-
-}
+} 
