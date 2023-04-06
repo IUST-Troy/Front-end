@@ -60,6 +60,9 @@ checkpass2 = o =>{
 
 render() {
   return (
+    <div className="App">
+      <div className="auth-wrapper">
+        <div className="auth-inner">
     <form>
       <div className='Verification'>
       <h3><b>Verification</b></h3>
@@ -96,6 +99,10 @@ render() {
         </button>
       </div>
     </form>
+    </div>
+        </div>
+       
+      </div>
     )
   }
 }

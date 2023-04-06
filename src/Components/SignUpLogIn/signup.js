@@ -1,6 +1,8 @@
 import React, { Component, useState } from 'react'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../../Styles/SignUpLogIn/SignUpLogIn.css'
+import { Alert } from 'flowbite-react';
 
 
 export default class SignUp extends Component
@@ -100,7 +102,7 @@ export default class SignUp extends Component
     if ( value.length > 8) {
       this.setState({ passwordError: 'The last name should not exceed 8 characters.' });
     } 
-    if (value.length <= 8) {
+    if (value.length < 8) {
       this.setState({ password: value, passwordError: '' });
     }
   }
@@ -221,13 +223,60 @@ export default class SignUp extends Component
     //   const { history } = this.props;
     //   history.push('./sign-in');
     // }
+    handleSignUpClick = () => {
+     
+        
+    
+      toast.success('Congratulations! Your sign-up was successful! '
+      , 
+      
+      {
+        position: "top-right",
+autoClose: 5000,
+className: 'toast-message',
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "light",
+     
+        // className: 'toast-message',
+        // autoClose: 5000,
+        // hideProgressBar: false,
+        // closeOnClick: true,
+        // pauseOnHover: true,
+        // draggable: true,
+        
+        // progress: undefined,
+        // theme: "light",
+        },
+        setTimeout(this.myURL, 6000)
+        );
+        toast.error('Error! Your sign-up was not successful!',
+        {
+          className:'toast-message',
+        
+        })
+   
+ 
+    
+    }
+    myURL=()=>{
+      document.location.href = './sign-in'
+    }
+    
   render() {
  
 // Add a CSS class to change the border color to red
     // const{submitted}=this.state;
     return (
-      <form action='/sign-in'
-      // onSubmit={this.handleSubmit}
+      <div className="App">
+      <div className="auth-wrapper">
+        <div className="auth-inner">
+      <form 
+      // action='/sign-in' 
+      onSubmit={this.handleSubmit}
       >
         <h3><b>Sign Up</b></h3>
         {/* <div className="mb-3">
@@ -347,12 +396,17 @@ export default class SignUp extends Component
             Sign Up
             
           </button>
+          <ToastContainer />
           
         </div>
         <p className="forgot-password text-right">
           Already registered ? <a href="/sign-in">Click here to Sign in</a>
         </p>
       </form>
+      </div>
+        </div>
+       
+      </div>
       
     )
     

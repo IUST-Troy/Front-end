@@ -56,6 +56,9 @@ export default class Forget extends Component{
 
   render() {
     return (
+      <div className="App">
+      <div className="auth-wrapper">
+        <div className="auth-inner">
       <form>
         <div className='Forget'>
         <h3><b>Forget</b></h3>
@@ -79,6 +82,10 @@ export default class Forget extends Component{
           </button>
         </div>
       </form>
+      </div>
+        </div>
+       
+      </div>
     )
   }
 }
