@@ -1,10 +1,10 @@
 import { Footer } from "flowbite-react";
 import React from "react";
-import { BsFacebook, BsTwitter, BsInstagram, BsGithub, BsMapFill, BsPhone } from 'react-icons/bs'
+import { BsFacebook, BsTwitter, BsInstagram, BsGithub } from 'react-icons/bs'
 import '../../Styles/HomePage/HomePage.scss'
 import logo from "../../Static/Logo.png"
 import { Typography, Avatar } from "@mui/material";
-// import {FaPhoneSquare} from'react-icons/fa'
+
 const FooterV2 = () => {
 
 

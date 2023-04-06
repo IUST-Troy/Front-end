@@ -59,5 +59,10 @@
     letter-spacing: 0.13rem !important;
 }
 
+
+:focus.search-input{
+    --tw-ring-shadow: 0 0 #000 !important;
+    --tw-ring-color: 0 0 #000 !important;
+}
 //TODO
 //Menu Items hover and borders 

@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../../Styles/SignUpLogIn/SignUpLogIn.css'
+import '../../Styles/SignUpLogIn/SignUpLogIn.scss'
 import { Alert } from 'flowbite-react';
 
 
