@@ -5,6 +5,7 @@ import '../../Styles/SignUpLogIn/SignUpLogIn.scss'
 import { Alert } from 'flowbite-react';
 
 
+
 export default class SignUp extends Component
  {
  constructor(props) {
@@ -232,7 +233,7 @@ export default class SignUp extends Component
       
       {
         position: "top-right",
-autoClose: 5000,
+autoClose: 10000,
 className: 'toast-message',
 hideProgressBar: false,
 closeOnClick: true,
@@ -251,7 +252,7 @@ theme: "light",
         // progress: undefined,
         // theme: "light",
         },
-        setTimeout(this.myURL, 6000)
+        setTimeout(this.myURL, 11000)
         );
         toast.error('Error! Your sign-up was not successful!',
         {
@@ -392,8 +393,8 @@ theme: "light",
               || this.state.confirmError}
            
            type="submit">
-             {/* <a href="" style="color:white" class="btn">Sign up</a> */}
-            Sign Up
+          
+           Sign Up
             
           </button>
           <ToastContainer />
