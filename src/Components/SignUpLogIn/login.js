@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../Styles/SignUpLogIn/SignUpLogIn.css'
+import '../../Styles/SignUpLogIn/SignUpLogIn.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default class Login extends Component {
