@@ -7,26 +7,24 @@ import Login from './Components/SignUpLogIn/login'
 import SignUp from './Components/SignUpLogIn/signup'
 import Forget from './Components/SignUpLogIn/forget'
 import Verification from './Components/SignUpLogIn/verification'
+
 function App() {
   return (
     <Router>
       
 
-      <div className="App">
-        <div className="auth-wrapper">
-          <div className="auth-inner">
+ 
            <Routes>
-              <Route className="App auth-wrapper auth-inner" exact path="/" element={<SignUp />} />
-              <Route className="App auth-wrapper auth-inner" path="/sign-in" element={<Login />} />
-              <Route className="App auth-wrapper auth-inner" path="/sign-up" element={<SignUp />} />
+              <Route  exact path="/" element={<SignUp />} />
+              <Route path="/sign-in" element={<Login />} />
+              <Route  path="/sign-up" element={<SignUp />} />
               <Route path="/verification" element={<Verification />} />
               <Route path="/forget" element={<Forget />} />
+              <Route path='/home' element={<HomePage/>} />
               </Routes>
-          
-          </div>
-        </div>
        
-      </div>
+     
+     
        
       
     </Router>
