@@ -58,6 +58,14 @@ checkpass2 = o =>{
 }
 
 
+
+
+
+
+
+
+
+
 render() {
   return (
     <div className="App">
