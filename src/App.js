@@ -7,6 +7,7 @@ import Login from './Components/SignUpLogIn/login'
 import SignUp from './Components/SignUpLogIn/signup'
 import Forget from './Components/SignUpLogIn/forget'
 import Verification from './Components/SignUpLogIn/verification'
+import TouristAttractionsPage from './Components/TouristAttractionsPage/TouristAttractionsPage'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/verification" element={<Verification />} />
               <Route path="/forget" element={<Forget />} />
               <Route path='/home' element={<HomePage/>} />
+              <Route path='/tourist-attractions-page' element={<TouristAttractionsPage/>} />
               </Routes>
        
      
