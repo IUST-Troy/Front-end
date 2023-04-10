@@ -3,6 +3,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../Styles/SignUpLogIn/SignUpLogIn.scss'
 import { Alert } from 'flowbite-react';
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -42,7 +44,7 @@ export default class SignUp extends Component
   handleLConfirm(event) {
     const value = event.target.value;
     
-    if(value.length<= this.state.password.length){
+//    if(value.length<= this.state.password.length){
     if (this.state.password !== value) {
       this.setState({lconfirm: value, confirmError: 'Passwords do not match.' });
       if(value.length<1)
@@ -56,7 +58,7 @@ export default class SignUp extends Component
       this.setState({ lconfirm: value, confirmError: '' });
     }
     
-  }
+//  }
   }
   
   
@@ -100,11 +102,17 @@ export default class SignUp extends Component
 
   handPassword(event) {
     const value = event.target.value;
-    if ( value.length > 8) {
-      this.setState({ passwordError: 'The last name should not exceed 8 characters.' });
+    if ( value.length < 8) {
+      this.setState({ password: value, passwordError: 'Password should not be less than 8 characters.' });
     } 
-    if (value.length < 8) {
+    if (value.length >= 8) {
       this.setState({ password: value, passwordError: '' });
+    }
+    if(value !== this.state.lconfirm){
+      this.setState({password:value , confirmError : 'Password do not match'});
+    }
+    if(value == this.state.lconfirm){
+      this.setState({password:value , confirmError : ''});
     }
   }
 
@@ -224,48 +232,141 @@ export default class SignUp extends Component
     //   const { history } = this.props;
     //   history.push('./sign-in');
     // }
-    handleSignUpClick = () => {
-     
-        
-    
-      toast.success('Congratulations! Your sign-up was successful! '
-      , 
-      
-      {
-        position: "top-right",
-autoClose: 10000,
-className: 'toast-message',
-hideProgressBar: false,
-closeOnClick: true,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-theme: "light",
-     
-        // className: 'toast-message',
-        // autoClose: 5000,
-        // hideProgressBar: false,
-        // closeOnClick: true,
-        // pauseOnHover: true,
-        // draggable: true,
-        
-        // progress: undefined,
-        // theme: "light",
-        },
-        setTimeout(this.myURL, 11000)
-        );
-        toast.error('Error! Your sign-up was not successful!',
-        {
-          className:'toast-message',
-        
-        })
-   
- 
-    
-    }
+
     myURL=()=>{
       document.location.href = './sign-in'
     }
+
+
+
+
+
+
+
+    sumbitButton(){
+      const username=document.getElementById('username-signup').value;
+      const email=document.getElementById('email-signup').value;
+      const password=document.getElementById('password-signup').value;
+      const repeatPass=document.getElementById('repeat-password-signup').value;
+      axios.post(`http://127.0.0.1:8000/auth/users/`, 
+      {
+          "email": email,
+          "username": username,
+          "password": password,
+          "re_password": repeatPass
+      }
+      , {headers:{  'Content-Type' : 'application/json' }})
+      .then(res => {
+        toast.success('Congratulations! Your sign-up was successful! '
+        , 
+        
+        {
+          position: "top-right",
+          autoClose: 5000,
+          className: 'toast-message',
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+       
+          // className: 'toast-message',
+          // autoClose: 5000,
+          // hideProgressBar: false,
+          // closeOnClick: true,
+          // pauseOnHover: true,
+          // draggable: true,
+          
+          // progress: undefined,
+          // theme: "light",
+          },
+//          setTimeout(this.myURL, 6000)
+//            useNavigate("/sign-in")
+          window.location.replace('/sign-in')
+          );
+                console.log(res);})
+
+      .catch(err =>
+          {
+              //message.error(err.message);
+              console.error(err);
+              toast.error('Error! Your sign-up was not successful!',
+              {
+                className:'toast-message',
+              
+              })
+          });
+//      this.CheckSubmission(username,email,password,repeatPass);
+  }
+
+  /*CheckSubmission(username,email,password,repeatPass){
+      if(password!=repeatPass){
+          return "Wrong";
+      }
+      else{
+          axios.post(`http://127.0.0.1:8000/auth/users/`, 
+          {
+              "email": email,
+              "username": username,
+              "password": password,
+              "re_password": repeatPass
+          }
+          , {headers:{  'Content-Type' : 'application/json' }})
+          .then(res => {
+                    console.log(res);
+        toast.success('Congratulations! Your sign-up was successful! '
+        , 
+        
+        {
+          position: "top-right",
+          autoClose: 5000,
+          className: 'toast-message',
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+       
+          // className: 'toast-message',
+          // autoClose: 5000,
+          // hideProgressBar: false,
+          // closeOnClick: true,
+          // pauseOnHover: true,
+          // draggable: true,
+          
+          // progress: undefined,
+          // theme: "light",
+          },
+          setTimeout(this.myURL, 6000)
+          );
+
+
+              let token = res.data.auth_token;
+              localStorage.setItem('token', token);                
+              localStorage.setItem('username',username);
+              window.location = '/sign-in';          
+                
+          })
+          .catch(err =>
+          {
+              //message.error(err.message);
+              console.error(err);
+              toast.error('Error! Your sign-up was not successful!',
+              {
+                className:'toast-message',
+              
+              })
+          });
+          return "Correct";
+
+      }
+  }*/
+
+
+
+
     
   render() {
  
@@ -315,6 +416,7 @@ theme: "light",
             value={this.state.luser}
             className="form-control"
             placeholder="username"
+            id="username-signup"
           />
           <div className="error" >{this.state.UserError}</div>
         </div>
@@ -330,6 +432,7 @@ theme: "light",
       placeholder="email"
       onChange={this.handleEmailInput && this.handleEmailChange }
       value={this.state.email}
+      id="email-signup"
     />
     <div className="error" >{this.state.emailError}</div>
   </div>
@@ -355,8 +458,9 @@ theme: "light",
             placeholder="password"
             onChange={this.handlePasswordInput && this.handPassword}
             value={this.state.password}
-          
+            id="password-signup"
           />
+          <div className="error">{this.state.passwordError}</div>
           <ion-icon name="lock-open"></ion-icon>&nbsp;
           <label>Confirm</label>
           
@@ -368,6 +472,7 @@ theme: "light",
               placeholder="confirm"
               onChange={this.handleLConfirmInput &&this.handleLConfirm }
               value={this.state.lconfirm}
+              id="repeat-password-signup"
             />
              <div className="error" >{this.state.confirmError}</div>
 
@@ -378,7 +483,7 @@ theme: "light",
         
         <div className="d-grid">
           <button 
-          onClick={this.handleSignUpClick}
+          onClick={this.sumbitButton}
           // onClick={this.onClickHandler}
             disabled={
             // !this.state.fname || !this.state.lname ||
