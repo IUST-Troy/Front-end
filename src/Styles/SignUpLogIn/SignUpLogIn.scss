@@ -6,16 +6,7 @@
 
 body {
   
-  background: url('../../Static/lolo.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position:center;
-  background-size: cover;
-
-  min-width: none;
-  display: grid;
-  font-weight: 400;
-  font-family:'Roboto', sans-serif;
+  // 
 }
 
 h1,h2,h3,h4,h5,h6,label,span {
@@ -29,6 +20,16 @@ h1,h2,h3,h4,h5,h6,label,span {
 .App{
   @import "../../../node_modules/bootstrap/scss/bootstrap";
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  background: url('../../Static/lolo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position:center;
+  background-size: cover;
+
+  min-width: none;
+  display: grid;
+  font-weight: 400;
+  font-family:'Roboto', sans-serif;
 }
 body, html, .App, #root, .auth-wrapper {
   width: 100%;
