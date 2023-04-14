@@ -84,7 +84,7 @@ const Navbar = () => {
         <AppBar
             sx={{
                 bgcolor: "#1BA291ff",
-                opacity: "85%",
+                opacity: "100%",
             }}
             position="sticky"
         >
