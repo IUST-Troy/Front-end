@@ -151,7 +151,7 @@ export default class Login extends Component {
                 let token = res.data.access;
                 localStorage.setItem("token", token);
                 axios
-                    .get("http://127.0.0.1:8000/auth/users/", {
+                    .get("http://mamadreza.pythonanywhere.com/auth/users", {
                         headers: {
                             "Content-Type": "application/json",
                             Authorization: `JWT ${token}`,

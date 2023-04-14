@@ -248,7 +248,7 @@ export default class SignUp extends Component
       const email=document.getElementById('email-signup').value;
       const password=document.getElementById('password-signup').value;
       const repeatPass=document.getElementById('repeat-password-signup').value;
-      axios.post(`http://127.0.0.1:8000/auth/users/`, 
+      axios.post(`http://mamadreza.pythonanywhere.com/auth/users/`, 
       {
           "email": email,
           "username": username,
@@ -291,7 +291,7 @@ export default class SignUp extends Component
           {
               //message.error(err.message);
               console.error(err);
-              toast.error('Error! Your sign-up was not successful!',
+              toast.error(`Error! Your sign-up was not successful! ${err}`,
               {
                 className:'toast-message',
               

@@ -61,7 +61,7 @@ export default class Forget extends Component {
         const email = document.getElementById("email-signup").value;
         axios
             .post(
-                `http://127.0.0.1:8000/auth/users/reset_password/`,
+                `http://mamadreza.pythonanywhere.com/auth/users`,
                 {
                     email: email,
                 },

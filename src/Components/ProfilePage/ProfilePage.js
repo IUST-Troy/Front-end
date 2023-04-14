@@ -178,7 +178,7 @@ const ProfilePage = () => {
                 blur={4.5}
             > */}
             <div className="grid justify-center items-center h-screen w-full">
-                <Card className="mt-10 m-5 rounded-xl  bg-pallate-celeste/[0.6] border-pallate-persian_green backdrop-blur-sm">
+                <Card className="mt-10 m-5 rounded-xl  bg-pallate-celeste/[0.61] border-pallate-persian_green backdrop-blur-sm">
                     <div className="grid grid-cols-1 gap-4 ">
                         <div className="grid md:grid-cols-2 md:gap-4 sm:grid-cols-1 sm:gap-2">
                             <div className="leftside grid grid-cols-1 gap-10 p-8 justify-center justify-items-center">
@@ -340,9 +340,10 @@ const ProfilePage = () => {
                     <FooterV2 />
                 </div>
             </div>
+            {/* </Parallax> */}
             <div className="hidden md:block">
                 <FooterV2 />
-                {/* </Parallax> */}
+                
             </div>
         </div>
     );
