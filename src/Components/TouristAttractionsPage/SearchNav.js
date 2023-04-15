@@ -47,7 +47,7 @@ const SearchBar = ({ handleSearch }) => {
    <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} sm={6} md={3}>
           <FormControl fullWidth>
-            <Select
+            <Select className="w-full"
               value={startingCity}
               onChange={(e) => setStartingCity(e.target.value)}
               displayEmpty
@@ -71,9 +71,9 @@ const SearchBar = ({ handleSearch }) => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid  item xs={12} sm={6} md={3}>
           <FormControl fullWidth>
-            <Select
+            <Select className="w-full"
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               displayEmpty
@@ -101,7 +101,7 @@ const SearchBar = ({ handleSearch }) => {
         <Grid>
           
         </Grid>
-        <Grid className="TextField-without-border-radius" item xs={12} sm={6} md={3}>
+        <Grid className="w-full"  item xs={12} sm={6} md={3}>
         
           
           <TextField 

@@ -7,7 +7,7 @@ import Navbar from "../NavigationBar/Navbar";
 // import Footer from "./Footer";
 import FooterV2 from "../HomePage/FooterV2";
 import "../../Styles/HomePage/HomePage.scss";
-
+// import CityCard from"../TouristAttractionsPage/CityCard"
 import { Box, Container, Typography } from "@mui/material";
 import Image from "../../Static/four.jpg";
 import { useState } from "react";
@@ -70,7 +70,9 @@ const Wallpaper = ({ bgImage }) => {
           }}
         >
            <SearchNav />
+           
         </Typography>
+        {/* <CityCard /> */}
    
         {/* <MainButton text="Discover on 3D Globe" iconImg={btnGlobalIcon} /> */}
         {/* <SearchNav /> */}
