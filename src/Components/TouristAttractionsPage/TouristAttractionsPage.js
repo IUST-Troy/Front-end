@@ -9,50 +9,23 @@ import FooterV2 from "../HomePage/FooterV2";
 import "../../Styles/HomePage/HomePage.scss";
 
 import { Box, Container, Typography } from "@mui/material";
-import Image from "../../Static/lolo.jpg";
+import Image from "../../Static/four.jpg";
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import SearchNav from "../TouristAttractionsPage/SearchNav";
+import "../../Styles/TouristAttractionsPage/TAP.scss";
+// import "../../Styles/Colors"
+
 // import Wallpapet1 from "../../Static/Wallpaper1.jpg";
 // import Wallpapet2 from "../../Static/Wallpaper2.jpg";
 // import Wallpapet3 from "../../Static/Wallpaper3.jpg";
-const MainButton = ({ iconImg, text }) => {
-  return (
-    <Button
-      variant="contained"
-      sx={{
-        width: {
-          xs: "100%",
-          md: "auto",
-        },
-        backgroundColor: "#7B61FF",
-        p: {
-          xs: 1.5,
-          md: 3,
-        },
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "8px",
-        borderRadius: "12px",
-        fontFamily: "inherit",
-        fontSize: "18px",
-        fontWeight: "600",
-        "&.MuiButtonBase-root:hover": {
-          backgroundColor: "#7B61FF",
-        },
-      }}
-    >
-      <img src={iconImg} alt="" />
-      {text}
-    </Button>
-  );
-};
+
 
 const Wallpaper = ({ bgImage }) => {
   return (
     <Container
+    className="search_bar"
       maxWidth="false"
       disableGutters
       sx={{
@@ -61,10 +34,11 @@ const Wallpaper = ({ bgImage }) => {
           sm: 5,
           md: 2,
         },
-        // background: `url(${Image}) center center/cover`,
-        // minHeight: "800px",
+        background: `url(${Image}) center center/cover`,
+        minHeight: "800px",
+        
 
-        // backgroundColor :"black",
+        // backgroundColor :Colors.$persian-green,
         // maxHeight:"300px",
         borderRadius: {
           xs: "0px 0px 27px 27px",
@@ -72,32 +46,35 @@ const Wallpaper = ({ bgImage }) => {
         },
       }}
     >
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
         }}
-      >
-        <SearchNav />
+      > */}
+       
         <Typography
           sx={{
+            padding:"50px",
             color: "#fff",
-            marginTop: "196.5px",
+            marginTop: "140.5px",
             textAlign: "center",
             fontWeight: "600",
             fontSize: {
               xs: "38px",
               md: "48px",
             },
-            lineHeight: "62px",
-            mb: 4,
+            lineHeight: "82px",
+            mb: 14,
           }}
-        ></Typography>
-
+        >
+           <SearchNav />
+        </Typography>
+   
         {/* <MainButton text="Discover on 3D Globe" iconImg={btnGlobalIcon} /> */}
         {/* <SearchNav /> */}
-      </Box>
+      {/* </Box> */}
     </Container>
   );
 };

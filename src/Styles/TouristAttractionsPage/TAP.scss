@@ -1,1 +1,11 @@
-@import "../Colors"
+@import "../Colors";
+.TextField-without-border-radius fieldset {
+  // border-radius: 3px;
+  // background-color: antiquewhite;
+  // background: transparent;
+  // min-height: 50px;
+}
+TextField{
+  // border-radius: 5px;
+  // background-color: rebeccapurple;
+}
