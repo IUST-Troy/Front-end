@@ -248,7 +248,7 @@ export default class SignUp extends Component
       const email=document.getElementById('email-signup').value;
       const password=document.getElementById('password-signup').value;
       const repeatPass=document.getElementById('repeat-password-signup').value;
-      axios.post(`http://mamadreza.pythonanywhere.com/auth/users/`, 
+      axios.post(`http://mrsz.pythonanywhere.com/auth/users/`, 
       {
           "email": email,
           "username": username,

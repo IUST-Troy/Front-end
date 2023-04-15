@@ -12,9 +12,19 @@ import avatar from "../../Static/mylady.jpg"
 import Datepicker from "tailwind-datepicker-react";
 import axios from 'axios'
 import {toast, ToastContainer} from 'react-toastify'
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
+    const navigate = useNavigate()
 
+    React.useEffect(()=>{
+        if (localStorage.getItem("acctoken")) {
+            console.log("got acctoken")
+        }
+        else{
+            navigate("/sign-in")
+        }
+    })
     const [firstNameValue, setFirstNameValue] = React.useState('');
     const [lastNameValue, setLastNameValue] = React.useState('');
     const [emailValue, setEmailValue] = React.useState('');
@@ -177,7 +187,10 @@ const ProfilePage = () => {
                 strength={800}
                 blur={4.5}
             > */}
-            <div className="grid justify-center items-center h-screen w-full">
+            <div className="grid justify-center items-center h-screen w-full" style={{
+                backgroundImage:`url(${Wallpaper1})`,
+                // filter: "blur(10px)"
+            }}>
                 <Card className="mt-10 m-5 rounded-xl  bg-pallate-celeste/[0.61] border-pallate-persian_green backdrop-blur-sm">
                     <div className="grid grid-cols-1 gap-4 ">
                         <div className="grid md:grid-cols-2 md:gap-4 sm:grid-cols-1 sm:gap-2">

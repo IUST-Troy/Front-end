@@ -29,6 +29,7 @@ const SearchBar = () => {
             >
                 <InputBase
                     className="search-input"
+                    
                     sx={{
                         ml: 1,
                         flex: 1,
@@ -37,6 +38,9 @@ const SearchBar = () => {
                         fontWeight: "normal",
                         letterSpacing: 1,
                         fontSize: "large",
+                        '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'green',
+                          },
                         
                     }}
                     placeholder=" Search"

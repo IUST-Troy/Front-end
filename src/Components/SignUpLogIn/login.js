@@ -3,7 +3,7 @@ import "../../Styles/SignUpLogIn/SignUpLogIn.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ export default class Login extends Component {
         };
         this.handPassword = this.handPassword.bind(this);
     }
-
+    
     handleusernameInput = (e) => {
         this.setState({ username: e.target.value });
     };
@@ -110,10 +110,11 @@ export default class Login extends Component {
     sumbitButton() {
         const username = document.getElementById("username-signup").value;
         const password = document.getElementById("password-signup").value;
-
+        // const navigate = useNavigate()
+        
         axios
             .post(
-                `http://127.0.0.1:8000/auth/jwt/create`,
+                `http://mrsz.pythonanywhere.com/auth/jwt/create`,
                 {
                     username: username,
                     password: password,
@@ -148,23 +149,24 @@ export default class Login extends Component {
                     //        setTimeout(this.myURL, 6000)
                 );
 
-                let token = res.data.access;
-                localStorage.setItem("token", token);
+                let accToken = res.data.access;
+                let refToken = res.data.refresh;
+                localStorage.setItem("acctoken", accToken);
+                localStorage.setItem("reftoken", refToken);
                 axios
-                    .get("http://mamadreza.pythonanywhere.com/auth/users", {
+                    .get("http://mrsz.pythonanywhere.com/auth/users", {
                         headers: {
                             "Content-Type": "application/json",
-                            Authorization: `JWT ${token}`,
+                            Authorization: `JWT ${accToken}`,
                         },
                     })
                     .then((res) => {
                         localStorage.setItem("username", username);
-                        //              alert(res.data.email)
                         window.location.replace("/home");
+                        // navigate("/home")
                         console.log(res);
                     });
-                //            localStorage.setItem('username',username);
-                //            window.location = '/home';
+                // axios.get
             })
             .catch((err) => {
                 //message.error(err.message);

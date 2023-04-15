@@ -63,6 +63,17 @@
 :focus.search-input{
     --tw-ring-shadow: 0 0 #000 !important;
     --tw-ring-color: 0 0 #000 !important;
+    box-shadow: none !important;
+
 }
 //TODO
 //Menu Items hover and borders 
+.search-input{
+    --tw-ring-shadow: 0 0 #000 !important;
+    --tw-ring-color: 0 0 #000 !important;
+    box-shadow: none !important;
+}
+
+.search-input [type="text"]:focus{
+    box-shadow: none;
+}

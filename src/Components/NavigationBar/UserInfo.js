@@ -17,11 +17,12 @@ import { useState } from "react";
 import {ToastContainer, toast} from 'react-toastify'
 import MuiAlert from '@mui/material/Alert'
 import { ExitToApp, Edit, Dashboard, History } from "@material-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
     const [userMenu, setUserMenu] = useState(null);
     const [loggingOut, setLoggingOut] = useState(false);
-
+    const navigate = useNavigate()
     const openMenuHandler = (event) => {
         setUserMenu(event.currentTarget);
     };
@@ -46,6 +47,10 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
     const LogOutClickHandler = () => {
         LogOutNotification()
         setLoggingOut(true)
+        setTimeout(() => {
+            localStorage.clear()
+            navigate("/sign-in")
+        }, 1500);
     };
 
     const LogOutHandler = () => {
