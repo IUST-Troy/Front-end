@@ -7,7 +7,7 @@ import Navbar from "../NavigationBar/Navbar";
 // import Footer from "./Footer";
 import FooterV2 from "../HomePage/FooterV2";
 import "../../Styles/HomePage/HomePage.scss";
-// import CityCard from"../TouristAttractionsPage/CityCard"
+import CityCard from"../TouristAttractionsPage/CityCard"
 import { Box, Container, Typography } from "@mui/material";
 import Image from "../../Static/four.jpg";
 import { useState } from "react";
@@ -34,16 +34,16 @@ const Wallpaper = ({ bgImage }) => {
           sm: 5,
           md: 2,
         },
-        background: `url(${Image}) center center/cover`,
+        background: `url(${Image}) fixed center/cover`,
         minHeight: "800px",
         
 
         // backgroundColor :Colors.$persian-green,
         // maxHeight:"300px",
-        borderRadius: {
-          xs: "0px 0px 27px 27px",
-          md: "0px 0px 54px 54px",
-        },
+        // borderRadius: {
+        //   xs: "0px 0px 27px 27px",
+        //   md: "0px 0px 54px 54px",
+        // },
       }}
     >
       {/* <Box
@@ -72,7 +72,7 @@ const Wallpaper = ({ bgImage }) => {
            <SearchNav />
            
         </Typography>
-        {/* <CityCard /> */}
+        <CityCard />
    
         {/* <MainButton text="Discover on 3D Globe" iconImg={btnGlobalIcon} /> */}
         {/* <SearchNav /> */}

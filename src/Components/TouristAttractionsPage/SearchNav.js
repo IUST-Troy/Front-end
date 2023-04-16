@@ -43,6 +43,7 @@ const SearchBar = ({ handleSearch }) => {
   return (
     <>
 
+    
    
    <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} sm={6} md={3}>
