@@ -14,6 +14,9 @@ import FormControl from '@mui/material/FormControl';
 import Image from "../../Static/four.jpg";
 import Input from '@mui/material/Input';
 import theme from "flowbite-react/lib/esm/theme/default";
+//import * as React from 'react';
+//import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 
 
@@ -40,39 +43,54 @@ const SearchBar = ({ handleSearch }) => {
     setIsOpen(false);
   };
 
+  const Country = [
+    {"label": 'Iran'},
+    {"label": 'Italy'},
+    {"label": '	Belgium'},
+    {"label": '	france'}
+    ];
+
+    const City = [
+      {"label": 'Tehran'},
+      {"label": 'Rome'},
+      {"label": '	Brussels'},
+      {"label": '	Paris'}
+      ];
+
   return (
     <>
 
-    
-   <container
-   sx={{
-    p: {
-      xs: 2,
-      sm: 5,
-      md: 2,
-    },
-    background: `url(${Image}) fixed center/cover`,
-    minHeight: "800px",
-    
 
- 
-  }}
-   >
-   <Grid container spacing={2} alignItems="center"
-      sx={{
-    p: {
-      xs: 2,
-      sm: 5,
-      md: 2,
-    },
-    background: `url(${Image}) fixed center/cover`,
-    minHeight: "800px",
-    
+      <container
+        sx={{
+          p: {
+            xs: 2,
+            sm: 5,
+            md: 2,
+          },
+          background: `url(${Image}) fixed center/cover`,
+          minHeight: "800px",
 
- 
-  }}
-   >
-        <Grid item xs={11} sm={6} md={3}>
+
+
+        }}
+      >
+        <Grid container spacing={2} alignItems="center"
+          sx={{
+            p: {
+              xs: 2,
+              sm: 5,
+              md: 2,
+            },
+            background: `url(${Image}) fixed center/cover`,
+            minHeight: "800px",
+
+
+
+          }}
+        >
+
+          {/* <Grid item xs={12} sm={6} md={6}>
           <FormControl fullWidth>
             <Select
               className="w-full"
@@ -90,15 +108,19 @@ const SearchBar = ({ handleSearch }) => {
               }}
             >
               <MenuItem value="" disabled>
-                Starting City
+                Country
               </MenuItem>
-              <MenuItem value="tehran">Tehran</MenuItem>
-              <MenuItem value="mashhad">Mashhad</MenuItem>
-              <MenuItem value="esfehan">Esfehan</MenuItem>
+              <MenuItem value="canada">Canada</MenuItem>
+              <MenuItem value="Egypt">Egypt</MenuItem>
+              <MenuItem value="France">France</MenuItem>
+              <MenuItem value="Germany">Germany</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
-        <Grid  item xs={11} sm={6} md={3}>
+        </Grid> */}
+
+
+
+          {/* <Grid  item xs={12} sm={6} md={6}>
           <FormControl fullWidth>
             <Select className="w-full"
               value={destination}
@@ -117,18 +139,40 @@ const SearchBar = ({ handleSearch }) => {
               }}
             >
               <MenuItem value="" disabled>
-                Destination
+                city
               </MenuItem>
               <MenuItem value="tehran">Tehran</MenuItem>
-              <MenuItem value="mashhad">Mashhad</MenuItem>
-              <MenuItem value="esfehan">Esfehan</MenuItem>
+              <MenuItem value="Paris">Paris</MenuItem>
+              <MenuItem value="Düsseldorf">Düsseldorf</MenuItem>
+              
             </Select>
           </FormControl>
-        </Grid>
-        <Grid>
+        </Grid> */}
 
-        </Grid>
-        <Grid className="w-full"  item xs={11} sm={6} md={3}>
+
+          <Grid item xs={12} sm={6} md={6}>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={Country}
+//              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="Country" />}
+            />
+          </Grid>
+
+
+
+          <Grid item xs={12} sm={6} md={6}>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={City}
+//              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="City" />}
+            />
+          </Grid>
+
+          {/* <Grid className="w-full"  item xs={11} sm={6} md={3}>
         
           
           <TextField 
@@ -157,8 +201,9 @@ const SearchBar = ({ handleSearch }) => {
 
             }}
           />
-        </Grid>
-        <Grid item xs={11} sm={6} md={3} >
+        </Grid> */}
+
+          {/* <Grid item xs={11} sm={6} md={3} >
           <TextField 
            sx={{
             backgroundColor :"rgba(186, 232, 219, 0.438)",
@@ -173,14 +218,15 @@ const SearchBar = ({ handleSearch }) => {
             variant="filled"
             type="number"
 
-            inputProps={{ min: 0 }}
+            inputProps={{ min: 0 , max: 100}}
             fullWidth
 
           />
-        </Grid  >
-        <Button style={{ backgroundColor: '#1BA291ff', color: 'white' }} variant="contained" color="inherit" fullWidth onClick={handleOpen}>Search</Button>
-      </Grid>
-</container>
+        </Grid  > */}
+
+          <Button style={{ backgroundColor: '#1BA291ff', color: 'white' }} variant="contained" color="inherit" fullWidth onClick={handleOpen}>Search</Button>
+        </Grid>
+      </container>
     </>
   );
 };

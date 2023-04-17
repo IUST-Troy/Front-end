@@ -48,6 +48,7 @@ const Wallpaper = ({ bgImage }) => {
       }}
     >
       <Box
+      //background image for searchbar
         sx={{
           display: "flex",
           alignItems: "center",
@@ -58,7 +59,7 @@ const Wallpaper = ({ bgImage }) => {
       >
         
         <Typography
-        
+          //background image for searchbar
           sx={{
             padding:"10px",
             color: "#fff",
@@ -77,11 +78,13 @@ const Wallpaper = ({ bgImage }) => {
           }}
         >
         
+        
            <Box 
           sx={{
             
             display: "flex",
           alignItems: "center",
+          justifyContent: "flex-end", // Add this line to align content to the right
           flexDirection: "column",
             // bgcolor: 'background.paper',
             backgroundColor :"rgba(186, 232, 219, 0.438)",
