@@ -14,16 +14,12 @@ import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 import { BsPencilFill } from "react-icons/bs"
+import {redirectToSignIn} from "../Routes/TokenCheker"
 const ProfilePage = () => {
     const navigate = useNavigate()
 
     React.useEffect(() => {
-        if (localStorage.getItem("acctoken")) {
-            console.log("got acctoken")
-        }
-        else {
-            navigate("/sign-in")
-        }
+        redirectToSignIn(navigate);
     })
     const [firstNameValue, setFirstNameValue] = React.useState('');
     const [lastNameValue, setLastNameValue] = React.useState('');
@@ -37,6 +33,7 @@ const ProfilePage = () => {
         setLastNameValue(localStorage.getItem("lasttname") ? localStorage.getItem("lastname") : "")
         setBioValue(localStorage.getItem("bio") ? localStorage.getItem("bio") : "")
         setEmailValue(localStorage.getItem("email"))
+        console.log(localStorage.getItem("email"))
         setGenderValue(() => {
             const g = localStorage.getItem("gender")
             if (g) {
@@ -353,7 +350,7 @@ const ProfilePage = () => {
                                     <div className="grid grid-cols-2  md:gap-2 gap-1">
                                         <div className="md:w-40 w-full">
                                             <label>Birth Date:</label>
-                                            <Datepicker id="birthdate"
+                                            {/* <Datepicker id="birthdate"
                                                 class="text-pallate-persian_green"
                                                 onChange={handleChange}
                                                 options={datePickerOptions}
@@ -362,7 +359,7 @@ const ProfilePage = () => {
 
 
 
-                                            </Datepicker>
+                                            </Datepicker> */}
                                         </div>
                                         <div className="">
                                             <label>Gender:</label>

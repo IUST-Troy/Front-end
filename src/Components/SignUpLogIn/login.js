@@ -162,9 +162,10 @@ export default class Login extends Component {
                     })
                     .then((res) => {
                         localStorage.setItem("username", username);
-                        localStorage.setItem("firstname", res.data.first_name);
-                        localStorage.setItem("lastname", res.data.last_name);
+                        // localStorage.setItem("firstname", res.data.first_name);
+                        // localStorage.setItem("lastname", res.data.last_name);
                         localStorage.setItem("email",res.data.email)
+                        console.log(res.data);
                         // window.location.replace("/home");
                         // navigate("/home")
                         console.log(res);

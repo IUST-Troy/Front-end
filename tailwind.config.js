@@ -23,6 +23,7 @@ module.exports = {
           pink_lavender: '#F7C1E3ff',
           celeste_lowOp: 'rgba(186, 232, 219, 0.438)',
           celeste_light: 'rgb(250, 255, 254)',
+          gunmetal: "#072425ff"
         }
       }
     },
