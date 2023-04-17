@@ -20,6 +20,7 @@ import { ExitToApp, Edit, Dashboard, History } from "@material-ui/icons";
 import { useNavigate } from "react-router-dom";
 
 const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
+    
     const [userMenu, setUserMenu] = useState(null);
     const [loggingOut, setLoggingOut] = useState(false);
     const navigate = useNavigate()
@@ -30,6 +31,9 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
         setUserMenu(null);
     };
 
+    const menuClickHandler = (route)=>{
+        navigate(route)
+    }
 
 
 
@@ -53,34 +57,11 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
         }, 1500);
     };
 
-    const LogOutHandler = () => {
-        setLoggingOut(false)
-
-        //TODO
-        // localStorage.removeItem("tokens")
-        
-    };
-
-
-
     
 
-    // const Alert = React.forwardRef(function Alert(props, ref) {
-    //     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-    //   });
+
     return (
         <>
-            {/* <Snackbar
-                open={loggingOut}
-                onClose={LogOutHandler}
-                autoHideDuration={1500}
-                anchorOrigin={{vertical: 'top' , horizontal: "center"}}
-                
-                >
-                <Alert severity="success" sx={{ width: '100%' }}>
-                Success, redirecting to login page...
-                </Alert>
-            </Snackbar> */}
             <ToastContainer/>
             <Grid container alignItems="center">
                 <Grid item>
@@ -98,7 +79,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                                 fontSize: "1.5rem",
                             }}
                         >
-                            {firstName + " " + lastName}
+                            {localStorage.getItem("firstname")?localStorage.getItem("firstname") + " " +localStorage.getItem("lastname"):"Not Defiend"}
                         </Typography>
                         <Link
                             href={"#" + id}
@@ -117,7 +98,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                                     fontSize: "1rem",
                                 }}
                             >
-                                @{id}
+                                @{localStorage.getItem("username")}
                             </Typography>
                         </Link>
                     </Box>
@@ -133,8 +114,8 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                                 }}
                                 src={avatarPath}
                             >
-                                {firstName[0]}
-                                {lastName[0]}
+                                {localStorage.getItem("firstname")?localStorage.getItem("firstname")[0]:"N"}
+                                {localStorage.getItem("lastname")?localStorage.getItem("lastname")[0]:"A"}
                             </Avatar>
                         </IconButton>
                     </Tooltip>
@@ -157,7 +138,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                         onClose={closeMenuHandler}
                     >
                         <MenuItem
-                            onClick={closeMenuHandler}
+                            onClick={()=>menuClickHandler("/dashboard")}
                             sx={{
                                 m: (0.5, 1),
                                 borderRadius: 1.2,
@@ -175,7 +156,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                             </Typography>
                         </MenuItem>
                         <MenuItem
-                            onClick={closeMenuHandler}
+                            onClick={()=>menuClickHandler("/profile")}
                             sx={{
                                 m: (0.5, 1),
                                 borderRadius: 1.2,
@@ -193,7 +174,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                             </Typography>
                         </MenuItem>
                         <MenuItem
-                            onClick={closeMenuHandler}
+                            onClick={()=>menuClickHandler("/history")}
                             sx={{
                                 m: (0.5, 1),
                                 borderRadius: 1.2,

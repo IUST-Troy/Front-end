@@ -7,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns:{
+        custom_1_2: '1fr 2fr',
+        custom_1_3: '1fr 3fr',
+        custom_1_4: '1fr 4fr',
+      },
       colors: {
         pallate: {
           celeste: '#BAE8DBff',

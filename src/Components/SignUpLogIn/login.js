@@ -15,7 +15,7 @@ export default class Login extends Component {
         };
         this.handPassword = this.handPassword.bind(this);
     }
-    
+
     handleusernameInput = (e) => {
         this.setState({ username: e.target.value });
     };
@@ -111,7 +111,7 @@ export default class Login extends Component {
         const username = document.getElementById("username-signup").value;
         const password = document.getElementById("password-signup").value;
         // const navigate = useNavigate()
-        
+
         axios
             .post(
                 `http://mrsz.pythonanywhere.com/auth/jwt/create`,
@@ -162,11 +162,26 @@ export default class Login extends Component {
                     })
                     .then((res) => {
                         localStorage.setItem("username", username);
-                        window.location.replace("/home");
+                        localStorage.setItem("firstname", res.data.first_name);
+                        localStorage.setItem("lastname", res.data.last_name);
+                        localStorage.setItem("email",res.data.email)
+                        // window.location.replace("/home");
                         // navigate("/home")
                         console.log(res);
                     });
-                // axios.get
+                axios.get("http://mrsz.pythonanywhere.com/Profile/me/", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `JWT ${accToken}`
+                    }
+                }).then((res) => {
+                    localStorage.setItem("birthdate", res.data.birth_date)
+                    localStorage.setItem("gender", res.data.gender)
+                    localStorage.setItem("bio", res.data.bio)
+                    localStorage.setItem("country", res.data.country)
+                    localStorage.setItem("city", res.data.city)
+
+                })
             })
             .catch((err) => {
                 //message.error(err.message);
