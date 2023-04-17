@@ -8,7 +8,7 @@ import Navbar from "../NavigationBar/Navbar";
 import FooterV2 from "../HomePage/FooterV2";
 import "../../Styles/HomePage/HomePage.scss";
 import CityCard from"../TouristAttractionsPage/CityCard"
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, Grid } from "@mui/material";
 import Image from "../../Static/four.jpg";
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@material-ui/core";
@@ -34,8 +34,9 @@ const Wallpaper = ({ bgImage }) => {
           sm: 5,
           md: 2,
         },
-        background: `url(${Image}) fixed center/cover`,
-        minHeight: "800px",
+        // background: `url(${Image}) fixed center/cover`,
+        // background: `url(${Image}) fixed center/cover`,
+        // minHeight: "800px",
         
 
         // backgroundColor :Colors.$persian-green,
@@ -46,19 +47,24 @@ const Wallpaper = ({ bgImage }) => {
         // },
       }}
     >
-      {/* <Box
+      <Box
         sx={{
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          borderRadius : 10,
+          background: `url(${Image}) fixed center/cover`,
         }}
-      > */}
-       
+      >
+        
         <Typography
+        
           sx={{
-            padding:"50px",
+            padding:"10px",
             color: "#fff",
             marginTop: "140.5px",
+            // marginLeft: "400px",
+            // marginRight:"1px",
             textAlign: "center",
             fontWeight: "600",
             fontSize: {
@@ -66,17 +72,43 @@ const Wallpaper = ({ bgImage }) => {
               md: "48px",
             },
             lineHeight: "82px",
-            mb: 14,
+            mb: 12,
+            // background: `url(${Image}) fixed center/cover`,
           }}
         >
+        
+           <Box 
+          sx={{
+            
+            display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+            // bgcolor: 'background.paper',
+            backgroundColor :"rgba(186, 232, 219, 0.438)",
+            borderRadius : 10,
+            // pt: 8,
+            //  pb: 6,
+          }}
+        >
+          
+        <Container sx={{ py: 4 ,px : 6}} maxWidth=""
+        >
+          
            <SearchNav />
+           </Container>
+           </Box>
            
+           
+          
+      
         </Typography>
+ </Box>
+ <Container sx={{padding : "10px",}}> </Container>
         <CityCard />
    
         {/* <MainButton text="Discover on 3D Globe" iconImg={btnGlobalIcon} /> */}
         {/* <SearchNav /> */}
-      {/* </Box> */}
+     
     </Container>
   );
 };

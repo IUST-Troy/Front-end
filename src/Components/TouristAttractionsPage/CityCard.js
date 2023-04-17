@@ -17,9 +17,12 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Image from "../../Static/four.jpg";
 import "../../Styles/TouristAttractionsPage/CityCard.scss"
+import { IconButton } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 
 function Copyright() {
   return (
+    
     <Typography variant="body2" color="text.secondary" align="center">
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -36,6 +39,7 @@ const theme = createTheme();
 
 export default function Album() {
   return (
+    
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar position="relative">
@@ -46,9 +50,10 @@ export default function Album() {
           </Typography>
         </Toolbar>
       </AppBar>
+      
       <main>
         {/* Hero unit */}
-        <Box
+        {/* <Box
           sx={{
             bgcolor: 'background.paper',
             pt: 8,
@@ -80,8 +85,18 @@ export default function Album() {
               <Button variant="outlined">Secondary action</Button>
             </Stack>
           </Container>
-        </Box>
-        <Container sx={{ py: 8 }} maxWidth="lg">
+        </Box> */}
+        <Box
+          sx={{
+            // bgcolor: 'background.paper',
+            backgroundColor :"rgba(186, 232, 219, 0.438)",
+            pt: 8,
+            pb: 6,
+          }}
+        >
+        <Container sx={{ py: 8 }} maxWidth="lg"
+        >
+          
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
@@ -89,13 +104,13 @@ export default function Album() {
                 <Card
                 //   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 sx={{
-                    backgroundColor :"rgba(186, 232, 219, 0.438)",
-                    m: (0.5, 1),
+                //     backgroundColor :"rgba(186, 232, 219, 0.438)",
+                //     m: (0.5, 1),
                     borderRadius: 10,
-                    "&:hover": {
-                        backgroundColor:
-                            "rgba(186, 232, 219, 0.438)",
-                    },
+                //     "&:hover": {
+                //         backgroundColor:
+                //             "rgba(186, 232, 219, 0.438)",
+                //     },
                   }}
                 >
                   <CardMedia
@@ -126,6 +141,7 @@ export default function Album() {
             ))}
           </Grid>
         </Container>
+        </Box>
       </main>
      
     </ThemeProvider>

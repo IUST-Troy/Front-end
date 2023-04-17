@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-
+import Image from "../../Static/four.jpg";
 import Input from '@mui/material/Input';
 import theme from "flowbite-react/lib/esm/theme/default";
 
@@ -44,9 +44,35 @@ const SearchBar = ({ handleSearch }) => {
     <>
 
     
-   
-   <Grid container spacing={2} alignItems="center">
-        <Grid item xs={15} sm={6} md={3}>
+   <container
+   sx={{
+    p: {
+      xs: 2,
+      sm: 5,
+      md: 2,
+    },
+    background: `url(${Image}) fixed center/cover`,
+    minHeight: "800px",
+    
+
+ 
+  }}
+   >
+   <Grid container spacing={2} alignItems="center"
+      sx={{
+    p: {
+      xs: 2,
+      sm: 5,
+      md: 2,
+    },
+    background: `url(${Image}) fixed center/cover`,
+    minHeight: "800px",
+    
+
+ 
+  }}
+   >
+        <Grid item xs={11} sm={6} md={3}>
           <FormControl fullWidth>
             <Select className="w-full"
               value={startingCity}
@@ -72,7 +98,7 @@ const SearchBar = ({ handleSearch }) => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid  item xs={12} sm={6} md={3}>
+        <Grid  item xs={11} sm={6} md={3}>
           <FormControl fullWidth>
             <Select className="w-full"
               value={destination}
@@ -102,7 +128,7 @@ const SearchBar = ({ handleSearch }) => {
         <Grid>
           
         </Grid>
-        <Grid className="w-full"  item xs={12} sm={6} md={3}>
+        <Grid className="w-full"  item xs={11} sm={6} md={3}>
         
           
           <TextField 
@@ -132,8 +158,8 @@ const SearchBar = ({ handleSearch }) => {
             }}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <TextField
+        <Grid item xs={11} sm={6} md={3} >
+          <TextField 
            sx={{
             backgroundColor :"rgba(186, 232, 219, 0.438)",
             m: (0.5, 1),
@@ -153,7 +179,7 @@ const SearchBar = ({ handleSearch }) => {
         </Grid  >
         <Button  style={{backgroundColor: '#1BA291ff', color: 'white'}} variant="contained" color="inherit" fullWidth onClick={handleOpen}>Search</Button>
       </Grid>
-
+</container>
     </>
   );
 };
