@@ -48,7 +48,7 @@ export default class Login extends Component {
             "Congratulations! Your Log-in was successful! ",
             {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 1500,
                 className: "toast-message",
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -127,7 +127,7 @@ export default class Login extends Component {
                     "Congratulations! Your sign_in was successful! ",
                     {
                         position: "top-right",
-                        autoClose: 5000,
+                        autoClose: 1500,
                         className: "toast-message",
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -161,14 +161,14 @@ export default class Login extends Component {
                         },
                     })
                     .then((res) => {
-                        localStorage.setItem("username", username);
-                        // localStorage.setItem("firstname", res.data.first_name);
-                        // localStorage.setItem("lastname", res.data.last_name);
-                        localStorage.setItem("email",res.data.email)
-                        console.log(res.data);
-                        // window.location.replace("/home");
+                        console.log(res.data[0])
+                        localStorage.setItem("username", res.data[0].username);
+                        localStorage.setItem("email",res.data[0].email)
+                        setTimeout(() => {
+                            window.location.replace("/home");
+                        }, 1500);
                         // navigate("/home")
-                        console.log(res);
+                        
                     });
                 axios.get("http://mrsz.pythonanywhere.com/Profile/me/", {
                     headers: {
@@ -181,6 +181,7 @@ export default class Login extends Component {
                     localStorage.setItem("bio", res.data.bio)
                     localStorage.setItem("country", res.data.country)
                     localStorage.setItem("city", res.data.city)
+                    window.location.replace("/home");
 
                 })
             })

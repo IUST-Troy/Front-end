@@ -86,11 +86,13 @@ const ProfilePage = () => {
         setEditprofile(false);
         setChangePassword(true);
         setChangeUsername(false);
+        cancelEditHandler()
     }
     const changeUsernameModeHandler = () => {
         setEditprofile(false);
         setChangePassword(false);
         setChangeUsername(true);
+        cancelEditHandler()
     }
 
 
@@ -235,7 +237,7 @@ const ProfilePage = () => {
             <div className=" grid justify-center items-center  w-full" style={{
                 backgroundImage: `url(${Wallpaper1})`,
             }}>
-                <Card className=" m-5 pl-24 pr-24  mt-32 rounded-xl  bg-pallate-celeste/[0.61] border-pallate-persian_green backdrop-blur-sm">
+                <Card className=" m-5 pl-24 pr-24  mt-32 rounded-xl  bg-pallate-celeste/[0.60] border-pallate-persian_green backdrop-blur-sm">
                     <div className="grid md:grid-cols-3 md:gap-16    sm:grid-cols-1 gap-4 ">
                         <Button className={isEditprofile ? "bg-pallate-finn hover:bg-pallate-wisteria" : "bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell"} onClick={editProfileModeHandler}>Edit Profile</Button>
                         <Button className={isChangePassword ? "bg-pallate-finn hover:bg-pallate-wisteria" : "bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell"} onClick={changePasswordModeHandler}>Change Password</Button>
@@ -244,7 +246,7 @@ const ProfilePage = () => {
                 </Card>
 
                 {isEditprofile &&
-                    <Card className="mt-1 m-5 mb-64 rounded-xl  bg-pallate-celeste/[0.61] border-pallate-persian_green backdrop-blur-sm">
+                    <Card className=" mt-1 m-5 mb-64 rounded-xl  bg-pallate-celeste/[0.60] border-pallate-persian_green backdrop-blur-sm">
                         <div className="grid grid-cols-1 gap-4 ">
                             <div className="grid md:grid-cols-2 md:gap-0 sm:grid-cols-1 sm:gap-2">
                                 <div className="leftside grid grid-cols-1 gap-10 p-8 justify-center justify-items-center">
@@ -321,13 +323,13 @@ const ProfilePage = () => {
                                                 id="email"
                                                 class="bg-pallate-celeste_light border disabled:opacity-80 placeholder-pallate-persian_green border-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full pl-10 p-2.5 "
                                                 placeholder="Email"
-                                                disabled={!isEditMode}
+                                                disabled={true}
                                                 value={emailValue}
                                                 onChange={handleEmailchange}
                                             />
                                         </div>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <label>User Name:</label>
                                         <div className="relative">
                                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -346,11 +348,11 @@ const ProfilePage = () => {
 
                                             />
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="grid grid-cols-2  md:gap-2 gap-1">
                                         <div className="md:w-40 w-full">
                                             <label>Birth Date:</label>
-                                            {/* <Datepicker id="birthdate"
+                                            <Datepicker id="birthdate"
                                                 class="text-pallate-persian_green"
                                                 onChange={handleChange}
                                                 options={datePickerOptions}
@@ -359,7 +361,7 @@ const ProfilePage = () => {
 
 
 
-                                            </Datepicker> */}
+                                            </Datepicker>
                                         </div>
                                         <div className="">
                                             <label>Gender:</label>

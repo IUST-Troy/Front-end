@@ -51,8 +51,25 @@ const redirectToSignIn = (navigate) => {
 };
 
 const redirectToHome = (navigate) => {
+    const refresh = localStorage.getItem("reftoken")
     if (TokenChecker() === true) {
         navigate("/home")
+    }
+    else if (TokenChecker()===false) {
+        if(refresh){
+            axios.post(
+                "http://mrsz.pythonanywhere.com/auth/jwt/refresh/", {
+                    refresh: refresh
+                },
+                { headers: { "Content-Type": "application/json" } }
+            ).then((res) => {
+                localStorage.setItem("acctoken", res.data.access);
+                navigate("/home")
+            }).catch((err) => {
+                console.log(err);
+                
+            })
+        }
     }
 }
 
