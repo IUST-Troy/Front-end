@@ -1,4 +1,5 @@
-@import "../Colors";
+@use "../Colors";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300&display=swap');
 
 form {
   width: 100%;
@@ -53,4 +54,26 @@ textarea:focus{
 }
 input:focus{
   box-shadow: none;
+}
+.ColorText{
+  
+  color : Colors.$celeste;
+  font-family: 'Nunito', sans-serif;
+  font-size: 3rem;
+  
+
+}
+.Text{
+  font-family: 'Nunito', sans-serif;
+  font-size: 3rem;
+}
+.goDown{
+  color : Colors.$celeste;
+  font-size: 2rem;
+}
+.title{
+  color: white;
+  font-Size: 4.5rem;
+  font-family: 'Nunito', sans-serif;
+
 }
