@@ -3,35 +3,41 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Grid,Collapse, Container, colors ,IconButton} from '@mui/material';
-import Image from "../../Static/pisa.jpg";
-import Image1 from "../../Static/eiffel.jpg";
-import Image2 from "../../Static/niagara.webp";
+import { Button, CardActionArea, CardActions, Grid,Collapse, Container, colors ,IconButton,Rating} from '@mui/material';
+import pisa from "../../Static/pisa.jpg";
+import eiffel from "../../Static/eiffel.jpg";
+import niagara from "../../Static/niagara.webp";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import useWindowPosition from '../../hook/useWindowPosition';
 import "../../Styles/TouristAttractionsPage/Card.scss"
+import rate3 from "../../Static/rating-3.svg"
+import rate4 from "../../Static/rating-4.svg"
+import rate5 from "../../Static/rating-5.svg"
 let data = [
   {
     id :1,
-    img:Image,
+    img:eiffel,
     name : "Eiffel",
     city : "Paris",
     country : "France",
+    rate : '2.5',
   },
   {
     id:2,
-    img:Image1,
+    img:pisa,
     name : "Pisa",
     city: "Pisa",
     country : "Italy",
-    
+    rate : '5',
   },
   {
     id:3,
-    img:Image2,
+    img:niagara,
     name : "Niagara",
     city : "Ontario",
     country: "Canada",
+    rate : '4',
+    
   }
 ]
 export default function ImageCard({cheched}) {
@@ -85,13 +91,23 @@ export default function ImageCard({cheched}) {
                         sx={{ textAlign: "center" }}
                       >
                         {item.name}
+                        
                       </Typography>
                       <Typography sx={{ textAlign: "center" }}>
-                      <IconButton className='icon'>
+                      <IconButton className="icoon" sx={{
+                        color: '#fff',
+                      }}>
             <LocationOnIcon  />
           </IconButton>
-                        {item.city}&nbsp;
+                        {item.city},&nbsp;
                         {item.country}
+                        {/* {item.rate} */}
+                      </Typography>
+                      <Typography>
+                      <Rating sx={{color :'#fff'}} name="half-rating-read" defaultValue={item.rate} precision={0.5} readOnly className="rating" />
+                      {/* <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> */}
+
+                        {/* {item.rate} */}
                       </Typography>
 
                       {/* <Typography>
