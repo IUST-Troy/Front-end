@@ -14,13 +14,17 @@ import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 import { BsPencilFill } from "react-icons/bs"
-import {redirectToSignIn} from "../Routes/TokenCheker"
+import { redirectToSignIn } from "../Routes/TokenCheker"
+import places from "./places";
+
 const ProfilePage = () => {
     const navigate = useNavigate()
 
-    React.useEffect(() => {
-        redirectToSignIn(navigate);
-    })
+    // React.useEffect(() => {
+    //     redirectToSignIn(navigate);
+    // })
+
+
     const [firstNameValue, setFirstNameValue] = React.useState('');
     const [lastNameValue, setLastNameValue] = React.useState('');
     const [emailValue, setEmailValue] = React.useState('');
@@ -28,11 +32,16 @@ const ProfilePage = () => {
     const [genderValue, setGenderValue] = React.useState('');
     const [bioValue, setBioValue] = React.useState('');
     const [userNameValue, setUserNameValue] = React.useState('')
+    const [countryValue, setCountryValue] = React.useState('')
+    const [cityValue, setCityValue] = React.useState('')
+    const [imgValue, setImgValue] = React.useState('')
+
     React.useEffect(() => {
         setFirstNameValue(localStorage.getItem("fisrtname") ? localStorage.getItem("fisrtname") : "")
         setLastNameValue(localStorage.getItem("lasttname") ? localStorage.getItem("lastname") : "")
         setBioValue(localStorage.getItem("bio") ? localStorage.getItem("bio") : "")
         setEmailValue(localStorage.getItem("email"))
+        setImgValue(localStorage.getItem("avatar")? localStorage.getItem("avatar"):null)
         console.log(localStorage.getItem("email"))
         setGenderValue(() => {
             const g = localStorage.getItem("gender")
@@ -44,15 +53,17 @@ const ProfilePage = () => {
                     return "Female"
                 }
                 else {
-                    return "others"
+                    return "Not Selected"
                 }
             }
             else {
-                return "others"
+                return "Not Selected"
             }
         })
         setUserNameValue(localStorage.getItem("username"))
-        setBirthDateValue(localStorage.getItem("birthdate") ? localStorage.getItem("birthdate") : new Date("1995-01-01"))
+        setBirthDateValue(localStorage.getItem("birthdate") ? localStorage.getItem("birthdate") : null)
+        setCountryValue(localStorage.getItem("country") ? localStorage.getItem("country") : "Select")
+        setCityValue(localStorage.getItem("country") === "Select" ? localStorage.getItem("city") ? localStorage.getItem("city") : "Select" : "Select")
         console.log(localStorage.getItem("birthdate"))
     }, [])
 
@@ -71,8 +82,20 @@ const ProfilePage = () => {
     const handleGenderchange = (event) => {
         setGenderValue(event.target.value)
     }
-
-
+    const handleCountryChange = (event) => {
+        setCountryValue(event.target.value)
+    }
+    const handleCityChange = (event) => {
+        setCityValue(event.target.value)
+    }
+    const handleImgValue = (e) => {
+        const file = e.target.files[0]
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+            setImgValue(reader.result)
+        }
+    }
     const [isEditprofile, setEditprofile] = React.useState(true);
     const [isChangePassword, setChangePassword] = React.useState(false);
     const [isChangeUsername, setChangeUsername] = React.useState(false);
@@ -116,6 +139,7 @@ const ProfilePage = () => {
         setLastNameValue(localStorage.getItem("lastname") ? localStorage.getItem("lastname") : "")
         setBioValue(localStorage.getItem("bio") ? localStorage.getItem("bio") : "")
         setEmailValue(localStorage.getItem("email"))
+        setImgValue(localStorage.getItem("avatar")? localStorage.getItem("avatar"):null)
         setGenderValue(() => {
             const g = localStorage.getItem("gender")
             if (g) {
@@ -126,15 +150,17 @@ const ProfilePage = () => {
                     return "Female"
                 }
                 else {
-                    return "others"
+                    return "Not Selected"
                 }
             }
             else {
-                return "others"
+                return "Not Selected"
             }
         })
         setUserNameValue(localStorage.getItem("username"))
-        setBirthDateValue(localStorage.getItem("birthdate") ? localStorage.getItem("birthdate") : new Date("1995-01-01"))
+        setBirthDateValue(localStorage.getItem("birthdate") ? localStorage.getItem("birthdate") : null)
+        setCountryValue(localStorage.getItem("country") ? localStorage.getItem("country") : "Select")
+        setCityValue(localStorage.getItem("country") ? (localStorage.getItem("city") ? localStorage.getItem("city") : "Select") : "Select")
         setEditMode(false);
     };
 
@@ -174,42 +200,56 @@ const ProfilePage = () => {
             next: () => <span>Next</span>,
         },
         datepickerClassNames: "top-12",
-        defaultDate: birthDateValue,
+        defaultDate: null,
         language: "en",
     };
 
+    const years = [];
+    const months = [];
+    const days = [];
+
+    for (let i = 2023; i >= 1923; i--) {
+        years.push(i);
+    }
+
+    for (let i = 1; i <= 12; i++) {
+        months.push(i);
+    }
+
+    for (let i = 1; i <= 31; i++) {
+        days.push(i);
+    }
 
 
-    const submitButton = () => {
-        const firstname = firstNameValue
-        const lastname = lastNameValue
+
+    const submitButtonProfile = () => {
+
         const gender = genderValue
         const email = emailValue
         const birthDate = birthDateValue
         axios.post(`http://mamadreza.pythonanywhere.com/auth/users`,
             {
-                "firstname": firstname,
-                "lastname": lastname,
-                "email": email,
+
+
                 "gender": gender,
                 "birthDate": birthDate
 
             }
-            , { headers: { 'Content-Type': 'application/json' } })
+            , { headers: { 'Content-Type': 'application/json', Authorization: `JWT ${localStorage.getItem('acctoken')}` } })
             .then(res => {
                 toast.success('Congratulations! Your Edit_profile was successful! '
                     ,
 
                     {
                         position: "top-right",
-                        autoClose: 5000,
+                        autoClose: 1500,
                         className: 'toast-message',
                         hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
+                        closeOnClick: false,
+                        pauseOnHover: false,
                         draggable: true,
                         progress: undefined,
-                        theme: "light",
+                        theme: "colored",
                     },
 
                     //            window.location.replace('')
@@ -231,13 +271,14 @@ const ProfilePage = () => {
 
 
     return (
-        <div className="grid grid-cols-1 gap-0 mb-24">
+        <div className="grid grid-cols-1 gap-0 mb-24" style={{
+            backgroundImage: `url(${Wallpaper1})`,
+            backgroundSize: 'cover'
+        }}>
             <Header />
             <Navbar />
-            <div className=" grid justify-center items-center  w-full" style={{
-                backgroundImage: `url(${Wallpaper1})`,
-            }}>
-                <Card className=" m-5 pl-24 pr-24  mt-32 rounded-xl  bg-pallate-celeste/[0.60] border-pallate-persian_green backdrop-blur-sm">
+            <div className=" grid justify-center items-center w-full" >
+                <Card className=" m-5 pl-24 pr-24  mt-32 rounded-xl  bg-pallate-celeste/[0.6] border-pallate-persian_green backdrop-blur-sm">
                     <div className="grid md:grid-cols-3 md:gap-16    sm:grid-cols-1 gap-4 ">
                         <Button className={isEditprofile ? "bg-pallate-finn hover:bg-pallate-wisteria" : "bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell"} onClick={editProfileModeHandler}>Edit Profile</Button>
                         <Button className={isChangePassword ? "bg-pallate-finn hover:bg-pallate-wisteria" : "bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell"} onClick={changePasswordModeHandler}>Change Password</Button>
@@ -250,20 +291,15 @@ const ProfilePage = () => {
                         <div className="grid grid-cols-1 gap-4 ">
                             <div className="grid md:grid-cols-2 md:gap-0 sm:grid-cols-1 sm:gap-2">
                                 <div className="leftside grid grid-cols-1 gap-10 p-8 justify-center justify-items-center">
-                                    <IconButton>
-
-                                        <Avatar
-                                            src={avatar}
-                                            sx={{
-                                                width: "12rem",
-                                                height: "12rem",
-                                            }}
-                                        >
-
-                                            <BsPencilFill />
-
-                                        </Avatar>
-                                    </IconButton>
+                                    <Avatar
+                                        src={imgValue}
+                                        sx={{
+                                            width: "12rem",
+                                            height: "12rem",
+                                        }}
+                                    >
+                                    </Avatar>
+                                    {isEditMode && <input onChange={handleImgValue} accept="image/*" class="block w-full text-sm text-pallate-persian_green border border-pallate-persian_green rounded-lg cursor-pointer bg-pallate-celeste_light " id="user_avatar" type="file" />}
                                     <Textarea
                                         className="bg-pallate-celeste_light placeholder-pallate-persian_green  border-pallate-persian_green focus:border-pallate-persian_green resize-none focus:ring-pallate-persian_green"
                                         rows={5}
@@ -329,26 +365,54 @@ const ProfilePage = () => {
                                             />
                                         </div>
                                     </div>
-                                    {/* <div>
-                                        <label>User Name:</label>
-                                        <div className="relative">
-                                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <span class="text-pallate-persian_green">
-                                                    @
-                                                </span>
-                                            </div>
-                                            <input
-                                                maxLength={50}
-                                                type="text"
-                                                id="username"
-                                                class="bg-pallate-celeste_light disabled:opacity-80 disabled:bg-pallate-celeste_light/[0.6] border text-pallate-persian_green border-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full pl-10 p-2.5 "
-                                                placeholder="username"
-                                                value={userNameValue}
-                                                disabled={true}
+                                    <div className="grid grid-cols-2  md:gap-2 gap-1">
+                                        <div className="md:w-40 w-full">
+                                            <label>Country:</label>
+                                            <Select
+                                                id="country"
+                                                class="w-full md:w-40 border-pallate-persian_green disabled:opacity-80 rounded-lg  bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                                                disabled={!isEditMode}
+                                                value={countryValue}
+                                                onChange={handleCountryChange}
+                                            >
 
-                                            />
+                                                <option>Select</option>
+                                                {
+                                                    places.map((country) => {
+                                                        return (
+                                                            <option>{country.Name}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+
                                         </div>
-                                    </div> */}
+                                        <div className="">
+                                            <label>City:</label>
+                                            <Select
+                                                id="gender"
+                                                class="w-full md:w-40 border-pallate-persian_green disabled:opacity-80 rounded-lg  bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                                                disabled={!isEditMode}
+                                                value={cityValue}
+                                                onChange={handleCityChange}
+                                            >
+                                                <option>Select</option>
+                                                {
+                                                    countryValue === ("Select" || "" || null || undefined) ? 1 :
+                                                        places.find(country => country.Name === countryValue) === undefined? 1 :
+                                                        places.find(country => country.Name === countryValue).Cities 
+                                                        .sort(c => c).map(
+                                                            city => {
+                                                                return (
+                                                                    <option>{city}</option>
+                                                                )
+                                                            }
+                                                        )
+                                                        
+                                                }
+                                            </Select>
+                                        </div>
+                                    </div>
                                     <div className="grid grid-cols-2  md:gap-2 gap-1">
                                         <div className="md:w-40 w-full">
                                             <label>Birth Date:</label>
@@ -358,10 +422,8 @@ const ProfilePage = () => {
                                                 options={datePickerOptions}
                                                 show={show && isEditMode}
                                                 setShow={handleClose}>
-
-
-
                                             </Datepicker>
+
                                         </div>
                                         <div className="">
                                             <label>Gender:</label>
@@ -374,7 +436,7 @@ const ProfilePage = () => {
                                             >
                                                 <option>Male</option>
                                                 <option>Female</option>
-                                                <option>others</option>
+                                                <option>Not Selected</option>
                                             </Select>
                                         </div>
                                     </div>
