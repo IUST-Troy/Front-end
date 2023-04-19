@@ -14,6 +14,7 @@ export default function Signup() {
   const [passwordConfirmationValue, setPasswordConfirmationValue] = React.useState("");
   const [emailErrorValue, setEmailErrorValue] = React.useState(false);
   const [passwordErrorValue, setPasswordErrorValue] = React.useState(false);
+  const [passwordErrorConfirmationValue, setPasswordErrorConfirmation] = React.useState(false);
 
   const handleFirstName = (e) => {
     e.preventDefault();
