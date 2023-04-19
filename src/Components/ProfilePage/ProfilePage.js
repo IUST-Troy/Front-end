@@ -46,10 +46,10 @@ const ProfilePage = () => {
         setGenderValue(() => {
             const g = localStorage.getItem("gender")
             if (g) {
-                if (g === 0) {
+                if (g === true) {
                     return "Male"
                 }
-                else if (g === 1) {
+                else if (g === false) {
                     return "Female"
                 }
                 else {
@@ -143,10 +143,10 @@ const ProfilePage = () => {
         setGenderValue(() => {
             const g = localStorage.getItem("gender")
             if (g) {
-                if (g === 0) {
+                if (g === true) {
                     return "Male"
                 }
-                else if (g === 1) {
+                else if (g === false) {
                     return "Female"
                 }
                 else {
