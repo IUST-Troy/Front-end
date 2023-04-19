@@ -3,11 +3,14 @@ import React from 'react'
 import './App.css';
 import HomePage from './Components/HomePage/HomePage'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+
 import Login from './Components/SignUpLogIn/login.jsx'
 import SignUp from './Components/SignUpLogIn/signup.jsx'
 import Forget from './Components/SignUpLogIn/forget.jsx'
 import Verification from './Components/SignUpLogIn/verification.jsx'
-import TouristAttractionsPage from './Components/TouristAttractionsPage/TouristAttractionsPage'
+
+import Tour from'./Components/TouristAttractionsPage/Tour'
+
 
 function App() {
   return (
@@ -22,7 +25,8 @@ function App() {
               <Route path="/verification" element={<Verification />} />
               <Route path="/forget" element={<Forget />} />
               <Route path='/home' element={<HomePage/>} />
-              <Route path='/tourist-attractions-page' element={<TouristAttractionsPage/>} />
+              <Route path='/tour' element={<Tour/>} />
+          
               </Routes>
        
      
