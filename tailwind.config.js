@@ -21,14 +21,9 @@ module.exports = {
           finn: '#654479ff',
           wisteria: '#B193CFff',
           pink_lavender: '#F7C1E3ff',
-<<<<<<< HEAD
           celeste_lowOp: 'rgba(186, 232, 219, 0.438)',
           celeste_light: 'rgb(250, 255, 254)',
           gunmetal: "#072425ff"
-=======
-          celeste_light: 'rgb(250, 255, 254)',
-          gunmetal: "#082225ff"
->>>>>>> feature/v1.0.0/Tourist_Attractions_Page
         }
       }
     },

@@ -112,7 +112,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                                     height: 75,
                                     bgcolor: "#1BA291ff",
                                 }}
-                                src={avatarPath}
+                                src={localStorage.getItem("avatar")}
                             >
                                 {localStorage.getItem("firstname")?localStorage.getItem("firstname")[0]:"N"}
                                 {localStorage.getItem("lastname")?localStorage.getItem("lastname")[0]:"A"}

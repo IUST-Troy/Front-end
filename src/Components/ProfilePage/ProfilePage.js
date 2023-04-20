@@ -95,6 +95,7 @@ const ProfilePage = () => {
         reader.onloadend = () => {
             setImgValue(reader.result)
         }
+        console.log(imgValue);
     }
     const [isEditprofile, setEditprofile] = React.useState(true);
     const [isChangePassword, setChangePassword] = React.useState(false);
@@ -204,40 +205,33 @@ const ProfilePage = () => {
         language: "en",
     };
 
-    const years = [];
-    const months = [];
-    const days = [];
-
-    for (let i = 2023; i >= 1923; i--) {
-        years.push(i);
-    }
-
-    for (let i = 1; i <= 12; i++) {
-        months.push(i);
-    }
-
-    for (let i = 1; i <= 31; i++) {
-        days.push(i);
-    }
 
 
 
     const submitButtonProfile = () => {
 
         const gender = genderValue
-        const email = emailValue
         const birthDate = birthDateValue
-        axios.post(`http://mamadreza.pythonanywhere.com/auth/users`,
+        const country = countryValue
+        const city = cityValue
+        const avatar = imgValue
+        const bio = bioValue
+        const firstName = firstNameValue
+        const lastname = lastNameValue
+
+        axios.put(`http://mrsz.pythonanywhere.com/Profile/me`,
             {
 
-
-                "gender": gender,
-                "birthDate": birthDate
+                "country": countryValue,
+                "city" : cityValue,
+                "gender": gender==="Male"?true:gender==="Female"?false:null,
+                "birthDate": birthDate.toString(),
+                "bio":bio
 
             }
             , { headers: { 'Content-Type': 'application/json', Authorization: `JWT ${localStorage.getItem('acctoken')}` } })
             .then(res => {
-                toast.success('Congratulations! Your Edit_profile was successful! '
+                toast.success('Congratulations! Your Edit_profile was successful! profile/me'
                     ,
 
                     {
@@ -260,7 +254,7 @@ const ProfilePage = () => {
             .catch(err => {
                 //message.error(err.message);
                 console.error(err);
-                toast.error('Error! Your Edit_profile was not successful!',
+                toast.error('Error! Your Edit_profile was not successful! Profile/me',
                     {
                         className: 'toast-message',
 
