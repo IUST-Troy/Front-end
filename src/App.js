@@ -2,7 +2,7 @@ import React from 'react'
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import HomePage from './Components/HomePage/HomePage'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Login from './Components/SignUpLogIn/login.jsx'
 import SignUp from './Components/SignUpLogIn/signup.jsx'
