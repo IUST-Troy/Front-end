@@ -1,0 +1,27 @@
+    const datePickerOptions = {
+        title: "Birth Date",
+        autoHide: true,
+        todayBtn: false,
+        clearBtn: true,
+        maxDate: new Date("2023-31-12"),
+        minDate: new Date("1923-01-01"),
+        theme: {
+            background: "bg-pallate-celeste_light dark:bg-gray-800",
+            todayBtn: "bg-pallate-persian_green hover:bg-pallate-french_mauve",
+            clearBtn: "",
+            icons: "",
+            text: "",
+            disabledText: "bg-pallate-pink_lavender",
+            input: "bg-pallate-celeste_light disabled:opacity-80 placeholder:text-pallate-persian_green border-pallate-persian_green focus:ring-pallate-persian_green focus:border-pallate-persian_green",
+            inputIcon: "text-pallate-persian_green",
+            selected: "bg-pallate-persian_green hover:bg-pallate-french_mauve",
+        },
+        icons: {
+            // () => ReactElement | JSX.Element
+            prev: () => <span>Previous</span>,
+            next: () => <span>Next</span>,
+        },
+        datepickerClassNames: "top-12",
+        defaultDate: birthDateValue,
+        language: "en",
+    };

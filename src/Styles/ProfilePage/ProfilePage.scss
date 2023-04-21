@@ -1,13 +1,15 @@
 @use"../Colors";
 
 
-.image {
-    // min-height: 100vh;
-    // position: relative;
-    // padding-bottom: 100px;
+// .image {
+//     // min-height: 100vh;
+//     // position: relative;
+//     // padding-bottom: 100px;
+// }
+
+.card-bg{
+    background-color: rgb(186 232 219 / 0.6)
 }
-
-
 #file-upload-button{
     background-color: Colors.$celeste;
 }
