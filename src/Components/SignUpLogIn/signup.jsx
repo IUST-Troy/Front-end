@@ -1,9 +1,16 @@
 import React from "react";
-import loginImg from "../../Static/Wallpaper4.png";
+import Signupimage from "../../Static/Wallpaper4.png";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import "./wall.css";
 import { useNavigate } from "react-router-dom";
 import { BsPatchExclamation } from "react-icons/bs";
+import { BsPersonFill } from "react-icons/bs";
+import { BsPersonFillLock } from "react-icons/bs";
+import { BsEnvelopeFill } from "react-icons/bs";
+import { HiLockClosed } from "react-icons/hi";
+import { HiLockOpen } from "react-icons/hi";
+import { IoMdSend } from "react-icons/io5";
 import { Tooltip } from "flowbite-react";
 export default function Signup() {
   const [firstNameValue, setFirstNameValue] = React.useState("");
@@ -69,12 +76,12 @@ export default function Signup() {
       .post(
         "http://mrsz.pythonanywhere.com/auth/users/",
         {
-          "email": email,
-          "username": username,
-          "first_name": fn,
-          "last_name": ln,
-          "password": password,
-          "re_password": confirm,
+          email: email,
+          username: username,
+          first_name: fn,
+          last_name: ln,
+          password: password,
+          re_password: confirm,
         },
         {
           headers: {
@@ -95,7 +102,7 @@ export default function Signup() {
           theme: "colored",
         });
         console.log(res.data);
-        navigate("/sign-in")
+        navigate("/sign-in");
       })
       .catch((err) => {
         toast.error(err.message, {
@@ -114,43 +121,56 @@ export default function Signup() {
       });
   };
   return (
-    <div className="md:flex block justify-center align-items-center w-screen h-screen bg-cover bg-blue-300">
+    <div className="md:flex block justify-center items-center w-screen h-screen bg-cover overflow-auto test">
       {/* <ToastContainer/> */}
-      <div className="flex rounded-3xl w-[calc(100vw-20px)] max-w-4xl mx-auto my-8 overflow-hidden border border-pallate-persian_green">
-        <img className="md:w-1/2 hidden md:block" src={loginImg} alt="" />
-        <div className="md:w-1/2 w-full bg-pallate-celeste/[0.60]  p-8 px-8">
+      <div className="flex rounded-3xl w-[calc(100vw-20px)] max-w-4xl mx-auto my-8 overflow-hidden border-2 border-pallate-persian_green ">
+        <img className="md:w-1/2 hidden md:block" src={Signupimage} alt="" />
+        <div className="md:w-1/2 w-full bg-pallate-celeste/[0.89]  p-8 px-8">
           <h2 className="text-4xl text-pallate-persian_green font-bold text-center">
             Sign Up
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-2">
             <div className="flex flex-col text-gray-500 text-lg py-2">
-              <label>Firstname</label>
+              <div className="flex justify-start items-center">
+                <BsPersonFill className="mr-1" />
+                <label>Firstname</label>
+              </div>
               <input
-                className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-2 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
+                className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                 onChange={handleFirstName}
+                placeholder="First name"
                 value={firstNameValue}
                 maxLength={35}
               />
             </div>
             <div className="flex flex-col text-gray-500 text-lg py-2">
-              <label>Lastname</label>
+              <div className="flex justify-start items-center">
+                <BsPersonFill className="mr-1" />
+                <label>Lastname</label>
+              </div>
               <input
-                className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-2 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
+                className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                 value={lastNameValue}
+                placeholder="Last name"
                 onChange={handleLastName}
               />
             </div>
           </div>
           <div className="flex flex-col text-gray-500 text-lg py-2">
-            <label>Username</label>
+            <div className="flex justify-start items-center">
+              <BsPersonFillLock className="mr-1" />
+              <label>Username</label>
+            </div>
             <input
-              className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-2 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
+              className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
               value={userNameValue}
+              placeholder="Username"
               onChange={handleUsername}
             />
           </div>
           <div className="flex flex-col text-gray-500 text-lg py-2">
             <div className="flex justify-start items-center">
+              <BsEnvelopeFill className="mr-1" />
               <label>Email Address </label>
               {emailErrorValue && (
                 <Tooltip content="please enter a valid email" className="ml-2">
@@ -159,19 +179,21 @@ export default function Signup() {
               )}
             </div>
             <input
-              className={`p-2 rounded-xl border text-sm focus:ring-2 focus:outline-none bg-pallate-celeste_light mt-2 ${
+              className={`p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none  bg-pallate-celeste_light mt-2 ${
                 emailErrorValue
-                  ? "border-red-500 foucs:border-red-500 focus:ring-red-500"
+                  ? "border-red-500   focus:ring-red-500 focus:border-red-500"
                   : "border-pallate-persian_green   focus:ring-pallate-persian_green  focus:border-pallate-persian_green"
               }   `}
               type="email"
               value={emailValue}
+              placeholder="Email Address"
               onChange={handleEmail}
             />
           </div>
           <div className="grid md:grid-cols-2 md:gap-2 grid-cols-1">
             <div className="flex flex-col text-gray-500 text-lg py-2">
               <div className="flex justify-start items-center">
+                <HiLockClosed className="mr-1" />
                 <label>Password</label>
                 {passwordErrorConfirmationValue && (
                   <Tooltip content="please check the password" className="ml-2">
@@ -180,33 +202,37 @@ export default function Signup() {
                 )}
               </div>
               <input
-                className={`p-2 rounded-xl border text-sm focus:ring-2 focus:outline-none bg-pallate-celeste_light mt-2 ${
-                  passwordErrorConfirmationValue
-                    ? "border-red-500 foucs:border-red-500 focus:ring-red-500"
+                className={`p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none bg-pallate-celeste_light mt-2 ${
+                  passwordErrorConfirmationValue && passwordValue.length!==0
+                    ? "border-red-500   focus:ring-red-500 focus:border-red-500"
                     : "border-pallate-persian_green   focus:ring-pallate-persian_green  focus:border-pallate-persian_green"
                 }   `}
                 type="password"
                 value={passwordValue}
+                placeholder="Password"
                 onChange={handlePassword}
               />
             </div>
             <div className="flex flex-col text-gray-500 text-lg py-2">
-              <label>Confirm Password</label>
+              <div className="flex justify-start items-center">
+                <HiLockOpen className="mr-1" />
+                <label>Confirm Password</label>
+              </div>
               <input
-                className={`p-2 rounded-xl border text-sm focus:ring-2 focus:outline-none bg-pallate-celeste_light mt-2 ${
-                  passwordErrorConfirmationValue
-                    ? "border-red-500 foucs:border-red-500 focus:ring-red-500"
+                className={`p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none bg-pallate-celeste_light mt-2 ${
+                  passwordErrorConfirmationValue && passwordConfirmationValue.length!==0
+                    ? "border-red-500   focus:ring-red-500 focus:border-red-500"
                     : "border-pallate-persian_green   focus:ring-pallate-persian_green  focus:border-pallate-persian_green"
                 }   `}
                 type="password"
                 value={passwordConfirmationValue}
+                placeholder="Confirm Password"
                 onChange={handleConfirmPassword}
               />
             </div>
           </div>
-          {/* <div className="divide-y divide-solid divide-pallate-persian_green "> */}
           <button
-            className="w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
+            className="w-full my-6 py-3 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
             disabled={
               passwordErrorConfirmationValue ||
               emailErrorValue ||
@@ -214,19 +240,21 @@ export default function Signup() {
               firstNameValue.length === 0 ||
               lastNameValue.length === 0 ||
               passwordValue.length === 0 ||
-              emailValue.length === 0 
+              emailValue.length === 0
             }
             onClick={handleSignUpClick}
-            
           >
             Sign Up
           </button>
-          <div className="flex justify-between flex-auto items-center text-gray-500 text-lg py-2">
-            <p className="Already registered text-center items-center justify-center display : inline">
-              Already registered ? <a href="/sign-in">Click here to Login</a>
-              </p>
-          </div>
-          {/* </div> */}
+          <p className="Already_registered text-center text-gray-500 text-lg py-2">
+            Already registered ?{" "}
+            <a
+              href="/sign-in"
+              class="text-primary-600 hover:underline text-pallate-persian_green"
+            >
+              Click here to Login{" "}
+            </a>
+          </p>
         </div>
       </div>
     </div>

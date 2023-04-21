@@ -271,6 +271,8 @@ export default class SignUp extends Component
           progress: undefined,
           theme: "light",
        
+
+          
           // className: 'toast-message',
           // autoClose: 5000,
           // hideProgressBar: false,
