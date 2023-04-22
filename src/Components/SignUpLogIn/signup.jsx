@@ -124,11 +124,11 @@ export default function Signup() {
   return (
     <div className="md:flex block justify-center items-center w-screen h-screen bg-cover overflow-auto test">
       {/* <ToastContainer/> */}
-      <div className="flex rounded-3xl w-[calc(100vw-20px)] max-w-4xl mx-auto my-8 overflow-hidden border-2 border-pallate-persian_green ">
+      <div className="flex rounded-3xl w-[calc(100vw-20px)] max-w-4xl mx-auto my-8 overflow-hidden border-2 border-none ">
         <ToastContainer/>
         <img className="md:w-1/2 hidden md:block" src={Signupimage} alt="" />
         <div className="md:w-1/2 w-full bg-pallate-celeste/[0.89]  p-8 px-8">
-          <h2 className="text-4xl text-pallate-persian_green font-bold text-center">
+          <h2 className="text-4xl text-pallate-persian_green font-bold text-center my-4 mt-0">
             Sign Up
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-2">
@@ -197,7 +197,7 @@ export default function Signup() {
               <div className="flex justify-start items-center">
                 <HiLockClosed className="mr-1" />
                 <label>Password</label>
-                {passwordErrorConfirmationValue && (
+                {passwordErrorConfirmationValue && passwordValue.length!==0 &&(
                   <Tooltip content="please check the password" className="ml-2">
                     <BsPatchExclamation className="ml-2" />
                   </Tooltip>

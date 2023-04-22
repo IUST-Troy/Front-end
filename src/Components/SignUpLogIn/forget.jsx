@@ -153,15 +153,15 @@ export default function Forget() {
             });
     };
     return (
-        <div className="md:flex block justify-center items-center w-screen h-screen bg-cover overflow-auto test3">
+        <div className="md:flex block justify-center items-center w-screen h-screen bg-cover overflow-auto test3 ">
             <ToastContainer />
-            <div className="flex rounded-3xl w-[calc(100vw-20px)] max-w-4xl mx-auto my-8 overflow-hidden border-2 border-pallate-persian_green ">
+            <div className="flex rounded-3xl w-[calc(100vw-20px)]  max-w-4xl mx-auto my-8 overflow-hidden border-2  border-none">
                 <img
                     className="md:w-1/2 hidden md:block"
                     src={forgetimage}
                     alt=""
                 />
-                <div className="md:w-1/2 w-full bg-pallate-celeste/[0.89]  p-8 px-8">
+                <div className="md:w-1/2 w-full bg-pallate-celeste/[0.80]  p-8 px-8">
                     <h2 className="text-4xl text-pallate-persian_green font-bold text-center ">
                         Forget
                     </h2>
@@ -193,7 +193,7 @@ export default function Forget() {
                     </div>
 
                     <button
-                        className="w-full my-6 py-3 bg-teal-500 disabled:bg-opacity-80 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
+                        className="w-full my-6 py-3  bg-teal-500 disabled:bg-opacity-80 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
                         disabled={
                             emailErrorValue ||
                             emailValue.length === 0 ||
@@ -204,7 +204,7 @@ export default function Forget() {
                         Send
                     </button>
                     {emailSent&&(
-                            <>
+                            <div>
                                 {/* <p className="pb-3">
                                     Please {}s wait to send code again
                                 </p> */}
@@ -224,7 +224,7 @@ export default function Forget() {
                                         <div className="flex justify-start items-center">
                                             <HiLockClosed className="mr-1" />
                                             <label>Password</label>
-                                            {passwordErrorConfirmationValue && (
+                                            {passwordErrorConfirmationValue && passwordValue.length !== 0 && (
                                                 <Tooltip
                                                     content="please check the password"
                                                     className="ml-2"
@@ -267,12 +267,13 @@ export default function Forget() {
                                     </div>
                                 </div>
                                 <button
-                                    className="w-full my-6 py-3 bg-teal-500 disabled:bg-opacity-80 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
+                                    className="w-full my-6 py-3  bg-teal-500 disabled:bg-opacity-80 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
                                     onClick={newPasswordHandle}
+                                    disabled={codeValue.length !==6 || passwordValue.length < 8 || passwordErrorConfirmationValue}
                                 >
                                     Submit
                                 </button>
-                            </>
+                            </div>
                         )}
                 </div>
             </div>
