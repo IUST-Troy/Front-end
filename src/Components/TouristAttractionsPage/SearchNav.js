@@ -58,18 +58,18 @@ const SearchBar = ({ handleSearch }) => {
   ];
 
   const hong_kong = [
-    // { label: "tehran" },
+    { label: "tehran" },
     { label: "hong kong" , value : "hong kong"},
     // { label: "	Brussels" },
     // { label: "	Paris" },
   ];
 
-  // let type = [
-  //   { label: "tehran" },
-  //   { label: "hong kong" },
-  //   // { label: "	Brussels" },
-  //   // { label: "	Paris" },
-  // ];
+  const City = [
+    { label: "tehran" },
+    { label: "hong kong" },
+    // { label: "	Brussels" },
+    // { label: "	Paris" },
+  ];
 
   // const Country = [];
   // const City = [];
@@ -154,7 +154,7 @@ const SearchBar = ({ handleSearch }) => {
   //       // window.location.replace('/sign-in')
   //     });
   // };
-  const [select_country , setselect_country] = useState("")
+  const [select_country , setselect_country] = useState("china")
 
 
   const changeSelectOptionHandler = (event) => {
@@ -162,7 +162,6 @@ const SearchBar = ({ handleSearch }) => {
   };
 
   let type = null;
-
   if (select_country === "china") {
     type = hong_kong;
     console.log(type)
@@ -173,7 +172,8 @@ const SearchBar = ({ handleSearch }) => {
     console.log(type)
   }
 
-  const SearchClick_country = (value) => 
+
+  const SearchClick_country = (e , value) => 
   { 
     // Country = document.getElementById('Country-tour').value;
     // City = document.getElementById('City-tour').value;
@@ -215,6 +215,7 @@ const SearchBar = ({ handleSearch }) => {
             // }}
             id="combo-box-demo"
             options={Country}
+            onInputChange={SearchClick_country}
             onChange={changeSelectOptionHandler} 
             renderInput={(params) => <TextField {...params} label="Country" />}
             sx={{
