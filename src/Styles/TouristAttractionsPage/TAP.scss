@@ -69,11 +69,31 @@ input:focus{
 }
 .goDown{
   color : Colors.$celeste;
-  font-size: 2rem;
+  
 }
-.title{
+.titleTour{
   color: white;
   font-Size: 4.5rem;
   font-family: 'Nunito', sans-serif;
 
+}
+.goDownsearch{
+ 
+  color : Colors.$celeste;
+
+}
+.toura label{
+  color:Colors.$celeste;
+  font-weight: bold;
+  
+  
+}
+.toura :hover{
+  border-color:white;
+
+
+}
+.toura renderInput:hover{
+  border-color:"rgba(186, 232, 219, 0.138)";
+  
 }
