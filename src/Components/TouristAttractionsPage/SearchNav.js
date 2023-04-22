@@ -17,6 +17,10 @@ import theme from "flowbite-react/lib/esm/theme/default";
 //import * as React from 'react';
 //import TextField from '@mui/material/TextField';
 import Autocomplete from "@mui/material/Autocomplete";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import PlaceToVisit from "./PlaceToVisit";
+
 
 const SearchBar = ({ handleSearch }) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
@@ -40,18 +44,149 @@ const SearchBar = ({ handleSearch }) => {
   };
 
   const Country = [
-    { label: "Iran" },
-    { label: "Italy" },
-    { label: "	Belgium" },
-    { label: "	france" },
+    { label: "iran" , value : "iran"},
+    { label: "china" , value : "china"},
+    // { label: "	Belgium" },
+    // { label: "	france" },
   ];
 
-  const City = [
-    { label: "Tehran" },
-    { label: "Rome" },
-    { label: "	Brussels" },
-    { label: "	Paris" },
+  const tehran = [
+    { label: "tehran" , value : "tehran" },
+    // { label: "hong kong" },
+    // { label: "	Brussels" },
+    // { label: "	Paris" },
   ];
+
+  const hong_kong = [
+    // { label: "tehran" },
+    { label: "hong kong" , value : "hong kong"},
+    // { label: "	Brussels" },
+    // { label: "	Paris" },
+  ];
+
+  // let type = [
+  //   { label: "tehran" },
+  //   { label: "hong kong" },
+  //   // { label: "	Brussels" },
+  //   // { label: "	Paris" },
+  // ];
+
+  // const Country = [];
+  // const City = [];
+
+  // const SearchClick = () => {
+  //   Country = document.getElementById('Country-tour').value;
+  //   City = document.getElementById('City-tour').value;
+  //   // console.log("got here");
+  //   axios
+  //     .post(
+  //       "http://mrsz.pythonanywhere.com/Country/?search=iran",
+  //       {
+  //         Country: Country,
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       // toast.success("", {
+  //       //   position: "top-center",
+  //       //   autoClose: 1500,
+  //       //   className: "toast-message",
+  //       //   hideProgressBar: false,
+  //       //   closeOnClick: false,
+  //       //   pauseOnHover: false,
+  //       //   draggable: false,
+  //       //   progress: undefined,
+  //       //   theme: "colored",
+  //       // });
+  //       console.log(res.data);
+  //       <PlaceToVisit />
+  //     })
+  //     .catch((err) => {
+  //             //message.error(err.message);
+  //             console.error(err);
+  //             // toast.error('',
+  //             // {
+  //             //   className:'toast-message',
+              
+  //             // })
+  //       // window.location.replace('/sign-in')
+  //     });
+
+  //     axios
+  //     .post(
+  //       "http://mrsz.pythonanywhere.com/City/?city_name=tehran",
+  //       {
+  //         City: City
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       // toast.success("", {
+  //       //   position: "top-center",
+  //       //   autoClose: 1500,
+  //       //   className: "toast-message",
+  //       //   hideProgressBar: false,
+  //       //   closeOnClick: false,
+  //       //   pauseOnHover: false,
+  //       //   draggable: false,
+  //       //   progress: undefined,
+  //       //   theme: "colored",
+  //       // });
+  //       console.log(res.data);
+  //       <PlaceToVisit />
+  //     })
+  //     .catch((err) => {
+  //             //message.error(err.message);
+  //             console.error(err);
+  //             // toast.error('',
+  //             // {
+  //             //   className:'toast-message',
+              
+  //             // })
+  //       // window.location.replace('/sign-in')
+  //     });
+  // };
+  const [select_country , setselect_country] = useState("")
+
+
+  const changeSelectOptionHandler = (event) => {
+    setselect_country(event.value);
+  };
+
+  let type = null;
+
+  if (select_country === "china") {
+    type = hong_kong;
+    console.log(type)
+  }
+  else
+  {
+    type = tehran;
+    console.log(type)
+  }
+
+  const SearchClick_country = (value) => 
+  { 
+    // Country = document.getElementById('Country-tour').value;
+    // City = document.getElementById('City-tour').value;
+    // const username=document.getElementById('username-signup').value;
+    // alert("fsfdfgfzgfgfg")
+    axios.get("http://mrsz.pythonanywhere.com/Country/?search=" +
+     value,{headers:{ 'Content-Type' : 'application/json'}}) 
+      .then(res => 
+        { 
+            // alert(res.data.country_name)
+        }) 
+          }
+
 
   return (
     <Paper
@@ -75,8 +210,12 @@ const SearchBar = ({ handleSearch }) => {
           <Autocomplete
             disablePortal
             className="toura"
+            // onInputChange={(e) => {
+            //   SearchClick_country(e.target.value);
+            // }}
             id="combo-box-demo"
             options={Country}
+            onChange={changeSelectOptionHandler} 
             renderInput={(params) => <TextField {...params} label="Country" />}
             sx={{
               backgroundColor: "rgba(186, 232, 219, 0.138)",
@@ -98,9 +237,10 @@ const SearchBar = ({ handleSearch }) => {
                 color: "#1BA291ff",
                 
               },
-              "& legend": {
+              // "& legend": {
               
-              },
+              // },
+
             
             }}
           />
@@ -111,7 +251,8 @@ const SearchBar = ({ handleSearch }) => {
             disablePortal
             className="toura"
             id="combo-box-demo"
-            options={City}
+            options={type}
+
             renderInput={(params) => <TextField {...params} label="City" />}
             sx={{
               backgroundColor: "rgba(186, 232, 219, 0.138)",
@@ -164,9 +305,9 @@ const SearchBar = ({ handleSearch }) => {
                 backgroundColor: "#1BA291ff",
               },
             }}
-            onClick={() => {
-              handleOpen();
-            }}
+            // onClick={() => {
+            //   SearchClick_country();
+            // }}
           >
             Search
           </Button>
