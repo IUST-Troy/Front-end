@@ -8,6 +8,7 @@ import SignUp from './Components/SignUpLogIn/signup'
 import Forget from './Components/SignUpLogIn/forget'
 import Verification from './Components/SignUpLogIn/verification'
 import Tour from'./Components/TouristAttractionsPage/Tour'
+// import ToursPage from './Components/TourPage/ToursPage'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/forget" element={<Forget />} />
               <Route path='/home' element={<HomePage/>} />
               <Route path='/tour' element={<Tour/>} />
+              {/* <Route path='/tourspage' element={<ToursPage/>}/> */}
           
               </Routes>
        
