@@ -10,6 +10,11 @@ import { Tooltip } from "flowbite-react";
 import { HiLockClosed, HiLockOpen } from "react-icons/hi";
 export default function Forget() {
     let navigate = useNavigate()
+    React.useEffect(() => {
+        if (localStorage.getItem("acctoken")) {
+            navigate("/home");
+        }
+    }, []);
     const [emailValue, setEmailValue] = React.useState("");
     const [emailErrorValue, setEmailErrorValue] = React.useState(false);
     const [disableSendButton, setDisableSendButton] = React.useState(false);
