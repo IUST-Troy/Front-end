@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Parallax } from "react-parallax";
 
 import Header from "../NavigationBar/Header";
@@ -9,6 +9,8 @@ import "../../Styles/HomePage/HomePage.scss";
 import Wallpapet1 from "../../Static/Wallpaper1.jpg";
 import Wallpapet2 from "../../Static/Wallpaper2.jpg";
 import Wallpapet3 from "../../Static/Wallpaper3.jpg";
+import { useNavigate } from "react-router-dom";
+import { redirectToSignIn } from "../Routes/TokenCheker";
 
 const Wallpaper = ({ bgImage, content }) => {
     return (
@@ -48,6 +50,14 @@ const TextBox = () => {
 };
 
 const HomePage = ({accessToken , RefreshToken}) => {
+    let navigate = useNavigate()
+    useEffect(()=>{
+        if (localStorage.getItem("acctoken")===null) {
+            navigate("/sign-in")
+        }
+        else{
+        }
+    },[])
     return (
         <>
             <Header />

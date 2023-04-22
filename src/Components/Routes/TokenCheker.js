@@ -12,14 +12,18 @@ const TokenChecker = () => {
             },
             { headers: { "Content-Type": "application/json" } }
         ).then((res) => {
-            if (res.status === 401){
-                return false
-            }
-            else if (res.status===500) {
-                return true
-            }
+            
         }).catch((err) => {
             console.log(err);
+            console.log(typeof(err.response.status));
+            if (err.response.status >= 400 && err.response.status<500){
+                return false
+            }
+            else if (err.response.status>=500) {
+                console.log("got here");
+                return true
+
+            }
         })
     }
     else{
@@ -52,7 +56,9 @@ const redirectToSignIn = (navigate) => {
 
 const redirectToHome = (navigate) => {
     const refresh = localStorage.getItem("reftoken")
-    if (TokenChecker() === true) {
+    let x = TokenChecker()
+    console.log(x);
+    if (x === true) {
         navigate("/home")
     }
     else if (TokenChecker()===false) {

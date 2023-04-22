@@ -1,40 +1,78 @@
 import React from "react";
-import { Button, Card, Select, Textarea, Progress } from "flowbite-react";
-import { Avatar } from "@mui/material";
+import {
+    Button,
+    Card,
+    Select,
+    Textarea,
+    Progress,
+    Tooltip,
+} from "flowbite-react";
+import { Avatar, IconButton } from "@mui/material";
 
 import Header from "../NavigationBar/Header";
 import FooterV2 from "../HomePage/FooterV2";
 import Wallpaper1 from "../../Static/Wallpaper1.jpg";
 import Navbar from "../NavigationBar/Navbar";
 import "../../Styles/ProfilePage/ProfilePage.scss";
-import DatePicker from "react-datepicker"
-import 'react-datepicker/dist/react-datepicker.css'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { redirectToSignIn } from "../Routes/TokenCheker";
+import {
+    BsPencilSquare,
+    BsXLg,
+    BsCheckLg,
+    BsLockFill,
+    BsPenFill,
+    BsGenderAmbiguous,
+    BsMapFill,
+    BsCalendar,
+    BsPersonFillLock,
+} from "react-icons/bs";
 import places from "./places";
-import moment from 'moment'
+import moment from "moment";
+import { BsPatchExclamation } from "react-icons/bs";
+import { BsPersonFill } from "react-icons/bs";
+import { BsEnvelopeFill } from "react-icons/bs";
+import { HiLockClosed } from "react-icons/hi";
+import { HiLockOpen } from "react-icons/hi";
+
 const ProfilePage = () => {
     const navigate = useNavigate();
 
-    // React.useEffect(() => {
-    //     redirectToSignIn(navigate);
-    // })
-    const [onSubmitDisabledButton , setOnSubmitDisabledButton] = React.useState(false)
-    const [percentDone , setPercentDone] = React.useState(0)
+    React.useEffect(() => {
+        if(localStorage.getItem("acctoken")===null){
+            navigate("/sign-in")
+        }
+    },[])
+    const [onSubmitDisabledButton, setOnSubmitDisabledButton] =
+        React.useState(false);
+    const [percentDone, setPercentDone] = React.useState(0);
     const [firstNameValue, setFirstNameValue] = React.useState("");
     const [lastNameValue, setLastNameValue] = React.useState("");
     const [emailValue, setEmailValue] = React.useState("");
-    const [birthDateValue, setBirthDateValue] = React.useState("");
+    const [birthDateValue, setBirthDateValue] = React.useState(new Date("1923-01-01"));
     const [genderValue, setGenderValue] = React.useState("");
     const [bioValue, setBioValue] = React.useState("");
     const [userNameValue, setUserNameValue] = React.useState("");
+    const [newUserNameValue, setNewUserNameValue] = React.useState("")
+    const [newUserNameError , setNewUserNameError] = React.useState(false)
+    const [passwordValue, setPasswordValue] = React.useState("");
+    const [passwordConfirmValue, setPasswrodConfirmValue] = React.useState("");
+    const [currentPasswrodValue, setCurrentPasswrodValue] = React.useState("");
     const [countryValue, setCountryValue] = React.useState("");
     const [cityValue, setCityValue] = React.useState("");
     const [imgValue, setImgValue] = React.useState("");
-    const [birthDateISOValue , setbirthDateISOValue] = React.useState("")
+    const [birthDateISOValue, setbirthDateISOValue] = React.useState("");
+    const [passwordErrorConfirmation, setPasswordErrorConfirmation] =
+        React.useState(false);
+    const [passwordErrorCurrent, setPasswordErrorCurrent] =
+        React.useState(false);
+
+
     React.useEffect(() => {
         setFirstNameValue(
             localStorage.getItem("firstname")
@@ -47,7 +85,7 @@ const ProfilePage = () => {
                 : ""
         );
         setBioValue(
-            localStorage.getItem("bio") ? localStorage.getItem("bio") : ""
+            localStorage.getItem("bio")!==null ? localStorage.getItem("bio") : ""
         );
         setEmailValue(localStorage.getItem("email"));
         setImgValue(
@@ -55,23 +93,27 @@ const ProfilePage = () => {
                 ? localStorage.getItem("avatar")
                 : null
         );
-        console.log(localStorage.getItem("gender"));
-        
-        if (localStorage.getItem("gender")==="true"||localStorage.getItem("gender")==="Male") {
-            setGenderValue("Male")
+        console.log(localStorage.getItem(localStorage.getItem("birthdate")));
+
+        if (
+            localStorage.getItem("gender") === "true" ||
+            localStorage.getItem("gender") === "Male"
+        ) {
+            setGenderValue("Male");
+        } else if (
+            localStorage.getItem("gender") === "false" ||
+            localStorage.getItem("gender") === "Female"
+        ) {
+            setGenderValue("Female");
+        } else {
+            setGenderValue("Not Selected");
         }
-        else if (localStorage.getItem("gender")==="false"||localStorage.getItem("gender")==="Female") {
-            setGenderValue("Female")
-        }
-        else{
-            setGenderValue("Not Selected")
-        }
-        console.log(typeof(localStorage.getItem("gender")));
+        console.log(typeof localStorage.getItem("gender"));
         setUserNameValue(localStorage.getItem("username"));
         setBirthDateValue(
             localStorage.getItem("birthdate")
                 ? new Date(localStorage.getItem("birthdate"))
-                : null
+                : new Date("1923-01-01")
         );
         setCountryValue(
             localStorage.getItem("country")
@@ -89,14 +131,28 @@ const ProfilePage = () => {
             localStorage.getItem("birthdate")
                 ? moment(localStorage.getItem("birthdate")).format("YYYY-MM-DD")
                 : ""
-        )
+        );
     }, []);
 
-    const handleFirstNamechange = (event) => {
-        setFirstNameValue(event.target.value);
+    const handleFirstNamechange = (e) => {
+        e.preventDefault();
+        setFirstNameValue(e.target.value.replace(/[^a-zA-Z]/g, ""));
     };
-    const handleLastNamechange = (event) => {
-        setLastNameValue(event.target.value);
+    const handleLastNamechange = (e) => {
+        e.preventDefault();
+        setLastNameValue(e.target.value.replace(/[^a-zA-Z]/g, ""));
+    };
+    const handleCurrentPassswrod = (e) => {
+        e.preventDefault();
+        setCurrentPasswrodValue(e.target.value);
+        if (
+            currentPasswrodValue.length > 0 &&
+            currentPasswrodValue !== localStorage.getItem("password")
+        ) {
+            setPasswordErrorCurrent(true);
+        } else {
+            setPasswordErrorCurrent(false);
+        }
     };
     const handleEmailchange = (event) => {
         setEmailValue(event.target.value);
@@ -121,6 +177,40 @@ const ProfilePage = () => {
             setImgValue(reader.result);
         };
         console.log(imgValue);
+    };
+    const handleRemoveImg = (e) => {
+        setImgValue("");
+    };
+    const handleNewUsername = (e) => {
+        e.preventDefault();
+        setNewUserNameValue(
+            e.target.value
+                .replace(/[^a-zA-Z0-9_.]/g, "")
+                .replace(/^[^a-zA-Z]/g, "")
+        );
+        console.log(userNameValue);
+        if (e.target.value===userNameValue) {
+            setNewUserNameError(true)
+            console.log("got here");
+        }
+        else{
+            setNewUserNameError(false)
+        }
+    };
+    const handlePassword = (e) => {
+        e.preventDefault();
+        setPasswordValue(e.target.value);
+        setPasswordErrorConfirmation(
+            e.target.value !== passwordConfirmValue || e.target.value.length < 8
+        );
+    };
+
+    const handleConfirmPassword = (e) => {
+        e.preventDefault();
+        setPasswrodConfirmValue(e.target.value);
+        setPasswordErrorConfirmation(
+            e.target.value !== passwordValue || e.target.value.length < 8
+        );
     };
     const [isEditprofile, setEditprofile] = React.useState(true);
     const [isChangePassword, setChangePassword] = React.useState(false);
@@ -170,14 +260,18 @@ const ProfilePage = () => {
                 : null
         );
         console.log(localStorage.getItem("email"));
-        if (localStorage.getItem("gender")==="true"||localStorage.getItem("gender")==="Male") {
-            setGenderValue("Male")
-        }
-        else if (localStorage.getItem("gender")==="false"||localStorage.getItem("gender")==="Female") {
-            setGenderValue("Female")
-        }
-        else{
-            setGenderValue("Not Selected")
+        if (
+            localStorage.getItem("gender") === "true" ||
+            localStorage.getItem("gender") === "Male"
+        ) {
+            setGenderValue("Male");
+        } else if (
+            localStorage.getItem("gender") === "false" ||
+            localStorage.getItem("gender") === "Female"
+        ) {
+            setGenderValue("Female");
+        } else {
+            setGenderValue("Not Selected");
         }
         setUserNameValue(localStorage.getItem("username"));
         setBirthDateValue(
@@ -201,16 +295,15 @@ const ProfilePage = () => {
             localStorage.getItem("birthdate")
                 ? moment(localStorage.getItem("birthdate")).format("YYYY-MM-DD")
                 : ""
-        )
-        setImgValue(localStorage.getItem("avatar"))
+        );
+        setImgValue(localStorage.getItem("avatar"));
         setEditMode(false);
     };
 
     const [show, setShow] = React.useState(false);
     const handleBirthDateChange = (selectedDate) => {
-        
         setBirthDateValue(selectedDate);
-        setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"))
+        setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
         console.log(birthDateISOValue);
     };
     const handleClose = (state) => {
@@ -219,13 +312,136 @@ const ProfilePage = () => {
         }
     };
 
+    const submitButtonPassword = () => {
+        const currentPassword = localStorage.getItem("password");
+        const newPassword = passwordValue;
+        const newPasswordConfirm = passwordConfirmValue;
+        setOnSubmitDisabledButton(true);
+        const data = {
+            new_password: newPassword,
+            re_new_password: newPasswordConfirm,
+            current_password: currentPassword,
+        };
+        axios
+            .post(
+                "http://mrsz.pythonanywhere.com/auth/users/set_password/",
+                data,
+                {
+                    headers: {
+                        Authorization: `JWT ${localStorage.getItem(
+                            "acctoken"
+                        )}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((res) => {
+                console.log(res);
+                toast.success(
+                    "Congratulations! You changed your passwrod sucessfully.\nplease login again with your new password!",
+                    {
+                        position: "top-right",
+                        autoClose: 1500,
+                        className: "toast-message",
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined,
+                        theme: "colored",
+                    }
+                );
+                localStorage.clear();
+                setTimeout(() => {
+                    navigate("/sign-in");
+                }, 1500);
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error(
+                    "Error! Your Password Change was NOT successful!" +
+                        err.message,
+                    {
+                        position: "top-right",
+                        autoClose: 1500,
+                        className: "toast-message",
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined,
+                        theme: "colored",
+                    }
+                );
+                setOnSubmitDisabledButton(false);
+            });
+    };
 
+    const submitButtonUserName = () => {
 
-    const submitButtonPassword = () => {};
-
-    const submitButtonUserName = () => {};
+        const newUserName = newUserNameValue
+        const password = localStorage.getItem("password")
+        const data = {
+            current_password : password,
+            new_username: newUserName,
+            re_new_username: newUserName
+        }
+        axios
+            .post(
+                "http://mrsz.pythonanywhere.com/auth/users/set_username/",
+                data,
+                {
+                    headers: {
+                        Authorization: `JWT ${localStorage.getItem(
+                            "acctoken"
+                        )}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((res) => {
+                console.log(res);
+                toast.success(
+                    "Congratulations! You changed your username sucessfully.\nplease login again with your new password!",
+                    {
+                        position: "top-right",
+                        autoClose: 1500,
+                        className: "toast-message",
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined,
+                        theme: "colored",
+                    }
+                );
+                localStorage.clear();
+                setTimeout(() => {
+                    navigate("/sign-in");
+                }, 1500);
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error(
+                    "Error! Your username Change was NOT successful!" +
+                        err.message,
+                    {
+                        position: "top-right",
+                        autoClose: 1500,
+                        className: "toast-message",
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined,
+                        theme: "colored",
+                    }
+                );
+                setOnSubmitDisabledButton(false);
+            });
+    };
     const submitButtonProfile = () => {
-        setOnSubmitDisabledButton(true)
+        setOnSubmitDisabledButton(true);
         const gender = genderValue;
         const birthDate = birthDateISOValue.toString();
         const country = countryValue;
@@ -243,9 +459,9 @@ const ProfilePage = () => {
                     country: country,
                     city: city,
                     gender:
-                        gender === "Male" || gender==="true"
+                        gender === "Male" || gender === "true"
                             ? true
-                            : gender === "Female" || gender==="false"
+                            : gender === "Female" || gender === "false"
                             ? false
                             : null,
                     birth_date: birthDate,
@@ -254,8 +470,10 @@ const ProfilePage = () => {
                 },
                 {
                     onUploadProgress: (ProgressEvent) => {
-                        const percentCompleted = Math.round((ProgressEvent.loaded *100)/ProgressEvent.total)
-                        setPercentDone(percentCompleted)
+                        const percentCompleted = Math.round(
+                            (ProgressEvent.loaded * 100) / ProgressEvent.total
+                        );
+                        setPercentDone(percentCompleted);
                     },
                     headers: {
                         "Content-Type": "application/json",
@@ -274,7 +492,6 @@ const ProfilePage = () => {
                             last_name: lastname,
                         },
                         {
-                            
                             headers: {
                                 "Content-Type": "application/json",
                                 Authorization: `JWT ${localStorage.getItem(
@@ -284,17 +501,14 @@ const ProfilePage = () => {
                         }
                     )
                     .then((res) => {
-                        localStorage.setItem("gender", genderValue)
-                        localStorage.setItem("firstname",firstname)
-                        localStorage.setItem("lastname",lastname)
-                        localStorage.setItem("birthdate",new Date(birthDate))
-                        localStorage.setItem("avatar",avatar)
-                        localStorage.setItem("bio" , bio)
-                        localStorage.setItem("country",country)
-                        localStorage.setItem("city",city)
-
-
-
+                        localStorage.setItem("gender", genderValue);
+                        localStorage.setItem("firstname", firstname);
+                        localStorage.setItem("lastname", lastname);
+                        localStorage.setItem("birthdate", new Date(birthDate));
+                        localStorage.setItem("avatar", avatar);
+                        localStorage.setItem("bio", bio);
+                        localStorage.setItem("country", country);
+                        localStorage.setItem("city", city);
 
                         console.log(res);
                         toast.success(
@@ -311,9 +525,10 @@ const ProfilePage = () => {
                                 theme: "colored",
                             }
                         );
-                        navigate(0)
-                    }).catch(err => {
-                        console.log(err)
+                        navigate(0);
+                    })
+                    .catch((err) => {
+                        console.log(err);
                         toast.error(
                             "Error! Your Edit_profile was NOT successful! First/Last",
                             {
@@ -328,9 +543,8 @@ const ProfilePage = () => {
                                 theme: "colored",
                             }
                         );
-                    })
+                    });
 
-                
                 console.log(res);
             })
 
@@ -417,29 +631,46 @@ const ProfilePage = () => {
                                         }}
                                     ></Avatar>
                                     {isEditMode && (
-                                        <input
-                                            onChange={handleImgValue}
-                                            accept="image/*"
-                                            class="block w-full text-sm text-pallate-persian_green border border-pallate-persian_green rounded-lg cursor-pointer bg-pallate-celeste_light "
-                                            id="user_avatar"
-                                            type="file"
-                                        />
+                                        <div className="flex justify-start items-center">
+                                            <input
+                                                onChange={handleImgValue}
+                                                accept="image/*"
+                                                class="block w-full text-sm text-pallate-persian_green border border-pallate-persian_green rounded-lg cursor-pointer bg-pallate-celeste_light "
+                                                id="user_avatar"
+                                                type="file"
+                                            />
+                                            <Button
+                                                className="rounded-full ml-2 bg-gray-400 hover:bg-gray-500"
+                                                size="md"
+                                                onClick={handleRemoveImg}
+                                            >
+                                                <BsXLg />
+                                            </Button>
+                                        </div>
                                     )}
-                                    
-                                    <Textarea
-                                        className="bg-pallate-celeste_light placeholder-pallate-persian_green  border-pallate-persian_green focus:border-pallate-persian_green resize-none focus:ring-pallate-persian_green"
-                                        rows={5}
-                                        placeholder="bio..."
-                                        maxLength={100}
-                                        id="bio"
-                                        disabled={!isEditMode}
-                                        value={bioValue}
-                                        onChange={handleBiochange}
-                                    ></Textarea>
+                                    <div className="w-full">
+                                        <div className="flex justify-start items-center pl-1 text-gray-700">
+                                            <BsPenFill className="mr-1" />
+                                            <label>Bio:</label>
+                                        </div>
+                                        <Textarea
+                                            className="bg-pallate-celeste_light placeholder-pallate-persian_green  border-pallate-persian_green focus:border-pallate-persian_green resize-none focus:ring-pallate-persian_green"
+                                            rows={5}
+                                            placeholder="bio..."
+                                            maxLength={100}
+                                            id="bio"
+                                            disabled={!isEditMode}
+                                            value={bioValue}
+                                            onChange={handleBiochange}
+                                        ></Textarea>
+                                    </div>
                                 </div>
                                 <div className="rightside grid grid-cols-1 gap-4 p-8">
                                     <div>
-                                        <label>First Name:</label>
+                                        <div className="flex justify-start items-center pl-1 text-gray-700">
+                                            <BsPersonFill className="mr-1" />
+                                            <label>First Name:</label>
+                                        </div>
                                         <input
                                             maxLength={50}
                                             type="text"
@@ -452,7 +683,10 @@ const ProfilePage = () => {
                                         />
                                     </div>
                                     <div>
-                                        <label>Last Name:</label>
+                                        <div className="flex justify-start items-center pl-1 text-gray-700">
+                                            <BsPersonFill className="mr-1" />
+                                            <label>Last Name:</label>
+                                        </div>
                                         <input
                                             maxLength={50}
                                             type="text"
@@ -465,25 +699,16 @@ const ProfilePage = () => {
                                         />
                                     </div>
                                     <div>
-                                        <label>Email:</label>
+                                        <div className="flex justify-start items-center pl-1 text-gray-700">
+                                            <BsEnvelopeFill className="mr-1" />
+                                            <label>Email:</label>
+                                        </div>
                                         <div className="relative">
-                                            <div class="absolute disabled:opacity-100 inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg
-                                                    aria-hidden="true"
-                                                    class="w-5 h-5 text-pallate-persian_green dark:text-gray-400"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                                                </svg>
-                                            </div>
                                             <input
                                                 maxLength={50}
                                                 type="email"
                                                 id="email"
-                                                class="bg-pallate-celeste_light border disabled:opacity-80 placeholder-pallate-persian_green border-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full pl-10 p-2.5 "
+                                                class="bg-pallate-celeste_light border disabled:opacity-80 placeholder-pallate-persian_green border-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full  p-2.5 "
                                                 placeholder="Email"
                                                 disabled={true}
                                                 value={emailValue}
@@ -493,10 +718,13 @@ const ProfilePage = () => {
                                     </div>
                                     <div className="grid grid-cols-2  md:gap-2 gap-1">
                                         <div className="md:w-40 w-full">
-                                            <label>Country:</label>
+                                            <div className="flex justify-start items-center pl-1 text-gray-700">
+                                                <BsMapFill className="mr-1" />
+                                                <label>Country:</label>
+                                            </div>
                                             <Select
                                                 id="country"
-                                                class="w-full md:w-40 border-pallate-persian_green disabled:opacity-80 rounded-lg  bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                                                class="w-full md:w-36 border-pallate-persian_green disabled:opacity-80 rounded-lg  bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                                                 disabled={!isEditMode}
                                                 value={countryValue}
                                                 onChange={handleCountryChange}
@@ -512,10 +740,13 @@ const ProfilePage = () => {
                                             </Select>
                                         </div>
                                         <div className="">
-                                            <label>City:</label>
+                                            <div className="flex justify-start items-center pl-1 text-gray-700">
+                                                <BsMapFill className="mr-1" />
+                                                <label>City:</label>
+                                            </div>
                                             <Select
                                                 id="gender"
-                                                class="w-full md:w-40 border-pallate-persian_green disabled:opacity-80 rounded-lg  bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                                                class="w-full md:w-36 border-pallate-persian_green disabled:opacity-80 rounded-lg  bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                                                 disabled={!isEditMode}
                                                 value={cityValue}
                                                 onChange={handleCityChange}
@@ -552,19 +783,36 @@ const ProfilePage = () => {
                                     </div>
                                     <div className="grid grid-cols-2  md:gap-2 gap-1">
                                         <div className="md:w-40 w-full">
-                                            <label>Birth Date:</label>
+                                            <div className="flex justify-start items-center pl-1 text-gray-700">
+                                                <BsCalendar className="mr-1" />
+                                                <label>Birth Date:</label>
+                                            </div>
                                             <DatePicker
-                                                selected={birthDateValue? birthDateValue : new Date()}
-                                                onChange={(date) => handleBirthDateChange(date)}
+                                                selected={
+                                                    birthDateValue
+                                                        ? birthDateValue
+                                                        : new Date()
+                                                }
+                                                onChange={(date) =>
+                                                    handleBirthDateChange(date)
+                                                }
+                                                showMonthDropdown
+                                                showYearDropdown
+                                                minDate={new Date("1923-1-1")}
+                                                maxDate={new Date()}
+                                                dropdownMode="select"
                                                 disabled={!isEditMode}
-                                                className="bg-pallate-celeste_light border-pallate-persian_green w-36 rounded-lg disabled:opacity-80"
+                                                className="bg-pallate-celeste_light border-pallate-persian_green w-full md:w-36 rounded-lg disabled:opacity-80"
                                             ></DatePicker>
                                         </div>
                                         <div className="">
-                                            <label>Gender:</label>
+                                            <div className="flex justify-start items-center pl-1 text-gray-700">
+                                                <BsGenderAmbiguous className="mr-1" />
+                                                <label>Gender:</label>
+                                            </div>
                                             <Select
                                                 id="gender"
-                                                class="w-full md:w-40 border-pallate-persian_green disabled:opacity-80 rounded-lg  bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                                                class="w-full md:w-36 border-pallate-persian_green disabled:opacity-80 rounded-lg  bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                                                 disabled={!isEditMode}
                                                 value={genderValue}
                                                 onChange={handleGenderchange}
@@ -584,6 +832,7 @@ const ProfilePage = () => {
                                             className="bg-yellow-400 hover:bg-yellow-500"
                                             onClick={editModeHandler}
                                         >
+                                            <BsPencilSquare />
                                             Edit
                                         </Button>
                                     )}
@@ -594,30 +843,39 @@ const ProfilePage = () => {
                                             onClick={cancelEditHandler}
                                             disabled={onSubmitDisabledButton}
                                         >
+                                            <BsXLg />
                                             Cancel
                                         </Button>
                                     )}
                                     {isEditMode && (
                                         <Button
-                                            className="bg-pallate-persian_green hover:bg-pallate-blue_munsell"
+                                            className="bg-pallate-persian_green hover:bg-pallate-blue_munsell text-4xl"
                                             onClick={submitButtonProfile}
-                                            disabled={onSubmitDisabledButton}
+                                            disabled={
+                                                onSubmitDisabledButton ||
+                                                firstNameValue.length === 0 ||
+                                                lastNameValue.length === 0 ||
+                                                genderValue === "Not Selected"
+                                            }
                                         >
+                                            <BsCheckLg />
                                             Submit
                                         </Button>
                                     )}
                                 </div>
-                                {onSubmitDisabledButton && isEditMode && <Progress
+                                {onSubmitDisabledButton && isEditMode && (
+                                    <Progress
                                         progress={percentDone}
                                         labelProgress={true}
                                         progressLabelPosition="inside"
                                         textLabel="Uploading..."
-                                        labelText = {true}
+                                        labelText={true}
                                         textLabelPosition="outside"
                                         color="green"
                                         size="xl"
                                         className="w-full"
-                                    ></Progress>}
+                                    ></Progress>
+                                )}
                             </div>
                         </div>
                     </Card>
@@ -625,37 +883,83 @@ const ProfilePage = () => {
                 {isChangePassword && (
                     <Card className="mt-1 m-5 mb-64 rounded-xl pr-12 pl-12 card-bg border-pallate-persian_green backdrop-blur-sm">
                         <div className="grid grid-cols-1 gap-4 p-8">
-                            <div className="grid grid-cols-2 gap-2">
+                            <div>
+                                <div className="flex justify-start items-center pl-1 text-gray-700">
+                                    <HiLockClosed className="mr-1" />
+                                    <label>Current Password:</label>
+                                </div>
+                                <input
+                                    maxLength={50}
+                                    type="password"
+                                    id="new-password"
+                                    class={`bg-pallate-celeste_light disabled:opacity-80 block w-full p-2.5 text-sm rounded-lg ${
+                                        passwordErrorCurrent
+                                            ? "border-red-500 focus:ring-red-500 focus:border-red-500 "
+                                            : "border-pallate-persian_green   placeholder-pallate-persian_green   focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                                    } `}
+                                    placeholder="new passwrord..."
+                                    // disabled={!isEditMode}
+                                    value={currentPasswrodValue}
+                                    onChange={handleCurrentPassswrod}
+                                />
+                            </div>
+                            <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
                                 <div>
-                                    <label>new Password:</label>
+                                    <div className="flex justify-start items-center pl-1 text-gray-700">
+                                        <HiLockClosed className="mr-1" />
+
+                                        <label>new Password:</label>
+                                    </div>
                                     <input
                                         maxLength={50}
                                         type="password"
                                         id="new-password"
-                                        class="bg-pallate-celeste_light disabled:opacity-80 border-pallate-persian_green   placeholder-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full p-2.5"
+                                        class={`bg-pallate-celeste_light disabled:opacity-80 block w-full p-2.5 text-sm rounded-lg ${
+                                            passwordErrorConfirmation
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500 "
+                                                : "border-pallate-persian_green   placeholder-pallate-persian_green   focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                                        } `}
                                         placeholder="new passwrord..."
                                         // disabled={!isEditMode}
-                                        // value={lastNameValue}
-                                        // onChange={handleLastNamechange}
+                                        value={passwordValue}
+                                        onChange={handlePassword}
                                     />
                                 </div>
 
                                 <div>
-                                    <label>Confirm new Password:</label>
+                                    <div className="flex justify-start items-center pl-1 text-gray-700">
+                                        <HiLockClosed className="mr-1" />
+                                        <label>Confirm new Password:</label>
+                                    </div>
                                     <input
                                         maxLength={50}
                                         type="password"
                                         id="confirm-new-password"
-                                        class="bg-pallate-celeste_light disabled:opacity-80 border-pallate-persian_green   placeholder-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full p-2.5"
+                                        class={`bg-pallate-celeste_light disabled:opacity-80 block w-full p-2.5 text-sm rounded-lg ${
+                                            passwordErrorConfirmation
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500 "
+                                                : "border-pallate-persian_green   placeholder-pallate-persian_green   focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                                        } `}
                                         placeholder="confirm new passwrord..."
                                         // disabled={!isEditMode}
-                                        // value={lastNameValue}
-                                        // onChange={handleLastNamechange}
+                                        value={passwordConfirmValue}
+                                        onChange={handleConfirmPassword}
                                     />
                                 </div>
                             </div>
                             <div className="">
-                                <Button className="w-full bg-pallate-persian_green hover:bg-pallate-blue_munsell">
+                                <Button
+                                    className="w-full bg-pallate-persian_green hover:bg-pallate-blue_munsell"
+                                    disabled={
+                                        passwordErrorConfirmation ||
+                                        passwordErrorConfirmation ||
+                                        currentPasswrodValue.length === 0 ||
+                                        passwordConfirmValue.length === 0 ||
+                                        passwordValue.length === 0 ||
+                                        onSubmitDisabledButton
+                                    }
+                                    onClick={submitButtonPassword}
+                                >
                                     Submit
                                 </Button>
                             </div>
@@ -665,9 +969,12 @@ const ProfilePage = () => {
                 {isChangeUsername && (
                     <Card className="mt-1 m-5 mb-64 pr-12 pl-12 rounded-xl  card-bg border-pallate-persian_green backdrop-blur-sm">
                         <div className="grid grid-cols-1 gap-4 p-8">
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
                                 <div>
-                                    <label>User Name:</label>
+                                    <div className="flex justify-start items-center pl-1 text-gray-700">
+                                        <BsPersonFillLock className="mr-1" />
+                                        <label>UserName:</label>
+                                    </div>
                                     <div className="relative">
                                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                             <span class="text-pallate-persian_green">
@@ -678,7 +985,7 @@ const ProfilePage = () => {
                                             maxLength={50}
                                             type="text"
                                             id="username"
-                                            class="bg-pallate-celeste_light disabled:opacity-80 disabled:bg-pallate-celeste_light/[0.6] border text-pallate-persian_green border-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full pl-10 p-2.5 "
+                                            class="bg-pallate-celeste_light disabled:opacity-80 disabled:bg-pallate-celeste_light/[0.8] border text-pallate-persian_green border-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full pl-10 p-2.5 "
                                             placeholder="username"
                                             value={userNameValue}
                                             disabled={true}
@@ -686,23 +993,34 @@ const ProfilePage = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="rb-2">
-                                        New User Name:
-                                    </label>
-                                    <input
-                                        maxLength={50}
-                                        type="text"
-                                        id="New-username"
-                                        class="bg-pallate-celeste_light disabled:opacity-80 border-pallate-persian_green   placeholder-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full p-2.5"
-                                        placeholder="New User Name..."
-                                        // disabled={!isEditMode}
-                                        // value={lastNameValue}
-                                        // onChange={handleLastNamechange}
-                                    />
+                                    <div className="flex justify-start items-center pl-1 text-gray-700">
+                                        <BsPersonFillLock className="mr-1" />
+                                        <label>New UserName:</label>
+                                    </div>
+                                    <div className="relative">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                            <span class="text-pallate-persian_green">
+                                                @
+                                            </span>
+                                        </div>
+                                        <input
+                                            maxLength={50}
+                                            type="text"
+                                            id="newusername"
+                                            class="bg-pallate-celeste_light  disabled:opacity-80 disabled:bg-pallate-celeste_light/[0.8] border  border-pallate-persian_green  text-sm rounded-lg focus:ring-pallate-persian_green focus:border-pallate-persian_green block w-full pl-10 p-2.5 "
+                                            placeholder="New UserName"
+                                            value={newUserNameValue}
+                                            onChange={(handleNewUsername)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <div className="">
-                                <Button className="w-full bg-pallate-persian_green hover:bg-pallate-blue_munsell">
+                                <Button
+                                    className="w-full bg-pallate-persian_green hover:bg-pallate-blue_munsell disabled:hover:bg-pallate-blue_munsell"
+                                    disabled={newUserNameError || newUserNameValue.length ===0 || onSubmitDisabledButton}
+                                    onClick={submitButtonUserName}
+                                >
                                     Submit
                                 </Button>
                             </div>

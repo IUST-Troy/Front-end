@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { redirectToHome } from "../Routes/TokenCheker";
 const loginURL = "http://mrsz.pythonanywhere.com/auth/jwt/create/";
 const profileURL = "http://mrsz.pythonanywhere.com/Profile/me/";
 const userURL = "http://mrsz.pythonanywhere.com/auth/users/me/";
@@ -13,7 +14,12 @@ export default function Login() {
     const [passwordValue, setPasswordValue] = React.useState("");
     const [disabledButtonValue, setDisabledButtonValue] = React.useState(false);
     let navigate = useNavigate();
-
+    
+    React.useEffect(() => {
+        if(localStorage.getItem("acctoken")){
+            navigate("/home")
+        }
+    },[])
     const handleUserNameValue = (e) => {
         e.preventDefault();
         setUserNameValue(
@@ -99,7 +105,7 @@ export default function Login() {
                                     res.data.country
                                 );
                                 localStorage.setItem("city", res.data.city);
-                                localStorage.setItem("birthdate",res.data.birth_date)
+                                localStorage.setItem("birthdate",res.data.birth_date?res.data.birth_date:"1923-01-01")
                                 toast.success("Sign-in Sucessful", {
                                     position: "top-center",
                                     autoClose: 1500,

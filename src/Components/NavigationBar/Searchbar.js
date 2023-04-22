@@ -13,17 +13,19 @@ const SearchBar = () => {
                 component="form"
                 sx={{
                     p: "2px 4px",
-                    display: "flex",
+                    
                     alignItems: "center",
                     width: 400,
                     boxShadow: "none",
                     [theme.breakpoints.up("md")]: {
                         marginLeft: theme.spacing(2),
+                        display: "flex",
                         width: "25%",
                     },
                     [theme.breakpoints.between("xs", "md")]: {
-                        marginLeft: theme.spacing(3),
-                        width: "80%",
+                        // marginLeft: theme.spacing(3),
+                        // width: "80%",
+                        display: 'none'
                     },
                 }}
             >

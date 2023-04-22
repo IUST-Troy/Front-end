@@ -1,6 +1,7 @@
 import React from "react";
 import Signupimage from "../../Static/Wallpaper4.png";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./wall.css";
 import { useNavigate } from "react-router-dom";
@@ -124,6 +125,7 @@ export default function Signup() {
     <div className="md:flex block justify-center items-center w-screen h-screen bg-cover overflow-auto test">
       {/* <ToastContainer/> */}
       <div className="flex rounded-3xl w-[calc(100vw-20px)] max-w-4xl mx-auto my-8 overflow-hidden border-2 border-pallate-persian_green ">
+        <ToastContainer/>
         <img className="md:w-1/2 hidden md:block" src={Signupimage} alt="" />
         <div className="md:w-1/2 w-full bg-pallate-celeste/[0.89]  p-8 px-8">
           <h2 className="text-4xl text-pallate-persian_green font-bold text-center">
