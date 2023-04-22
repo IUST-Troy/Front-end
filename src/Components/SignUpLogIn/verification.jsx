@@ -49,7 +49,7 @@ export default function Verification() {
             <div className="flex justify-start items-center">
               <HiLockClosed className="mr-1" />
               <label>Password</label>
-              {passwordErrorConfirmationValue && (
+              {passwordErrorConfirmationValue && passwordValue.length!==0 &&(
                 <Tooltip content="please check the password" className="ml-2">
                   <BsPatchExclamation className="ml-2" />
                 </Tooltip>

@@ -24,9 +24,9 @@ export default function Forget() {
   return (
     <div className="md:flex block justify-center items-center w-screen h-screen bg-cover overflow-auto test3">
       {/* <ToastContainer/> */}
-      <div className="flex rounded-3xl w-[calc(100vw-20px)] max-w-4xl mx-auto my-8 overflow-hidden border-2 border-pallate-persian_green ">
+      <div className="flex rounded-3xl w-[calc(100vw-20px)] max-w-4xl mx-auto my-8 max-h-80 overflow-hidden border-2 border-pallate-persian_green ">
         <img className="md:w-1/2 hidden md:block" src={forgetimage} alt="" />
-        <div className="md:w-1/2 w-full bg-pallate-celeste/[0.89]  p-8 px-8">
+        <div className="md:w-1/2 w-full bg-pallate-celeste/[0.89] p-8 px-8">
           <h2 className="text-4xl text-pallate-persian_green font-bold text-center ">
             Forget
           </h2>
