@@ -111,7 +111,6 @@ export default class Forget extends Component {
             });
         //      this.CheckSubmission(username,email,password,repeatPass);
     }
-
     render() {
         return (
             <div className="App">
@@ -151,7 +150,7 @@ export default class Forget extends Component {
                                     }
                                     onClick={this.sumbitButton}
                                 >
-                                    Click
+                                Click
                                 </button>
                             </div>
                         </form>

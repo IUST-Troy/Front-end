@@ -2,13 +2,16 @@ import React from 'react'
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import HomePage from './Components/HomePage/HomePage'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import Login from './Components/SignUpLogIn/login'
-import SignUp from './Components/SignUpLogIn/signup'
-import Forget from './Components/SignUpLogIn/forget'
-import Verification from './Components/SignUpLogIn/verification'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+import Login from './Components/SignUpLogIn/login.jsx'
+import SignUp from './Components/SignUpLogIn/signup.jsx'
+import Forget from './Components/SignUpLogIn/forget.jsx'
+import Verification from './Components/SignUpLogIn/verification.jsx'
+
 import Tour from'./Components/TouristAttractionsPage/Tour'
 // import ToursPage from './Components/TourPage/ToursPage'
+
 
 function App() {
   return (

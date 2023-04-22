@@ -15,7 +15,8 @@ module.exports = {
           finn: '#654479ff',
           wisteria: '#B193CFff',
           pink_lavender: '#F7C1E3ff',
-          celeste_light: 'rgb(250, 255, 254)'
+          celeste_light: 'rgb(250, 255, 254)',
+          gunmetal: "#082225ff"
         }
       }
     },
