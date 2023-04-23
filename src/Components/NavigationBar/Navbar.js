@@ -25,15 +25,16 @@ import "../../Styles/NavigationBar/NavigationBar.scss";
 
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { BsList } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 const Pages = [
     {
         Page: "Home",
-        Route: "#",
+        Route: "/home",
         Icon: BsHouse,
     },
     {
         Page: "Tours",
-        Route: "#Tours",
+        Route: "/tour/#",
         Icon: BsAirplane,
     },
     {
@@ -61,7 +62,7 @@ const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [isDarkMode, setDarkMode] = React.useState(false);
-
+    let navigate = useNavigate()
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -84,7 +85,7 @@ const Navbar = () => {
         <AppBar
             sx={{
                 bgcolor: "#1BA291ff",
-                opacity: "85%",
+                opacity: "100%",
             }}
             position="sticky"
         >
@@ -171,6 +172,7 @@ const Navbar = () => {
                     {Pages.map((page) => (
                         <Button
                             className="navbar-button"
+                            onClick={()=> navigate(page.Route)}
                             sx={{
                                 fontSize: { lg: "larger", md: "large" },
                                 marginRight: {

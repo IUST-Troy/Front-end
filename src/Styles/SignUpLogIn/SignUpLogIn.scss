@@ -1,13 +1,17 @@
 
 
 *{
-  box-sizing: border-box;
+  // box-sizing: border-box;
 }
 
 body {
   
+<<<<<<< HEAD
+  // 
+=======
   // background: url('../../Static/lolo.jpg');
   
+>>>>>>> feature/v1.0.0/Tourist_Attractions_Page
 }
 
 h1,h2,h3,h4,h5,h6,label,span {
@@ -57,7 +61,7 @@ body, html, .App, #root, .auth-wrapper {
      background: transparent;
    background: rgba(186, 232, 219, 0.6); 
    
-   /* backdrop-filter: blur(3px); */
+   
    
    
     border: 0.15rem solid rgba(255,255,255,0.5);   

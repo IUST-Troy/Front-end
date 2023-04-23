@@ -9,7 +9,7 @@ const FooterV2 = () => {
 
 
   return (
-    <Footer container={true} className="footer-container">
+    <Footer container={true} className="footer-container ">
       <div className="w-full ">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div className="grid items-center  sm:grid-cols-1 justify-betweenn grid-rows-1 grid-flow-col gap-1">

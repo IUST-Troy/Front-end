@@ -3,7 +3,7 @@ import "../../Styles/SignUpLogIn/SignUpLogIn.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -48,7 +48,7 @@ export default class Login extends Component {
             "Congratulations! Your Log-in was successful! ",
             {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 1500,
                 className: "toast-message",
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -110,10 +110,11 @@ export default class Login extends Component {
     sumbitButton() {
         const username = document.getElementById("username-signup").value;
         const password = document.getElementById("password-signup").value;
+        // const navigate = useNavigate()
 
         axios
             .post(
-                `http://127.0.0.1:8000/auth/jwt/create`,
+                `http://mrsz.pythonanywhere.com/auth/jwt/create`,
                 {
                     username: username,
                     password: password,
@@ -126,7 +127,7 @@ export default class Login extends Component {
                     "Congratulations! Your sign_in was successful! ",
                     {
                         position: "top-right",
-                        autoClose: 5000,
+                        autoClose: 1500,
                         className: "toast-message",
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -148,23 +149,41 @@ export default class Login extends Component {
                     //        setTimeout(this.myURL, 6000)
                 );
 
-                let token = res.data.access;
-                localStorage.setItem("token", token);
+                let accToken = res.data.access;
+                let refToken = res.data.refresh;
+                localStorage.setItem("acctoken", accToken);
+                localStorage.setItem("reftoken", refToken);
                 axios
-                    .get("http://127.0.0.1:8000/auth/users/", {
+                    .get("http://mrsz.pythonanywhere.com/auth/users", {
                         headers: {
                             "Content-Type": "application/json",
-                            Authorization: `JWT ${token}`,
+                            Authorization: `JWT ${accToken}`,
                         },
                     })
                     .then((res) => {
-                        localStorage.setItem("username", username);
-                        //              alert(res.data.email)
-                        window.location.replace("/home");
-                        console.log(res);
+                        console.log(res.data[0])
+                        localStorage.setItem("username", res.data[0].username);
+                        localStorage.setItem("email",res.data[0].email)
+                        setTimeout(() => {
+                            window.location.replace("/home");
+                        }, 1500);
+                        // navigate("/home")
+                        
                     });
-                //            localStorage.setItem('username',username);
-                //            window.location = '/home';
+                axios.get("http://mrsz.pythonanywhere.com/Profile/me/", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `JWT ${accToken}`
+                    }
+                }).then((res) => {
+                    localStorage.setItem("birthdate", res.data.birth_date)
+                    localStorage.setItem("gender", res.data.gender)
+                    localStorage.setItem("bio", res.data.bio)
+                    localStorage.setItem("country", res.data.country)
+                    localStorage.setItem("city", res.data.city)
+                    window.location.replace("/home");
+
+                })
             })
             .catch((err) => {
                 //message.error(err.message);
