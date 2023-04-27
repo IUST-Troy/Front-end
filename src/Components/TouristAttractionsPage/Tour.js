@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import PlaceToVisit from "./PlaceToVisit";
 import { Link as Scroll } from "react-scroll";
 import SearchIcon from "@mui/icons-material/Search";
+import PaginationPage from "./PaginationPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -115,6 +116,7 @@ export default function Tour() {
       {/* <SearchNav /> */}
 
       <PlaceToVisit />
+      <PaginationPage />
       <FooterV2 />
     </div>
     // <FooterV2 />
