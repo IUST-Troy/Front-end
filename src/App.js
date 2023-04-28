@@ -11,6 +11,7 @@ import Verification from './Components/SignUpLogIn/verification.jsx'
 
 import Tour from'./Components/TouristAttractionsPage/Tour'
 import ProfilePage from './Components/ProfilePage/ProfilePage';
+import PlacePage from './Components/PlacePage/PlacePage';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path='/tour' element={<Tour/>} />
         <Route path='/Profile' element={<ProfilePage/>} />
+        <Route path='/Place' element={<PlacePage/>} />
       </Routes>
 
     </Router>
