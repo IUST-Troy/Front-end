@@ -21,6 +21,13 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import PlaceToVisit from "./PlaceToVisit";
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const SearchBar = ({ handleSearch }) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
@@ -46,29 +53,29 @@ const SearchBar = ({ handleSearch }) => {
   const Country = [
     { label: "iran" , value : "iran"},
     { label: "china" , value : "china"},
-    // { label: "	Belgium" },
-    // { label: "	france" },
+    // { label: "  Belgium" },
+    // { label: "  france" },
   ];
 
   const tehran = [
     { label: "tehran" , value : "tehran" },
     // { label: "hong kong" },
-    // { label: "	Brussels" },
-    // { label: "	Paris" },
+    // { label: "  Brussels" },
+    // { label: "  Paris" },
   ];
 
   const hong_kong = [
     { label: "tehran" },
     { label: "hong kong" , value : "hong kong"},
-    // { label: "	Brussels" },
-    // { label: "	Paris" },
+    // { label: "  Brussels" },
+    // { label: "  Paris" },
   ];
 
   const City = [
     { label: "tehran" },
     { label: "hong kong" },
-    // { label: "	Brussels" },
-    // { label: "	Paris" },
+    // { label: "  Brussels" },
+    // { label: "  Paris" },
   ];
 
   // const Country = [];
@@ -115,7 +122,6 @@ const SearchBar = ({ handleSearch }) => {
   //             // })
   //       // window.location.replace('/sign-in')
   //     });
-
   //     axios
   //     .post(
   //       "http://mrsz.pythonanywhere.com/City/?city_name=tehran",
@@ -189,7 +195,10 @@ const SearchBar = ({ handleSearch }) => {
 
 
   return (
-    <Paper
+   
+      // <Grid  columns={{ xs: 4, sm: 8, md: 8 }} item xs={6} md={8} alignItems="center">
+        <div style={{ display: "flex", justifyContent: "center" }}>
+         <Paper
       id="search-bar"
       sx={{
         p: {
@@ -197,16 +206,19 @@ const SearchBar = ({ handleSearch }) => {
           sm: 5,
           md: 2,
         },
+        display : "flex",
         background: "rgba(0,0,0,0.4)",
         //  "rgba(186, 232, 219, 0.438)",
-        minHeight: "100px",
-        margin: "20px",
+        minHeight: "90px",
+        margin: "20px auto",
+        minWidth: "80%",
         position: "relative",
         borderRadius: "20px",
+        
       }}
     >
-      <Grid container spacing={4} alignItems="center">
-        <Grid item xs={12} sm={6} md={6}>
+      <Grid container spacing={3} item xs={12} sm={12} md={12}>
+        <Grid item xs={6} sm={6} md={4}>
           <Autocomplete
             disablePortal
             className="toura"
@@ -219,10 +231,10 @@ const SearchBar = ({ handleSearch }) => {
             onChange={changeSelectOptionHandler} 
             renderInput={(params) => <TextField {...params} label="Country" />}
             sx={{
-              backgroundColor: "rgba(186, 232, 219, 0.138)",
+              backgroundColor: "rgba(0, 232, 219, 0.138)",
               borderRadius: "20px",
               "&:hover": {
-                backgroundColor: "rgba(186, 232, 219, 0.338)",
+                backgroundColor: "rgba(0, 232, 219, 0.338)",
               },
 
               "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
@@ -247,19 +259,22 @@ const SearchBar = ({ handleSearch }) => {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={6}>
+        {/* <Grid item xs={1}>
+
+        </Grid> */}
+
+        <Grid item xs={6} sm={6} md={4}>
           <Autocomplete
             disablePortal
             className="toura"
             id="combo-box-demo"
             options={type}
-
             renderInput={(params) => <TextField {...params} label="City" />}
             sx={{
-              backgroundColor: "rgba(186, 232, 219, 0.138)",
+              backgroundColor: "rgba(0, 232, 219, 0.138)",
               borderRadius: "20px",
               "&:hover": {
-                backgroundColor: "rgba(186, 232, 219, 0.338)",
+                backgroundColor: "rgba(0, 232, 219, 0.338)",
               },
 
               "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
@@ -282,9 +297,11 @@ const SearchBar = ({ handleSearch }) => {
           />
         </Grid>
 
+        {/* <Grid item xs={1}>
 
+        </Grid> */}
 
-        <Grid item xs={12} sm={12} md={12}>
+        <Grid container spacing={1} item xs={12} sm={12} md={4}>
           <Button
             style={{
               backgroundColor: "#1BA291ff",
@@ -313,8 +330,11 @@ const SearchBar = ({ handleSearch }) => {
             Search
           </Button>
         </Grid>
-      </Grid>
-    </Paper>
+        </Grid>
+        </Paper>
+        </div>
+      // </Grid>
+   
   );
 };
 
