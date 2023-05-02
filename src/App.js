@@ -11,6 +11,7 @@ import Verification from './Components/SignUpLogIn/verification.jsx'
 
 import Tour from'./Components/TouristAttractionsPage/Tour'
 import ProfilePage from './Components/ProfilePage/ProfilePage';
+import LandingPage from './Components/LandingPage/LandingPage';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
     <Router>
 
       <Routes>
-        <Route exact path="/" element={<SignUp />} />
+        <Route exact path="/" element={<LandingPage/>} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verification" element={<Verification />} />

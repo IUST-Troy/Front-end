@@ -25,6 +25,7 @@
     "react-hook-form-resolvers": "^0.0.1",
     "react-icons": "^4.8.0",
     "react-parallax": "^3.5.1",
+    "react-particles": "^2.9.3",
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
     "react-scroll": "^1.8.9",
@@ -32,6 +33,7 @@
     "react-toggle-dark-mode": "^1.1.1",
     "sass": "^1.59.3",
     "tailwind-datepicker-react": "^1.2.3",
+    "tsparticles": "^2.9.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
