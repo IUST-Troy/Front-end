@@ -12,6 +12,9 @@ module.exports = {
         custom_1_3: '1fr 3fr',
         custom_1_4: '1fr 4fr',
         custom_1_5: '1fr 5fr',
+        custom_3_2: '3fr 2fr',
+        custom_5_2: '5fr 2fr',
+        custom_3_1: '3fr 1fr'
       },
       colors: {
         pallate: {
