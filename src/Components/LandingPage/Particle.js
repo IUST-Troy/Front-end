@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import test from "./test.json"
-import pin from "../../Static/pinicon.png"
+import pin from "../../Static/pinicon2.png"
 
 function Particle() {
   const particlesInit = useCallback(async (engine) => {
@@ -114,11 +114,12 @@ function Particle() {
             value: "#ffffffff",
           },
           links: {
+            // dash: [10,5],
             color: "#ffffffff",
             distance: 150,
             enable: true,
             opacity: 0.5,
-            width: 1,
+            width: 0.5,
           },
           collisions: {
             enable: false,
@@ -130,7 +131,7 @@ function Particle() {
               default: "bounce",
             },
             random: false,
-            speed: 6,
+            speed: 2,
             straight: false,
           },
           number: {
@@ -138,7 +139,7 @@ function Particle() {
               enable: true,
               area: 500,
             },
-            value: 10,
+            value: 5,
           },
           opacity: {
             value: 0.5,
@@ -152,7 +153,7 @@ function Particle() {
           "image": [
               {
                   "src": pin,
-                  "height": 20,
+                  "height": 27,
                   "width": 20
               },
             ]
@@ -160,7 +161,7 @@ function Particle() {
             
           },
           size: {
-            value: { min: 20, max: 20},
+            value: { min: 25, max: 25},
           },
           
         },
