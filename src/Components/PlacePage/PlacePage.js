@@ -89,6 +89,55 @@ const PlacePage = () => {
 
 
 
+    const [star5,setstar5] = React.useState(false)
+    const [star4,setstar4] = React.useState(false)
+    const [star3,setstar3] = React.useState(false)
+    const [star2,setstar2] = React.useState(false)
+    const [star1,setstar1] = React.useState(false)
+    const handle5star = () => {
+        setstar5(true)
+        setstar4(true)
+        setstar3(true)
+        setstar2(true)
+        setstar1(true)
+    }
+    const handle4star = () => {
+        setstar5(false)
+        setstar4(true)
+        setstar3(true)
+        setstar2(true)
+        setstar1(true)
+    }
+    const handle3star = () => {
+        setstar5(false)
+        setstar4(false)
+        setstar3(true)
+        setstar2(true)
+        setstar1(true)
+    }
+    const handle2star = () => {
+        setstar5(false)
+        setstar4(false)
+        setstar3(false)
+        setstar2(true)
+        setstar1(true)
+    }
+    const handle1star = () => {
+        setstar5(false)
+        setstar4(false)
+        setstar3(false)
+        setstar2(false)
+        setstar1(true)
+    }
+    const resetStar= () => {
+        setstar5(false)
+        setstar4(false)
+        setstar3(false)
+        setstar2(false)
+        setstar1(false)
+    }
+
+
 
     return (
         <div
@@ -99,11 +148,11 @@ const PlacePage = () => {
         >
             <Header />
             <Navbar />
-            <div className="grid grid-cols-custom_5_2 grid-ops gap-4 justify-center items-stretch w-5/6 md:w-5/6 mx-auto pb-5 pt-20">
-                <div className="card-bg grid grid-cols-1 rounded-xl gap-y-5 border border-pallate-persian_green pb-5 pl-5 !pt-0 !pr-0">
-                    <div className="grid grid-cols-custom_1_3 h-96 items-center justify-center gap-2">
+            <div className="grid grid-cols-custom_5_2 grid-ops gap-7 justify-center items-stretch w-5/6 md:w-5/6 mx-auto pb-5 pt-20">
+                <div className="card-bg grid grid-cols-1 rounded-xl gap-y-1 border border-pallate-persian_green pb-5 pl-5 !pt-0 !pr-0">
+                    <div className="grid grid-cols-custom_1_3 h-96 items-center justify-center gap-1">
                         <div className="grid grid-cols-1 gap-8 justify-center items-center">
-                            <p className="text-center text-pallate-celeste_light text-3xl   font-bold">
+                            <p className="text-left pl-5 text-pallate-celeste_light text-3xl   font-bold">
                                 Name of Place
                             </p>
                             <p className="text-left text-xl pl-5 text-pallate-celeste_light">
@@ -122,23 +171,23 @@ const PlacePage = () => {
                             <img src={four} />
                         </Carousel>
                     </div>
-                    <div className="grid md:grid-cols-custom_1_3 md:gap-0 grid-cols-1 gap-3">
-                        <div>
+                    <div className="grid md:grid-cols-custom_1_3  md:gap-0 grid-cols-1 gap-3">
+                        <div className=" my-auto">
                             <React.Fragment>
                                 <Rating size="lg">
-                                    <Rating.Star />
-                                    <Rating.Star />
-                                    <Rating.Star />
-                                    <Rating.Star />
-                                    <Rating.Star filled={false} />
+                                    <Rating.Star filled={star1}  onMouseEnter={handle1star} onMouseLeave={resetStar}/>
+                                    <Rating.Star filled={star2}  onMouseEnter={handle2star} onMouseLeave={resetStar}/>
+                                    <Rating.Star filled={star3}  onMouseEnter={handle3star} onMouseLeave={resetStar}/>
+                                    <Rating.Star filled={star4}  onMouseEnter={handle4star} onMouseLeave={resetStar}/>
+                                    <Rating.Star filled={star5}  onMouseEnter={handle5star} onMouseLeave={resetStar} />
                                     <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         4.95/5
                                     </p>
                                 </Rating>
-                                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                <p className="text-sm pt-3 pl-11 font-medium text-gray-500 dark:text-gray-400">
                                     1,745 global ratings
                                 </p>
-                                <div className="grid grid-cols-1 gap-1 !text-gray-600">
+                                {/* <div className="grid grid-cols-1 gap-1 !text-gray-600">
                                     <Rating.Advanced percentFilled={70} >
                                         5 star
                                     </Rating.Advanced>
@@ -154,11 +203,11 @@ const PlacePage = () => {
                                     <Rating.Advanced percentFilled={1}>
                                         1 star
                                     </Rating.Advanced>
-                                </div>
+                                </div> */}
                             </React.Fragment>
                         </div>
-                        <div className="mt-5 ml-5 pr-5">
-                            <p className="font-bold text-gray-600">Description:</p>
+                        <div className="mt-0 ml-5 pr-5">
+                            <p className="font-bold text-gray-600 text-3xl mb-3">Description:</p>
                             <p className="text-gray-700">
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
@@ -200,12 +249,12 @@ const PlacePage = () => {
                         }
                     </div>
                     <div className="flex flex-row px-5 gap-4 mt-3">
-                        <div class="w-full mb-4 rounded-lg bg-pallate-celeste_light">
-                            <div class="px-4 py-2 bg-pallate-celeste_light rounded-t-lg dark:bg-gray-800">
+                        <div class="w-full mb-4 rounded-lg comment-bg   ">
+                            <div class="px-4 py-2 comment-bg rounded-t-lg dark:bg-gray-800">
 
-                                <textarea id="comment" rows="2" class="w-full px-0 text-sm text-gray-700 bg-pallate-celeste_light border-0 focus:ring-3 focus:ring-pallate-persian_green" placeholder="Write a comment..." required></textarea>
+                                <textarea id="comment" rows="2" class="w-full px-0 text-lg text-gray-700 comment-bg border-0 focus:ring-3 focus:ring-pallate-persian_green" placeholder="Write a comment..." required></textarea>
                             </div>
-                            <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                            <div class="flex items-center justify-end px-3 py-2 border-t dark:border-gray-600">
                                 <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-pallate-persian_green rounded-lg focus:ring-4 focus:ring-blue-200  hover:bg-pallate-blue_munsell">
                                     Post comment
                                 </button>
@@ -215,7 +264,7 @@ const PlacePage = () => {
             </div>
             <div className="grid grid-cols-custom_3_2 gap-7 justify-center items-stretch w-5/6 md:w-5/6 mx-auto pb-20">
                 <div className="rounded-xl">
-                    <MapContainer center={[51.505, -0.09]} zoom={20} scrollWheelZoom={true} style={{
+                    <MapContainer center={[ 48.858093, 2.294694]} zoom={20} scrollWheelZoom={true} style={{
                         height: 610,
                         borderRadius : "15px"
                     }}>
@@ -223,9 +272,9 @@ const PlacePage = () => {
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <Marker position={[51.505, -0.09]}>
+                        <Marker position={[ 48.858093, 2.294694]}>
                             <Popup>
-                                A pretty CSS3 popup. <br /> Easily customizable.
+                                Eifel Tower entry <br />
                             </Popup>
                         </Marker>
                     </MapContainer>
