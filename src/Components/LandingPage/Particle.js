@@ -3,7 +3,8 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import test from "./test.json"
 import pin from "../../Static/pinicon2.png"
-
+import { red } from "@mui/material/colors";
+import "../../Styles/LandingPage/particle.scss"
 function Particle() {
   const particlesInit = useCallback(async (engine) => {
     console.log(engine);
@@ -17,6 +18,7 @@ function Particle() {
     <Particles
       id="tsparticles"
       // options={test}
+      className="particle"
       init={particlesInit}
       loaded={particlesLoaded}
       // options={{
@@ -115,11 +117,11 @@ function Particle() {
           },
           links: {
             // dash: [10,5],
-            color: "#ffffffff",
-            distance: 150,
-            enable: true,
-            opacity: 0.5,
-            width: 0.5,
+            // color: "#ffffffff",
+            // distance: 150,
+            // enable: true,
+            // opacity: 0.5,
+            // width: 0.5,
           },
           collisions: {
             enable: false,
@@ -139,7 +141,7 @@ function Particle() {
               enable: true,
               area: 500,
             },
-            value: 5,
+            value: 10,
           },
           opacity: {
             value: 0.5,
@@ -153,7 +155,7 @@ function Particle() {
           "image": [
               {
                   "src": pin,
-                  "height": 27,
+                  "height": 30,
                   "width": 20
               },
             ]
@@ -161,7 +163,7 @@ function Particle() {
             
           },
           size: {
-            value: { min: 25, max: 25},
+            value: { min: 5, max: 25},
           },
           
         },

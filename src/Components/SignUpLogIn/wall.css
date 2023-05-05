@@ -23,11 +23,12 @@
     width: 100vw;
     height: 100vh;
 }
-
+/* 186, 232, 219, 0.638 */
 .test5{
-    background-image: url("../../Static/map.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.009),
+    rgba(27, 162, 144, 0.838)),
+    url("../../Static/ph2.png") ;
     object-fit: contain;
     width: 100vw;
     height: 100vh;
-
 }
