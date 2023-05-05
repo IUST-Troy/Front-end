@@ -89,52 +89,25 @@ const PlacePage = () => {
 
 
 
-    const [star5,setstar5] = React.useState(false)
-    const [star4,setstar4] = React.useState(false)
-    const [star3,setstar3] = React.useState(false)
-    const [star2,setstar2] = React.useState(false)
-    const [star1,setstar1] = React.useState(false)
+    const [stars,setStars] = React.useState([false,false,false,false,false])
+    
     const handle5star = () => {
-        setstar5(true)
-        setstar4(true)
-        setstar3(true)
-        setstar2(true)
-        setstar1(true)
+        setStars([true,true,true,true,true])
     }
     const handle4star = () => {
-        setstar5(false)
-        setstar4(true)
-        setstar3(true)
-        setstar2(true)
-        setstar1(true)
+        setStars([true,true,true,true,false])
     }
     const handle3star = () => {
-        setstar5(false)
-        setstar4(false)
-        setstar3(true)
-        setstar2(true)
-        setstar1(true)
+        setStars([true,true,true,false,false])
     }
     const handle2star = () => {
-        setstar5(false)
-        setstar4(false)
-        setstar3(false)
-        setstar2(true)
-        setstar1(true)
+        setStars([true,true,false,false,false])
     }
     const handle1star = () => {
-        setstar5(false)
-        setstar4(false)
-        setstar3(false)
-        setstar2(false)
-        setstar1(true)
+        setStars([true,false,false,false,false])
     }
     const resetStar= () => {
-        setstar5(false)
-        setstar4(false)
-        setstar3(false)
-        setstar2(false)
-        setstar1(false)
+        setStars([false,false,false,false,false])
     }
 
 
@@ -175,11 +148,11 @@ const PlacePage = () => {
                         <div className=" my-auto">
                             <React.Fragment>
                                 <Rating size="lg">
-                                    <Rating.Star filled={star1}  onMouseEnter={handle1star} onMouseLeave={resetStar}/>
-                                    <Rating.Star filled={star2}  onMouseEnter={handle2star} onMouseLeave={resetStar}/>
-                                    <Rating.Star filled={star3}  onMouseEnter={handle3star} onMouseLeave={resetStar}/>
-                                    <Rating.Star filled={star4}  onMouseEnter={handle4star} onMouseLeave={resetStar}/>
-                                    <Rating.Star filled={star5}  onMouseEnter={handle5star} onMouseLeave={resetStar} />
+                                    <Rating.Star filled={stars[0]}  onMouseEnter={handle1star} onMouseLeave={resetStar}/>
+                                    <Rating.Star filled={stars[1]}  onMouseEnter={handle2star} onMouseLeave={resetStar}/>
+                                    <Rating.Star filled={stars[2]}  onMouseEnter={handle3star} onMouseLeave={resetStar}/>
+                                    <Rating.Star filled={stars[3]}  onMouseEnter={handle4star} onMouseLeave={resetStar}/>
+                                    <Rating.Star filled={stars[4]}  onMouseEnter={handle5star} onMouseLeave={resetStar} />
                                     <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         4.95/5
                                     </p>
