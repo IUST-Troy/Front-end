@@ -1,11 +1,14 @@
 import React from "react";
 import "../../Styles/LandingPage/button.scss"
+import { useNavigate } from "react-router-dom";
 
 
 function BTN({name , route}) {
+  const navigate = useNavigate()
+  
   return (
     <div className="">
-      <button className="blob-btn  w-28">
+      <button onClick={()=>navigate(route)} className="blob-btn  w-40">
         {name}
         <span class="blob-btn__inner ">
           <span class="blob-btn__blobs">

@@ -3,28 +3,27 @@ import React from "react";
 import Typewriters from "./Typewriters";
 import BTN from "./button";
 import "../../Styles/LandingPage/LandingPage.scss";
-import { useNavigate } from "react-router-dom";
-import Typical from "react-typical";
+
 
 const LandingPage = () => {
   return (
     <div className="test5 test8 bg-cover bg-fixed bg-center bg-transparent">
       <Particle />
-      <nav class=" border-gray-200 px-4 lg:px-3 py-2.5 dark:bg-gray-800 h-24">
+      <nav class=" border-gray-200 px-4 lg:px-3 py-2.5 dark:bg-gray-800 h-48">
         <div class=" flex flex-wrap mr-2 justify-between items-center mx-auto max-w-screen-xl">
           <div class="flex items-center"></div>
           <div class="flex items-center gap-4 lg:order-2">
-            <BTN name="Login"/>
-            <BTN name="SignUp" />
+            <BTN name="Login" route="/sign-in"/>
+            <BTN name="Sign Up" route= "/sign-up"/>
           </div>
         </div>
       </nav>
       <section className="position-fixed dark:bg-gray-900 test8">
         <div className=" grid py-8 test8 position-fixed px-4 mx-auto max-w-screen-xl lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-          <div className="place-self-center mr-auto ml-20 lg:col-span-7">
+          <div className="place-self-center mr-auto ml-10 lg:col-span-7">
             <h1 class="mb-4 max-w-2xl text-4xl font-bold leading-none md:text-5xl xl:text-5xl dark:text-white">
               Welcome to Troy Website
-            </h1>
+            </h1><br></br>
             <h1 class="mb-4 max-w-2xl text-4xl font-blod leading-none md:text-5xl xl:text-5xl dark:text-white text-white">
               Explore The World 
             </h1>
