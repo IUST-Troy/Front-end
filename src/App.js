@@ -27,7 +27,7 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path='/tour' element={<Tour/>} />
         <Route path='/Profile' element={<ProfilePage/>} />
-        <Route path='/Place' element={<PlacePage/>} />
+        <Route path='/Place/:id' element={<PlacePage/>} />
       </Routes>
 
     </Router>
