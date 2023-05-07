@@ -77,6 +77,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                                 color: "#1BA291ff",
                                 textDecoration: "none",
                                 fontSize: "1.5rem",
+                                direction: "rtl"
                             }}
                         >
                             {localStorage.getItem("firstname")?localStorage.getItem("firstname") + " " +localStorage.getItem("lastname"):"Not Defiend"}
@@ -88,7 +89,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                             <Typography
                                 px={5}
                                 sx={{
-                                    mr: 0.5,
+                                    mr: 0.0,
                                     display: "flex",
                                     fontFamily: "Roboto",
                                     fontWeight: 600,
