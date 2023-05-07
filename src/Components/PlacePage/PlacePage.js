@@ -177,13 +177,16 @@ const PlacePage = () => {
         }
         setStars(arr)
     };
-
+    const handleRatePost =  (Rate)=> {
+        // axios.post().then(res => {}).catch(err => {})
+        console.log(Rate);
+    }
     return (
         <>
             {!completed ? (
                 <>
                     {!loading ? (
-                        <div className="w-screen h-screen grid grid-cols-1 items-center ">
+                        <div className="w-screen bg-white h-screen grid grid-cols-1 items-center ">
                             <Lottie
                                 options={EarthLottieOptions}
                                 height={400}
@@ -191,7 +194,7 @@ const PlacePage = () => {
                             />
                         </div>
                     ) : (
-                        <div className="w-screen h-screen grid grid-cols-1 items-center ">
+                        <div className="w-screen bg-white h-screen grid grid-cols-1 items-center ">
                             <Lottie
                                 options={SuccessLottieOptions}
                                 height={400}
@@ -241,30 +244,35 @@ const PlacePage = () => {
                                                     filled={stars[0]}
                                                     onMouseEnter={handle1star}
                                                     onMouseLeave={resetStar}
+                                                    onClick={() => handleRatePost(1)}
                                                 />
                                                 <Rating.Star
                                                     className="cursor-pointer"
                                                     filled={stars[1]}
                                                     onMouseEnter={handle2star}
                                                     onMouseLeave={resetStar}
+                                                    onClick={() => handleRatePost(2)}
                                                 />
                                                 <Rating.Star
                                                     className="cursor-pointer"
                                                     filled={stars[2]}
                                                     onMouseEnter={handle3star}
                                                     onMouseLeave={resetStar}
+                                                    onClick={() => handleRatePost(3)}
                                                 />
                                                 <Rating.Star
                                                     className="cursor-pointer"
                                                     filled={stars[3]}
                                                     onMouseEnter={handle4star}
                                                     onMouseLeave={resetStar}
+                                                    onClick={() => handleRatePost(4)}
                                                 />
                                                 <Rating.Star
                                                     className="cursor-pointer"
                                                     filled={stars[4]}
                                                     onMouseEnter={handle5star}
                                                     onMouseLeave={resetStar}
+                                                    onClick={() => handleRatePost(5)}
                                                 />
                                                 <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
                                                     {data.avgRate.toFixed(2)}/5
