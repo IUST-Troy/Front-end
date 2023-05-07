@@ -1,4 +1,4 @@
-import * as React from "react";
+// import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -24,6 +24,7 @@ import "../../Styles/TouristAttractionsPage/Card.scss";
 import rate3 from "../../Static/rating-3.svg";
 import rate4 from "../../Static/rating-4.svg";
 import rate5 from "../../Static/rating-5.svg";
+import { useEffect, useState } from "react";
 let data = [
   {
     id: 1,
@@ -58,14 +59,26 @@ let data = [
     rate: "4.5",
   },
 ];
-export default function ImageCard({}) {
+export default function ImageCard({ tours }) {
+  const [showingTours, setShowingTours] = useState([]);
   const checked = useWindowPosition();
+
+  useEffect(() => {
+    if (tours.length > 0) {
+      const newTour = tours.map((tour) => {
+        return { ...tour, img: eiffel };
+      });
+      setShowingTours(newTour);
+    } else {
+      setShowingTours([]);
+    }
+  }, [tours]);
   return (
     <Collapse in={checked} {...(checked ? { timeout: 2000 } : {})}>
       <Container sx={{ py: 8 }} maxWidth="lg">
         {/* End hero unit */}
         <Grid container spacing={4}>
-          {data.map((item, index) => (
+          {showingTours.map((item, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
               <Card
                 sx={{
@@ -82,11 +95,7 @@ export default function ImageCard({}) {
                   component="img"
                   height="200"
                   style={{ height: "300px", objectFit: "cover" }}
-            
-               
                   src={item.img}
-  
-
                   alt="random"
                 />
 
@@ -110,7 +119,6 @@ export default function ImageCard({}) {
                     </IconButton>
                     {item.city},&nbsp;
                     {item.country}
-                  
                   </Typography>
                   <Typography>
                     <Rating
@@ -121,14 +129,9 @@ export default function ImageCard({}) {
                       readOnly
                       className="rating"
                     />
-                    
                   </Typography>
-
-             
                 </CardContent>
-                <CardActions>
-               
-                </CardActions>
+                <CardActions></CardActions>
               </Card>
             </Grid>
           ))}

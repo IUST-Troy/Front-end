@@ -52,10 +52,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Tour() {
   const classes = useStyles();
+  const [tours, setTours] = useState([]);
   const [checked, setChecked] = useState(false);
   useEffect(() => {
     setChecked(true);
   }, []);
+  console.log(tours);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -109,13 +111,13 @@ export default function Tour() {
       </div>
       <div>
         <grid>
-          <SearchNav />
+          <SearchNav setTours={setTours} />
         </grid>
       </div>
 
       {/* <SearchNav /> */}
 
-      <PlaceToVisit />
+      <PlaceToVisit tours={tours} />
       <PaginationPage />
       <FooterV2 />
     </div>
