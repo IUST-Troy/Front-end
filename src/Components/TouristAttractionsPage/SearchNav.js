@@ -54,33 +54,33 @@ const SearchBar = ({ setTours }) => {
     setIsOpen(false);
   };
 
-  const Country = [
-    { label: "iran", value: "iran" },
-    { label: "china", value: "china" },
-    // { label: "  Belgium" },
-    // { label: "  france" },
-  ];
+  // const Country = [
+  //   { label: "iran", value: "iran" },
+  //   { label: "china", value: "china" },
+  //   // { label: "  Belgium" },
+  //   // { label: "  france" },
+  // ];
 
-  const tehran = [
-    { label: "tehran", value: "tehran" },
-    // { label: "hong kong" },
-    // { label: "  Brussels" },
-    // { label: "  Paris" },
-  ];
+  // const tehran = [
+  //   { label: "tehran", value: "tehran" },
+  //   // { label: "hong kong" },
+  //   // { label: "  Brussels" },
+  //   // { label: "  Paris" },
+  // ];
 
-  const hong_kong = [
-    { label: "tehran" },
-    { label: "hong kong", value: "hong kong" },
-    // { label: "  Brussels" },
-    // { label: "  Paris" },
-  ];
+  // const hong_kong = [
+  //   { label: "tehran" },
+  //   { label: "hong kong", value: "hong kong" },
+  //   // { label: "  Brussels" },
+  //   // { label: "  Paris" },
+  // ];
 
-  const City = [
-    { label: "tehran" },
-    { label: "hong kong" },
-    // { label: "  Brussels" },
-    // { label: "  Paris" },
-  ];
+  // const City = [
+  //   { label: "tehran" },
+  //   { label: "hong kong" },
+  //   // { label: "  Brussels" },
+  //   // { label: "  Paris" },
+  // ];
 
   // const Country = [];
   // const City = [];
@@ -164,7 +164,7 @@ const SearchBar = ({ setTours }) => {
   //       // window.location.replace('/sign-in')
   //     });
   // };
-  const [select_country, setselect_country] = useState("china");
+  const [select_country, setselect_country] = useState("");
   const [select_city, setSelect_city] = useState("");
   const changeSelectOptionHandler = (event, v) => {
     console.log(event, v);
@@ -173,14 +173,14 @@ const SearchBar = ({ setTours }) => {
     }
   };
 
-  let type = null;
-  if (select_country === "china") {
-    type = hong_kong;
-    console.log(type);
-  } else {
-    type = tehran;
-    console.log(type);
-  }
+  // let type = null;
+  // if (select_country === "china") {
+  //   type = hong_kong;
+  //   console.log(type);
+  // } else {
+  //   type = tehran;
+  //   console.log(type);
+  // }
 
   const SearchClick_country = (e, value) => {
     // Country = document.getElementById('Country-tour').value;
@@ -225,7 +225,7 @@ const SearchBar = ({ setTours }) => {
     // const username=document.getElementById('username-signup').value;
     // alert("fsfdfgfzgfgfg")
     axios
-      .get("http://mrsz.pythonanywhere.com/Ciyy/?search=" + value, {
+      .get("http://mrsz.pythonanywhere.com/City/?search=" + value, {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {});

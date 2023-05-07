@@ -58,6 +58,8 @@ export default function Tour() {
     setChecked(true);
   }, []);
   console.log(tours);
+  const [pagin, setPagin] = useState(1);
+  const [totalpagin, setTotalPagin] = useState(1);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -117,8 +119,8 @@ export default function Tour() {
 
       {/* <SearchNav /> */}
 
-      <PlaceToVisit tours={tours} />
-      <PaginationPage />
+      <PlaceToVisit tours={tours} page={pagin} setTotalPagin={setTotalPagin} totalpagin={totalpagin} />
+      <PaginationPage setPagin={setPagin} totalpage={totalpagin}/>
       <FooterV2 />
     </div>
     // <FooterV2 />

@@ -59,7 +59,7 @@ let data = [
     rate: "4.5",
   },
 ];
-export default function ImageCard({ tours }) {
+export default function ImageCard({ tours, page, setTotalPagin, totalpagin }) {
   const [showingTours, setShowingTours] = useState([]);
   const checked = useWindowPosition();
 
@@ -69,6 +69,8 @@ export default function ImageCard({ tours }) {
         return { ...tour, img: eiffel };
       });
       setShowingTours(newTour);
+      let totalPages = Math.ceil(newTour.length / 6);
+      setTotalPagin(totalPages);
     } else {
       setShowingTours([]);
     }
@@ -78,63 +80,71 @@ export default function ImageCard({ tours }) {
       <Container sx={{ py: 8 }} maxWidth="lg">
         {/* End hero unit */}
         <Grid container spacing={4}>
-          {showingTours.map((item, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
-              <Card
-                sx={{
-                  maxWidth: 645,
-                  background: "rgba(0,0,0,0.5)",
-                  margin: "20px",
-                  borderRadius: 5,
-                  "&:hover": {
-                    backgroundColor: "rgba(186, 232, 219, 0.438)",
-                  },
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  style={{ height: "300px", objectFit: "cover" }}
-                  src={item.img}
-                  alt="random"
-                />
+          {showingTours
+            .slice(
+              (page - 1) * Math.ceil(showingTours.length / 6),
+              Math.min(
+                (page - 1) * Math.ceil(showingTours.length / 6) + 6,
+                showingTours.length
+              )
+            )
+            .map((item, index) => (
+              <Grid item key={index} xs={12} sm={8} md={8}>
+                <Card
+                  sx={{
+                    maxWidth: 645,
+                    background: "rgba(0,0,0,0.5)",
+                    margin: "20px",
+                    borderRadius: 5,
+                    "&:hover": {
+                      backgroundColor: "rgba(186, 232, 219, 0.438)",
+                    },
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    style={{ height: "300px", objectFit: "cover" }}
+                    src={item.img}
+                    alt="random"
+                  />
 
-                <CardContent className="title" sx={{ flexGrow: 1 }}>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    sx={{ textAlign: "center" }}
-                  >
-                    {item.name}
-                  </Typography>
-                  <Typography sx={{ textAlign: "center" }}>
-                    <IconButton
-                      className="icoon"
-                      sx={{
-                        color: "#fff",
-                      }}
+                  <CardContent className="title" sx={{ flexGrow: 1 }}>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h2"
+                      sx={{ textAlign: "center" }}
                     >
-                      <LocationOnIcon />
-                    </IconButton>
-                    {item.city},&nbsp;
-                    {item.country}
-                  </Typography>
-                  <Typography>
-                    <Rating
-                      sx={{ color: "#fff" }}
-                      name="half-rating-read"
-                      defaultValue={item.rate}
-                      precision={0.5}
-                      readOnly
-                      className="rating"
-                    />
-                  </Typography>
-                </CardContent>
-                <CardActions></CardActions>
-              </Card>
-            </Grid>
-          ))}
+                      {item.name}
+                    </Typography>
+                    <Typography sx={{ textAlign: "center" }}>
+                      <IconButton
+                        className="icoon"
+                        sx={{
+                          color: "#fff",
+                        }}
+                      >
+                        <LocationOnIcon />
+                      </IconButton>
+                      {item.city},&nbsp;
+                      {item.country}
+                    </Typography>
+                    <Typography>
+                      <Rating
+                        sx={{ color: "#fff" }}
+                        name="half-rating-read"
+                        defaultValue={item.rate}
+                        precision={0.5}
+                        readOnly
+                        className="rating"
+                      />
+                    </Typography>
+                  </CardContent>
+                  <CardActions></CardActions>
+                </Card>
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </Collapse>
