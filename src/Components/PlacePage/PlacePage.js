@@ -30,14 +30,10 @@ const PlacePage = () => {
     const params = useParams();
     const [loading, setLoading] = React.useState(undefined);
     const [completed, setCompleted] = React.useState(undefined);
-    const [data, setData] = React.useState( undefined
-        // {
-        //     id: "", name: "", lan: 0.0, lon: 0.0, address: "", city: "", country: "", description: ""
-        // }
-    );
+    const [data, setData] = React.useState(undefined);
     useEffect(() => {
         console.log(params.id);
-        const baseURL = `https://mrsz.pythonanywhere.com/place/specific_info_of_place_front/${params.id}`
+        const baseURL = `https://mrsz.pythonanywhere.com/place/Place/${params.id}`
         console.log(baseURL);
         setTimeout(() => {
             axios.get(baseURL, {
@@ -46,18 +42,26 @@ const PlacePage = () => {
                 }
             }).then(res => {
 
-                const raw = res.data[0]
+                const raw = res.data
                 setData({
                     id: raw.id,
                     name: raw.name,
                     lan: raw.lan,
                     lon: raw.lon,
                     address: raw.address,
-                    city: raw.city,
-                    country: raw.country,
-                    description: raw.description
+                    city: raw.city_name,
+                    country: raw.country_name,
+                    description: raw.description,
+                    rateCount: raw.rate_no,
+                    avgRate: raw.avg_rate
                 })
                 console.log(data);
+                let arr = [false, false, false, false, false]
+                for (let i = 0; i < Math.floor(raw.avg_rate); i++) {
+                    arr[i] = true
+                }
+                setStars(arr)
+                console.log(stars);
                 setLoading(true);
             }).catch(err => {
                 console.log(err.message);
@@ -167,7 +171,11 @@ const PlacePage = () => {
         setStars([true, false, false, false, false]);
     };
     const resetStar = () => {
-        setStars([false, false, false, false, false]);
+        let arr = [false, false, false, false, false]
+        for (let i = 0; i < Math.floor(data.avgRate); i++) {
+            arr[i] = true
+        }
+        setStars(arr)
     };
 
     return (
@@ -259,7 +267,7 @@ const PlacePage = () => {
                                                     onMouseLeave={resetStar}
                                                 />
                                                 <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    4.95/5
+                                                    {data.avgRate.toFixed(2)}/5
                                                 </p>
                                             </Rating>
                                             <p className="text-sm pt-3 pl-11 font-medium text-gray-500 dark:text-gray-400">
@@ -272,7 +280,7 @@ const PlacePage = () => {
                                             Description:
                                         </p>
                                         <p className="text-gray-700">
-                                            {data.description?data.description : "No description is provided for this Place"}
+                                            {data.description ? data.description : "No description is provided for this Place"}
                                         </p>
                                     </div>
                                 </div>
@@ -341,7 +349,7 @@ const PlacePage = () => {
                                     />
                                     <Marker position={[data.lan, data.lon]}>
                                         <Popup>
-                                            {data.name?data.name:""}<br />
+                                            {data.name ? data.name : ""}<br />
                                         </Popup>
                                     </Marker>
                                 </MapContainer>
