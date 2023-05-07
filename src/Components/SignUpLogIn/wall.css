@@ -1,0 +1,25 @@
+.test{
+    background-image: url("../../Static/bgR.jpg");
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+}
+.test2{
+    background-image: url("../../Static/bgR.jpg");
+    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+}
+.test3{
+    background-image: url("../../Static/bgR.jpg");
+    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+    
+}
+.test4{
+    background-image: url("../../Static/bgR.jpg");
+    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+}
