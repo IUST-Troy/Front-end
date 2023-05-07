@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import PlaceToVisit from "./PlaceToVisit";
 import { Link as Scroll } from "react-scroll";
 import SearchIcon from "@mui/icons-material/Search";
+import PaginationPage from "./PaginationPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,10 +52,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Tour() {
   const classes = useStyles();
+  const [tours, setTours] = useState([]);
   const [checked, setChecked] = useState(false);
   useEffect(() => {
     setChecked(true);
   }, []);
+  console.log(tours);
+  const [pagin, setPagin] = useState(1);
+  const [totalpagin, setTotalPagin] = useState(1);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -108,13 +113,14 @@ export default function Tour() {
       </div>
       <div>
         <grid>
-          <SearchNav />
+          <SearchNav setTours={setTours} />
         </grid>
       </div>
 
       {/* <SearchNav /> */}
 
-      <PlaceToVisit />
+      <PlaceToVisit tours={tours} page={pagin} setTotalPagin={setTotalPagin} totalpagin={totalpagin} />
+      <PaginationPage setPagin={setPagin} totalpage={totalpagin}/>
       <FooterV2 />
     </div>
     // <FooterV2 />
