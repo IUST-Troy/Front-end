@@ -275,7 +275,7 @@ const PlacePage = () => {
                                                     onClick={() => handleRatePost(5)}
                                                 />
                                                 <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    {data.avgRate.toFixed(2)}/5
+                                                    {data.avgRate? data.avgRate.toFixed(2):0}/5
                                                 </p>
                                             </Rating>
                                             <p className="text-sm pt-3 pl-11 font-medium text-gray-500 dark:text-gray-400">

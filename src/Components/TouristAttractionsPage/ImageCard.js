@@ -25,6 +25,7 @@ import rate3 from "../../Static/rating-3.svg";
 import rate4 from "../../Static/rating-4.svg";
 import rate5 from "../../Static/rating-5.svg";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 let data = [
   {
     id: 1,
@@ -71,10 +72,12 @@ export default function ImageCard({ tours, page, setTotalPagin, totalpagin }) {
       setShowingTours(newTour);
       let totalPages = Math.ceil(newTour.length / 6);
       setTotalPagin(totalPages);
+      console.log(tours);
     } else {
       setShowingTours([]);
     }
   }, [tours]);
+  const navigate = useNavigate()
   return (
     <Collapse in={checked} {...(checked ? { timeout: 2000 } : {})}>
       <Container sx={{ py: 8 }} maxWidth="lg">
@@ -89,8 +92,9 @@ export default function ImageCard({ tours, page, setTotalPagin, totalpagin }) {
               )
             )
             .map((item, index) => (
-              <Grid item key={index} xs={12} sm={8} md={8}>
+              <Grid item key={index} xs={12} sm={8} md={4}>
                 <Card
+                  onClick={() => navigate(`/Place/${item.id}`)}
                   sx={{
                     maxWidth: 645,
                     background: "rgba(0,0,0,0.5)",
