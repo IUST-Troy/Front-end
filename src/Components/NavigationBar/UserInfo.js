@@ -18,6 +18,7 @@ import {ToastContainer, toast} from 'react-toastify'
 import MuiAlert from '@mui/material/Alert'
 import { ExitToApp, Edit, Dashboard, History } from "@material-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
 const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
     
@@ -34,7 +35,6 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
     const menuClickHandler = (route)=>{
         navigate(route)
     }
-
 
 
     const LogOutNotification = () => toast.success("logged out sucessfully , redirecting to sign in page" , {
@@ -58,7 +58,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
     };
 
     
-
+    let theme = useTheme();
 
     return (
         <>
@@ -77,6 +77,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                                 color: "#1BA291ff",
                                 textDecoration: "none",
                                 fontSize: "1.5rem",
+                                direction: "rtl"
                             }}
                         >
                             {localStorage.getItem("firstname")?localStorage.getItem("firstname") + " " +localStorage.getItem("lastname"):"Not Defiend"}
@@ -88,14 +89,17 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                             <Typography
                                 px={5}
                                 sx={{
-                                    mr: 0.5,
+                                    mr: 0.0,
                                     display: "flex",
                                     fontFamily: "Roboto",
                                     fontWeight: 600,
                                     letterSpacing: ".1rem",
-                                    color: "inherit",
+                                    // color: "inherit",
                                     textDecoration: "none",
                                     fontSize: "1rem",
+                                    color : "rgba(27, 162, 145, 1.00)",
+                                    
+                                    
                                 }}
                             >
                                 @{localStorage.getItem("username")}
@@ -108,6 +112,15 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                         <IconButton sx={{ p: 0 }} onClick={openMenuHandler}>
                             <Avatar
                                 sx={{
+                                    [theme.breakpoints.down("md")]: {
+                                        bgcolor:  "rgba(186, 232, 219, 0.5)",
+                                        width: 60,
+                                        height: 60,
+                                       
+                                      },
+                                      [theme.breakpoints.up("md")]: {
+                                        
+                                      },
                                     width: 75,
                                     height: 75,
                                     bgcolor: "#1BA291ff",
@@ -221,3 +234,5 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
 };
 
 export default UserInfo;
+
+

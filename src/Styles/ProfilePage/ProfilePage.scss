@@ -1,5 +1,4 @@
-@use"../Colors";
-
+@use "../Colors";
 
 // .image {
 //     // min-height: 100vh;
@@ -7,17 +6,50 @@
 //     // padding-bottom: 100px;
 // }
 
-.card-bg{
-    background-color: rgb(186 232 219 / 0.6)
+.card-bg {
+    background-color: rgb(186 232 219 / 0.6);
 }
-#file-upload-button{
+
+.comment-bg {
+    background-color: rgba(209, 238, 230, 0.794);
+}
+#file-upload-button {
     background-color: Colors.$celeste;
+}
+
+.grid-ops {
+    grid-auto-rows: 1fr;
+}
+
+.snap-mandatory {
+    border-bottom-right-radius: 0px;
+}
+.comment-section::-webkit-scrollbar {
+    width: 8px;
+    
+}
+.comment-section::-webkit-scrollbar-track {
+    background: rgba($color: #000000, $alpha: 0.0);
+    // width: 10px;
+    margin: 20px;
+}
+.comment-section::-webkit-scrollbar-thumb {
+    background: Colors.$persian-green;
+    border-radius: 8px;
+    width: 8px;
+}
+.comment-section {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+textarea{
+    resize: none;
 }
 // #date {
 //     color: Colors.$persian-green;
 // }
 // #date:focus {
-    
+
 // }
 // #field-container input[type="text"]{
 //     background-color: Colors.$celeste;

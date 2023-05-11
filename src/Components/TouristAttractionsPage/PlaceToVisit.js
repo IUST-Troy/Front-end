@@ -16,14 +16,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-export default function () {
+export default function ({ tours , page , setTotalPagin ,totalpagin}) {
   const classes = useStyles();
   const checked = useWindowPosition("header");
   return (
     <div>
       <div id="place-to-visit" className={classes.root}>
-        <ImageCard cheched={checked} />
-
+        <ImageCard tours={tours} cheched={checked} page={page} setTotalPagin={setTotalPagin} totalpagin={totalpagin}/>
       </div>
     </div>
   );

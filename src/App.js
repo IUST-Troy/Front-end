@@ -11,14 +11,17 @@ import Verification from './Components/SignUpLogIn/verification.jsx'
 
 import Tour from'./Components/TouristAttractionsPage/Tour'
 import ProfilePage from './Components/ProfilePage/ProfilePage';
+import PlacePage from './Components/PlacePage/PlacePage';
+import LandingPage from './Components/LandingPage/LandingPage';
+import Errornotfound from './Components/404/notfound.jsx'
+
 
 
 function App() {
   return (
     <Router>
-
       <Routes>
-        <Route exact path="/" element={<SignUp />} />
+        <Route exact path="/" element={<LandingPage/>} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verification" element={<Verification />} />
@@ -26,8 +29,9 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path='/tour' element={<Tour/>} />
         <Route path='/Profile' element={<ProfilePage/>} />
+        <Route path='/Place/:id' element={<PlacePage/>} />
+        <Route path='*' element={<Errornotfound/>}/>
       </Routes>
-
     </Router>
   )
 }
