@@ -14,6 +14,7 @@ import ProfilePage from './Components/ProfilePage/ProfilePage';
 import PlacePage from './Components/PlacePage/PlacePage';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Errornotfound from './Components/404/notfound.jsx'
+import TripPage from './Components/TripPage/TripPage';
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path='/Profile' element={<ProfilePage/>} />
         <Route path='/Place/:id' element={<PlacePage/>} />
         <Route path='*' element={<Errornotfound/>}/>
+        <Route path='/Trip' element={<TripPage/>} />
       </Routes>
     </Router>
   )
