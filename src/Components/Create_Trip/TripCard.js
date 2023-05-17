@@ -10,16 +10,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import {
   BsXLg,
   BsMapFill,
+  BsCalendar,
 } from "react-icons/bs";
 import places from "./places";
 import transport from "./Transport ";
 import moment from "moment";
 
-import { MdDirectionsBoat } from "react-icons/md";
-import { GiCommercialAirplane } from "react-icons/gi";
+import { IoMdBoat } from "react-icons/io";
+import { BsFillAirplaneFill } from "react-icons/bs";
 import { BsBusFrontFill } from "react-icons/bs";
 import { BsTrainFrontFill } from "react-icons/bs";
-import { FaMapMarkedAlt } from "react-icons/fa";
+import { BsMap } from "react-icons/bs";
 
 const CreateCard = () => {
   const [countryValue, setCountryValue] = React.useState("");
@@ -145,9 +146,9 @@ const CreateCard = () => {
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <label>departure : ( </label>
-                      <GiCommercialAirplane className="mr-1" />
+                      <BsFillAirplaneFill className="mr-1" />
                       <label>,</label>
-                      <MdDirectionsBoat className="mr-1" />
+                      <IoMdBoat className="mr-1" />
                       <label>,</label>
                       <BsBusFrontFill className="mr-1" />
                       <label>,</label>
@@ -170,9 +171,9 @@ const CreateCard = () => {
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <label>Return : ( </label>
-                      <GiCommercialAirplane className="mr-1" />
+                      <BsFillAirplaneFill className="mr-1" />
                       <label>,</label>
-                      <MdDirectionsBoat className="mr-1" />
+                      <IoMdBoat className="mr-1" />
                       <label>,</label>
                       <BsBusFrontFill className="mr-1" />
                       <label>,</label>
@@ -194,7 +195,7 @@ const CreateCard = () => {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 md:gap-5 gap-2">
-                  {/* <div className="md:w-40 w-full">
+                  <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                     <BsCalendar className="mr-1" />
                           <label>Departure date :</label>
@@ -209,8 +210,8 @@ const CreateCard = () => {
                           dropdownMode="select"
                           className="bg-pallate-celeste_light border-pallate-persian_green w-full md:w-72 rounded-lg disabled:opacity-80 focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                         ></DatePicker>
-                  </div> */}
-                  {/* <div className="">
+                  </div>
+                  <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                     <BsCalendar className="mr-1" />
                           <label>Return date :</label>
@@ -227,12 +228,12 @@ const CreateCard = () => {
                           dropdownMode="select"
                           className="bg-pallate-celeste_light border-pallate-persian_green w-full md:w-72 rounded-lg disabled:opacity-80 focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                         ></DatePicker>
-                  </div> */}
+                  </div>
                 </div>
                 <div className="grid grid-cols-2 md:gap-5 gap-2">
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <FaMapMarkedAlt size={20} className="mr-1" />
+                      <BsMap className="mr-1" />
                       <label>Country :</label>
                     </div>
                     <Select
@@ -249,7 +250,7 @@ const CreateCard = () => {
                   </div>
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <FaMapMarkedAlt size={20} className="mr-1" />
+                      <BsMap className="mr-1" />
                       <label>City :</label>
                     </div>
                     <Select
