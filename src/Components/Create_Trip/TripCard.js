@@ -37,6 +37,14 @@ const CreateCard = ({ items }) => {
   //   }
   // };
 
+  function handleKeyPress(event) {
+    const charCode = event.which ? event.which : event.keyCode;
+    const input = event.target;
+    if (charCode === 45 || (charCode === 48  && input.value.length === 0) || charCode === 101 || charCode === 46) {
+      event.preventDefault();
+    }
+  }
+  
   const handleCountryChange = (event) => {
     setCountryValue(event.target.value);
   };
@@ -179,16 +187,6 @@ const CreateCard = ({ items }) => {
                         })}
                     </Select>
                   </div>
-                </div>
-                <div className="grid grid-cols-2 md:gap-5 gap-2">
-                  <div className="md:w-40 w-full">
-                    <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <BsCalendar className="mr-1" />
-                      <label>Departure date :</label>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 md:gap-5 gap-2">
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsMap className="mr-1" />
@@ -231,22 +229,43 @@ const CreateCard = ({ items }) => {
                             })}
                     </Select>
                   </div>
-                </div>
-                <div>
-                  <div className="flex justify-start items-center pl-1 text-gray-700">
-                    <label>Capacity :</label>
+                  <div className="md:w-40 w-full">
+                    <div className="flex justify-start items-center pl-1 text-gray-700">
+                      <label>Capacity :</label>
+                    </div>
+                    <input
+                      type="number"
+                      id="visitors"
+                      class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      placeholder=""
+                      min={1}
+                      onKeyPress={handleKeyPress}
+                      required
+                    ></input>
                   </div>
-                  <input
-                    type="number"
-                    id="visitors"
-                    class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                    placeholder=""
-                    min={10}
-                    // defaultValue={10}
-                    required
-                  ></input>
+                  <div className="grid justify-start items-center pl-1 text-gray-700">
+                    <label>Price :</label>
+
+                    <input
+                      type="number"
+                      id="visitors"
+                      class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      placeholder=""
+                      min={1}
+                      onKeyPress={handleKeyPress}
+                      required
+                    ></input>
+                  </div>
                 </div>
               </div>
+              {/* <div className="grid grid-cols-2 md:gap-5 gap-2">
+                  <div className="md:w-40 w-full">
+                    <div className="flex justify-start items-center pl-1 text-gray-700">
+                      <BsCalendar className="mr-1" />
+                      <label>Departure date :</label>
+                    </div>
+                  </div>
+                </div> */}
             </div>
 
             <div className="grid md:grid-cols-2 grid-cols-1 justify-center items-center gap-20 pl-8 pr-8">
