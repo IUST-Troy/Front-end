@@ -21,30 +21,33 @@ const CreateCard = ({ items }) => {
   const [cityDisValue, setCityDisValue] = React.useState("");
   const [departureValue, setdepartureValue] = React.useState("");
   const [returnValue, setreturnValue] = React.useState("");
+  const [departureDate, setDepartureDate] = React.useState(new Date());
+  const [returnDate, setReturnDate] = React.useState(new Date());
   const [startDate, setstartDate] = React.useState(new Date());
   const [birthDateISOValue, setbirthDateISOValue] = React.useState("");
-  const [capacityValue, setcapacityValue] = React.useState("");
 
   // const [imgValue, setImgValue] = React.useState("");
 
-  // const handleBirthDateChange = (selectedDate) => {
-  //   setstartDate(selectedDate);
-  //   setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
-  // };
-  // const handleChange = date => {
-  //   if (!moment(date).isBefore(moment(), 'day')) {
-  //     setstartDate(date);
-  //   }
-  // };
+  const handleBirthDateChange = (selectedDate) => {
+    setstartDate(selectedDate);
+    setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
+  };
+
+  
 
   function handleKeyPress(event) {
     const charCode = event.which ? event.which : event.keyCode;
     const input = event.target;
-    if (charCode === 45 || (charCode === 48  && input.value.length === 0) || charCode === 101 || charCode === 46) {
+    if (
+      charCode === 45 ||
+      (charCode === 48 && input.value.length === 0) ||
+      charCode === 101 ||
+      charCode === 46
+    ) {
       event.preventDefault();
     }
   }
-  
+
   const handleCountryChange = (event) => {
     setCountryValue(event.target.value);
   };
@@ -62,9 +65,6 @@ const CreateCard = ({ items }) => {
   };
   const handlereturnChange = (event) => {
     setreturnValue(event.target.value);
-  };
-  const handelcapacity = (event) => {
-    setcapacityValue(event.target.value);
   };
   return (
     <div className="test6 grid grid-cols-1 gap-0 no-repeat p- bg-cover bg-center bg-fixed">
@@ -189,6 +189,42 @@ const CreateCard = ({ items }) => {
                   </div>
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
+                        <BsCalendar className="mr-1" />
+                        <label>departure Date :</label>
+                    </div>
+                    <DatePicker
+                        selected={new Date()}
+                        onChange={(date) =>
+                            handleBirthDateChange(date)
+                        }
+                        showMonthDropdown
+                        showYearDropdown
+                        minDate={new Date()}
+                        maxDate={new Date()}
+                        dropdownMode="select"
+                        className="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                    ></DatePicker>
+                    </div>
+                    <div className="md:w-40 w-full">
+                    <div className="flex justify-start items-center pl-1 text-gray-700">
+                        <BsCalendar className="mr-1" />
+                        <label>Return Date :</label>
+                    </div>
+                    <DatePicker
+                        selected={new Date()}
+                        onChange={(date) =>
+                            handleBirthDateChange(date)
+                        }
+                        showMonthDropdown
+                        showYearDropdown
+                        minDate={new Date()}
+                        maxDate={new Date()}
+                        dropdownMode="select"
+                        className="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                    ></DatePicker>
+                    </div>
+                  <div className="md:w-40 w-full">
+                    <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsMap className="mr-1" />
                       <label>Country :</label>
                     </div>
@@ -258,16 +294,7 @@ const CreateCard = ({ items }) => {
                   </div>
                 </div>
               </div>
-              {/* <div className="grid grid-cols-2 md:gap-5 gap-2">
-                  <div className="md:w-40 w-full">
-                    <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <BsCalendar className="mr-1" />
-                      <label>Departure date :</label>
-                    </div>
-                  </div>
-                </div> */}
             </div>
-
             <div className="grid md:grid-cols-2 grid-cols-1 justify-center items-center gap-20 pl-8 pr-8">
               <div className="grid grid-cols-2 gap-2"></div>
             </div>
