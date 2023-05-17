@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  Select,
-} from "flowbite-react";
+import { Button, Card, Select } from "flowbite-react";
 import imgValue from "../../Static/mylady.jpg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  BsXLg,
-  BsMapFill,
-  BsCalendar,
-} from "react-icons/bs";
+import { BsXLg, BsMapFill, BsCalendar } from "react-icons/bs";
 import places from "./places";
 import transport from "./Transport ";
 import moment from "moment";
@@ -22,25 +14,29 @@ import { BsBusFrontFill } from "react-icons/bs";
 import { BsTrainFrontFill } from "react-icons/bs";
 import { BsMap } from "react-icons/bs";
 
-const CreateCard = () => {
+const CreateCard = ({ items }) => {
   const [countryValue, setCountryValue] = React.useState("");
   const [countryDisValue, setCountryDisValue] = React.useState("");
   const [cityValue, setCityValue] = React.useState("");
   const [cityDisValue, setCityDisValue] = React.useState("");
   const [departureValue, setdepartureValue] = React.useState("");
   const [returnValue, setreturnValue] = React.useState("");
-  const [startDate, setstartDate] = React.useState(
-    new Date()
-  );
+  const [startDate, setstartDate] = React.useState(new Date());
   const [birthDateISOValue, setbirthDateISOValue] = React.useState("");
+  const [capacityValue, setcapacityValue] = React.useState("");
+
   // const [imgValue, setImgValue] = React.useState("");
 
-  const handleBirthDateChange = (selectedDate) => {
-    setstartDate(selectedDate);
-    setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
-  };
-  const oneWeekFromNow = new Date();
-  oneWeekFromNow.setDate(oneWeekFromNow.getDate() + 7);
+  // const handleBirthDateChange = (selectedDate) => {
+  //   setstartDate(selectedDate);
+  //   setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
+  // };
+  // const handleChange = date => {
+  //   if (!moment(date).isBefore(moment(), 'day')) {
+  //     setstartDate(date);
+  //   }
+  // };
+
   const handleCountryChange = (event) => {
     setCountryValue(event.target.value);
   };
@@ -59,35 +55,25 @@ const CreateCard = () => {
   const handlereturnChange = (event) => {
     setreturnValue(event.target.value);
   };
+  const handelcapacity = (event) => {
+    setcapacityValue(event.target.value);
+  };
   return (
-    <div className="test6 grid grid-cols-1 gap-0 no-repeat bg-cover bg-center bg-fixed">
+    <div className="test6 grid grid-cols-1 gap-0 no-repeat p- bg-cover bg-center bg-fixed">
       <div className=" grid justify-center items-center w-full">
-        <Card className=" m-5 pl-24 pr-24 mt-32 rounded-xl card-bg border-pallate-persian_green backdrop-blur-sm">
-          <div className="grid md:grid-cols-3 md:gap-16 sm:grid-cols-1 gap-4 ">
-            <Button className="bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell">
-              Edit Profile
-            </Button>
-            <Button className="bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell">
-              Change Password
-            </Button>
-            <Button className="bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell">
-              Change username
-            </Button>
-          </div>
-        </Card>
-        <Card className=" mt-1 m-5 mb-64 rounded-2xl card-bg border-pallate-persian_green backdrop-blur-sm">
+        <Card className=" mt-24 m-5 mb-64 rounded-2xl card-bg border-pallate-persian_green backdrop-blur-sm">
           <div className="grid grid-cols-1 gap-4 ">
             <div className="grid md:grid-cols-1 md:gap-2 sm:grid-cols-1 sm:gap-2">
-              <div className="grid grid-cols-1 gap-6 p-8 justify-center justify-items-center">
+              <div className="grid grid-cols-1 gap-10 p-2 justify-center justify-items-center">
                 <img
-                  class="w-96 h-96 mr-auto ml-auto rounded-3xl"
+                  class="w-96 h-96 mr-auto ml-auto rounded-xl"
                   src={imgValue}
                   alt="Default avatar"
                 ></img>
                 <div className="flex justify-start items-center">
                   <input
                     accept="image/*"
-                    class="block w-80 text-sm rounded-xl text-pallate-persian_green border border-pallate-persian_green cursor-pointer bg-pallate-celeste_light "
+                    class="block w-full md:w-auto text-sm rounded-xl text-pallate-persian_green border border-pallate-persian_green cursor-pointer bg-pallate-celeste_light "
                     id="user_avatar"
                     type="file"
                   />
@@ -99,7 +85,7 @@ const CreateCard = () => {
                   </Button>
                 </div>
               </div>
-              <div className="grid grid-cols-1 gap-8 p-8 mr-auto ml-auto">
+              <div className="grid grid-cols-1 gap-4 p-4 mr-auto ml-auto">
                 <div className="grid grid-cols-2 md:gap-5 gap-2">
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
@@ -148,11 +134,11 @@ const CreateCard = () => {
                       <label>departure : ( </label>
                       <BsFillAirplaneFill className="mr-1" />
                       <label>,</label>
-                      <IoMdBoat className="mr-1" />
+                      <IoMdBoat className="mr-1 " />
                       <label>,</label>
-                      <BsBusFrontFill className="mr-1" />
+                      <BsBusFrontFill className="mr-1 " />
                       <label>,</label>
-                      <BsTrainFrontFill className="mr-1" />
+                      <BsTrainFrontFill className="mr-1 " />
                       <label>)</label>
                     </div>
                     <Select
@@ -197,37 +183,9 @@ const CreateCard = () => {
                 <div className="grid grid-cols-2 md:gap-5 gap-2">
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                    <BsCalendar className="mr-1" />
-                          <label>Departure date :</label>
-                        </div>
-                        <DatePicker
-                          selected={startDate}
-                          onChange={(date) => handleBirthDateChange(date)}
-                          showMonthDropdown
-                          showYearDropdown
-                          minDate={oneWeekFromNow}
-                          maxDate={new Date()}
-                          dropdownMode="select"
-                          className="bg-pallate-celeste_light border-pallate-persian_green w-full md:w-72 rounded-lg disabled:opacity-80 focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                        ></DatePicker>
-                  </div>
-                  <div className="">
-                    <div className="flex justify-start items-center pl-1 text-gray-700">
-                    <BsCalendar className="mr-1" />
-                          <label>Return date :</label>
-                        </div>
-                        <DatePicker
-                          selected={
-                            setstartDate ? setstartDate : new Date()
-                          }
-                          onChange={(date) => handleBirthDateChange(date)}
-                          showMonthDropdown
-                          showYearDropdown
-                          minDate={new Date()}
-                          maxDate={new Date()}
-                          dropdownMode="select"
-                          className="bg-pallate-celeste_light border-pallate-persian_green w-full md:w-72 rounded-lg disabled:opacity-80 focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                        ></DatePicker>
+                      <BsCalendar className="mr-1" />
+                      <label>Departure date :</label>
+                    </div>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 md:gap-5 gap-2">
@@ -274,12 +232,31 @@ const CreateCard = () => {
                     </Select>
                   </div>
                 </div>
+                <div>
+                  <div className="flex justify-start items-center pl-1 text-gray-700">
+                    <label>Capacity :</label>
+                  </div>
+                  <input
+                    type="number"
+                    id="visitors"
+                    class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                    placeholder=""
+                    min={10}
+                    // defaultValue={10}
+                    required
+                  ></input>
+                </div>
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 grid-cols-1 justify-center items-center gap-20 pl-8 pr-8">
-              <div className="grid grid-cols-2 gap-4"></div>
+              <div className="grid grid-cols-2 gap-2"></div>
             </div>
+          </div>
+          <div className="p-2">
+            <Button className="w-full mr-auto ml-auto md:w-80 rounded-xl  bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell">
+              Create Trip
+            </Button>
           </div>
         </Card>
       </div>
