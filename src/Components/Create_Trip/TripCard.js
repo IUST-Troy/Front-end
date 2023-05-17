@@ -3,35 +3,17 @@ import {
   Button,
   Card,
   Select,
-  // Textarea,
-  // Progress,
-  // Tooltip,
 } from "flowbite-react";
-// import { Avatar, IconButton } from "@mui/material";
 import imgValue from "../../Static/mylady.jpg";
 import DatePicker from "react-datepicker";
-import "../../Styles/Create/Create.scss";
 import "react-datepicker/dist/react-datepicker.css";
-// import { useNavigate } from "react-router-dom";
 import {
-  // BsPencilSquare,
   BsXLg,
-  // BsCheckLg,
-  // BsLockFill,
-  // BsPenFill,
-  // BsGenderAmbiguous,
   BsMapFill,
-  BsCalendar,
-  // BsPersonFillLock,
 } from "react-icons/bs";
 import places from "./places";
 import transport from "./Transport ";
 import moment from "moment";
-// import { BsPatchExclamation } from "react-icons/bs";
-// import { BsPersonFill } from "react-icons/bs";
-// import { BsEnvelopeFill } from "react-icons/bs";
-// import { HiLockClosed } from "react-icons/hi";
-// import { HiLockOpen } from "react-icons/hi";
 import { MdDirectionsBoat } from "react-icons/md";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { BsBusFrontFill } from "react-icons/bs";
