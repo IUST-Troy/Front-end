@@ -260,7 +260,7 @@ const SearchBar = ({ setTours }) => {
           borderRadius: "20px",
         }}
       >
-        <Grid container spacing={3} item xs={12} sm={12} md={12}>
+        <Grid container spacing={3}>
           <Grid item xs={6} sm={6} md={4}>
             <Autocomplete
               disablePortal
@@ -345,7 +345,7 @@ const SearchBar = ({ setTours }) => {
           <Grid container spacing={1} item xs={12} sm={12} md={4}>
             <Button
               style={{
-                backgroundColor: "#1BA291ff",
+                backgroundColor: "#1BA291ff", 
                 color: "white",
                 margin: "0 auto",
                 display: "block",
