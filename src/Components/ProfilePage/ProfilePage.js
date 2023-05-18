@@ -580,8 +580,8 @@ const ProfilePage = () => {
             <Header />
             <Navbar />
             <div className=" grid justify-center items-center w-full">
-                <Card className=" m-5 pl-24 pr-24  mt-32 rounded-xl  card-bg border-pallate-persian_green backdrop-blur-sm">
-                    <div className="grid md:grid-cols-3 md:gap-16    sm:grid-cols-1 gap-4 ">
+                <Card className=" m-5 pl-24 pr-24 mt-32 rounded-xl card-bg border-pallate-persian_green backdrop-blur-sm">
+                    <div className="grid md:grid-cols-3 md:gap-16 sm:grid-cols-1 gap-4 ">
                         <Button
                             className={
                                 isEditprofile

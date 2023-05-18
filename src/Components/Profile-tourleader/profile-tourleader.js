@@ -4,12 +4,19 @@ import imgValue from "../../Static/myl.png";
 import "../../Styles/ProfilePage/ProfilePage.scss";
 import { CiLocationOn } from "react-icons/ci";
 import { BsPersonFillCheck } from "react-icons/bs";
+import {
+  Collapse,
+  Ripple,
+  initTE,
+} from "tw-elements";
+
+initTE({ Collapse, Ripple });
 
 const ProfiletourleaderPage = () => {
   return (
     <div className="grid grid-cols-1 justify-center items-center bg-cover bg-fixed overflow-auto test7">
       <div className=" grid justify-center p-10 items-center">
-        <Card className=" rounded-xl card-bg mr-6 ml-6 border-pallate-persian_green backdrop-blur-sm">
+        <Card className=" rounded-xl card-bg mr-4 ml-4 border-pallate-persian_green backdrop-blur-sm">
           <div className="grid grid-cols-1 gap-4 ">
             <div className="grid md:grid-cols-2 md:gap-0 sm:grid-cols-1 sm:gap-2 ">
               <div className="grid grid-cols-1 gap-10 p-2 justify-center justify-items-center">
@@ -116,6 +123,37 @@ const ProfiletourleaderPage = () => {
               </div>
             </div>
           </div>
+          <a
+  class="inline-block rounded-lg px-6 pb-2 text-center pt-2.5 text-xs font-medium leading-normal text-white bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell"
+  data-te-collapse-init
+  data-te-ripple-init
+  data-te-ripple-color="light"
+  href="#collapseExample"
+  role="button"
+  aria-expanded="false"
+  aria-controls="collapseExample">
+  See trip
+</a>
+<div class="!visible hidden" id="collapseExample" data-te-collapse-item>
+  <div
+    class="block rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 dark:text-neutral-50">
+    Some placeholder content for the collapse component. This panel is
+    hidden by default but revealed when the user activates the relevant
+    trigger.
+  </div>
+
+</div>
+<button
+  class="inline-block rounded-lg px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-white bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell"
+  type="button"
+  data-te-collapse-init
+  data-te-ripple-init
+  data-te-ripple-color="light"
+  data-te-target="#collapseExample"
+  aria-expanded="false"
+  aria-controls="collapseExample">
+  end Trip
+</button>
         </Card>
         <div className="md:hidden mt-10"></div>
       </div>
