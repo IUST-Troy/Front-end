@@ -35,7 +35,7 @@
 }
 .test7{
     background-image: url("../../Static/bgR.jpg");
-    object-fit: cover;
-    width: auto;
-    height: auto;
+    object-fit: contain;
+    width: 100vm;
+    height: 100vh;
 }
