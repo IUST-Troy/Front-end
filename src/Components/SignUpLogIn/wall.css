@@ -33,3 +33,9 @@
     width: 100vw;
     height: 100vh;
 }
+.test7{
+    background-image: url("../../Static/bgR.jpg");
+    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+}

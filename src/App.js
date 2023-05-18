@@ -14,6 +14,7 @@ import ProfilePage from './Components/ProfilePage/ProfilePage';
 import PlacePage from './Components/PlacePage/PlacePage';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Errornotfound from './Components/404/notfound.jsx'
+import ProfiletourleaderPage from './Components/Profile-tourleader/profile-tourleader'
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/tour' element={<Tour/>} />
         <Route path='/Profile' element={<ProfilePage/>} />
         <Route path='/Place/:id' element={<PlacePage/>} />
+        <Route path='/tour-profile' element={<ProfiletourleaderPage/>} />
         <Route path='*' element={<Errornotfound/>}/>
       </Routes>
     </Router>
