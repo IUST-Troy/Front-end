@@ -11,7 +11,7 @@ import {
     PopoverHandler,
     PopoverContent,
 } from "@material-tailwind/react";
-import { Rating } from "flowbite-react";
+import { Button, Rating } from "flowbite-react";
 const TripPage = () => {
     const initial = [false, false, false, false];
     const [openPopover, setOpenPopover] = React.useState(initial);
@@ -27,6 +27,32 @@ const TripPage = () => {
         },
         {
             name: "placeName So big",
+        },
+    ];
+    const dests = [
+        {
+            country: "Country",
+            city: "City",
+        },
+        {
+            country: "Countryyyyy",
+            city: "City",
+        },
+        {
+            country: "Country",
+            city: "Cityyyyyyyyy",
+        },
+        {
+            country: "Count",
+            city: "Ci",
+        },
+        {
+            country: "Country",
+            city: "City",
+        },
+        {
+            country: "Coasdasdasd  asuntry",
+            city: "City   City",
         },
     ];
     const triggers = {
@@ -63,77 +89,87 @@ const TripPage = () => {
             <Header />
             <Navbar />
             <div className="grid md:grid-cols-custom_1_2 justify-center items-stretch w-5/6 mx-auto pt-20 pb-5 gap-7 ">
-                <div className="grid grid-cols-1 justify-center content-start gap-4 py-4 px-2 card-bg border border-pallate-persian_green rounded-xl">
+                <div className="grid grid-cols-1 justify-center content-start px-0 pt-0 gap-4 py-4 card-bg border border-pallate-persian_green rounded-xl">
+                    <img
+                        src={Wallpaper1}
+                        className="h-64 w-full rounded-t-xl"
+                    />
                     <div>
                         <p className="text-pallate-celeste_light text-center text-4xl font-bold">
                             Organization Name
                         </p>
                     </div>
-                    <div className="mx-5 date-transport-card-bg justify-between items-start rounded-xl border border-pallate-persian_green gap-3 grid grid-cols-1 py-5 px-3">
-                        <p className="text-4xl">From:</p>
-                        <div className="grid grid-cols-3 gap-3 justify-between items-center">
-                            <p className="text-gray-700 text-center text-2xl ">
-                                City; Country
-                            </p>
-                            <p className="text-gray-700 text-center text-2xl ">
-                                yyyy-mm-dd hh:mm
-                            </p>
-                            <p className="text-6xl text-center mx-auto">
-                                <TbTrain />
-                            </p>
-                        </div>
-                        <p className="text-4xl">To:</p>
-                        <div className="flex items-center justify-start flex-wrap gap-2">
-                            {/* <div className="grid grid-cols-3 gap-3 items-center justify-center"> */}
-                            <div className="bg-transparent rounded-lg flex">
-                                <p className="text-gray-700 text-center text-2xl ">
-                                    City; Country:big
-                                </p>
-                            </div>
-                            <div className="bg-transparent rounded-lg flex">
+                    <div className="mx-5  justify-between items-start  gap-3 grid grid-cols-1 py-5 px-3">
+                        <div className="rounded-xl border border-pallate-persian_green date-transport-card-bg p-2">
+                            <p className="text-3xl">From:</p>
+                            <div className="grid grid-cols-3 gap-3 justify-between items-center">
                                 <p className="text-gray-700 text-center text-2xl ">
                                     City; Country
                                 </p>
-                            </div>
-                            <div className="bg-transparent rounded-lg flex">
                                 <p className="text-gray-700 text-center text-2xl ">
-                                    City; Country
+                                    yyyy-mm-dd hh:mm
                                 </p>
-                            </div>
-                            <div className="bg-transparent rounded-lg flex">
-                                <p className="text-gray-700 text-center text-2xl ">
-                                    City; Country
-                                </p>
-                            </div>
-                            <div className="bg-transparent rounded-lg flex">
-                                <p className="text-gray-700 text-center text-2xl ">
-                                    City; Country
-                                </p>
-                            </div>
-                            <div className="bg-transparent rounded-lg flex">
-                                <p className="text-gray-700 text-center text-2xl ">
-                                    City; Countryyyyyyyy
-                                </p>
-                            </div>
-                            <div className="bg-transparent rounded-lg flex">
-                                <p className="text-gray-700 text-center text-2xl ">
-                                    Cityyyyyyyyyyyy; Country
+                                <p className="text-6xl text-center mx-auto">
+                                    <TbTrain />
                                 </p>
                             </div>
                         </div>
-                        <p className="text-4xl text-gray-700">Return:</p>
-                        <div className="grid grid-cols-2 gap-7 justify-between items-center">
-                            <p className="text-gray-700 text-center text-2xl ">
-                                yyyy-mm-dd hh:mm
-                            </p>
-                            <p className="text-6xl text-center mx-auto">
-                                <TbPlane />
-                            </p>
+                        <div className="rounded-xl border border-pallate-persian_green date-transport-card-bg p-2">
+                            <p className="text-3xl">To:</p>
+                            <div className="flex items-center justify-start flex-wrap gap-2">
+                                {/* <div className="grid grid-cols-3 gap-3 items-center justify-center"> */}
+                                {dests.map((dest, index) => {
+                                    return (
+                                        <div
+                                            className={
+                                                (index % 2 == 0
+                                                    ? "bg-pallate-celeste border-pallate-persian_green"
+                                                    : "bg-pallate-pink_lavender border-pallate-french_mauve") +
+                                                " p-2 border rounded-lg flex"
+                                            }
+                                        >
+                                            <p className="text-gray-700 text-center text-2xl ">
+                                                {dest.city}; {dest.country}
+                                            </p>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        <div className="rounded-xl border border-pallate-persian_green date-transport-card-bg p-2">
+                            <p className="text-3xl text-gray-700">Return:</p>
+                            <div className="grid grid-cols-2 gap-7 justify-between items-center">
+                                <p className="text-gray-700 text-center text-2xl ">
+                                    yyyy-mm-dd hh:mm
+                                </p>
+                                <p className="text-6xl text-center mx-auto">
+                                    <TbPlane />
+                                </p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 mt-6 items-center justify-center">
+                            <div>
+                                <p className="text-gray-700 text-center text-4xl ">
+                                    $1000
+                                </p>
+                            </div>
+                            <div>
+                                <p className="text-gray-700 text-center text-4xl ">
+                                    50 left
+                                </p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 justify-items-center mt-5">
+                            <Button className="w-1/2 bg-pallate-persian_green hover:bg-pallate-blue_munsell">
+                                <p className="text-xl">
+                                    Reserve Now
+                                </p>
+                            </Button>
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 grid-rows-3 p-5 card-bg border border-pallate-persian_green rounded-xl">
-                    <div className="h-fit">
+                <div className="flex flex-col gap-10 p-5 card-bg border border-pallate-persian_green rounded-xl">
+                    <div className="">
                         <p className="text-3xl mb-3 text-gray-700">
                             Tour Leaders:
                         </p>
@@ -160,6 +196,16 @@ const TripPage = () => {
                                 <Avatar />
                                 <p className="text-gray-600 text-center text-lg">
                                     FirstName LastName
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p className="text-3xl mb-3 text-gray-700">Hotels:</p>
+                        <div className="flex flex-wrap flex-row gap-2">
+                            <div className="date-transport-card-bg border border-pallate-persian_green items-center flex flex-row gap-2 p-2 rounded-2xl">
+                                <p className="text-gray-600 text-center text-lg">
+                                    Hotel Name
                                 </p>
                             </div>
                         </div>
