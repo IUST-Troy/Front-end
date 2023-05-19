@@ -14,6 +14,8 @@ import ProfilePage from './Components/ProfilePage/ProfilePage';
 import PlacePage from './Components/PlacePage/PlacePage';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Errornotfound from './Components/404/notfound.jsx'
+import Chat from './Components/Chat/App'
+
 
 
 
@@ -31,6 +33,8 @@ function App() {
         <Route path='/Profile' element={<ProfilePage/>} />
         <Route path='/Place/:id' element={<PlacePage/>} />
         <Route path='*' element={<Errornotfound/>}/>
+        <Route path='/Chat' element={<Chat/>}/>
+        
       </Routes>
     </Router>
   )

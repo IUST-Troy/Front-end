@@ -1,0 +1,24 @@
+[
+    {
+        "room":"Gilan",
+        "inactive":"Tehran Room"
+    },
+    {
+        "room" : "Kish",
+        "inactive":"Eiffel"
+    },
+    {
+        "room":"ChaBahar",
+        "inactive":"Pissa"
+    },
+    {
+        "room":"Qom"
+       
+    },
+    {
+        "room":"Karaj"
+       
+    }
+
+
+]
