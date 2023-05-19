@@ -152,15 +152,15 @@ const ProfiletourleaderPage = () => {
             </div>
           </div>
           <a
-            class="inline-block rounded-lg px-6 pb-2 text-center pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
+            class="rounded-lg px-6 pb-2 text-center pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
             data-te-collapse-init
             data-te-ripple-init
             data-te-ripple-color="light"
             href="#collapseExample"
             role="button"
             aria-expanded="false"
-            aria-controls="collapseExample"
             onClick={() => setIsEndTripVisible(true)}
+            aria-controls="collapseExample"
           >
             See trip
           </a>
@@ -301,7 +301,20 @@ const ProfiletourleaderPage = () => {
               </body>
             </div>
           </div>
-
+          {isEndTripVisible && (
+            <button
+              class="rounded-lg px-6 pb-2 pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
+              type="button"
+              aria-expanded="false"
+              data-te-collapse-init
+              data-te-ripple-init
+              data-te-ripple-color="light"
+              data-te-target="#collapseExample"
+              aria-controls="collapseExample"
+            >
+              end trip
+            </button>
+          )}
         </Card>
         <div className="md:hidden mt-10"></div>
       </div>
