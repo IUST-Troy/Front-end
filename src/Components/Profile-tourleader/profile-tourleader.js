@@ -9,7 +9,7 @@ import { Collapse, Ripple, initTE } from "tw-elements";
 initTE({ Collapse, Ripple });
 
 const ProfiletourleaderPage = () => {
-  const [isEndTripVisible, setIsEndTripVisible] = React.useState(false);
+  const [isEndTripDisabled, setIsEndTripDisabled] = React.useState(true);
   return (
     <div className="grid grid-cols-1 justify-center items-center bg-cover bg-fixed overflow-auto test7">
       <div className=" grid justify-center p-10 items-center">
@@ -160,7 +160,6 @@ const ProfiletourleaderPage = () => {
             role="button"
             aria-expanded="false"
             aria-controls="collapseExample"
-            onClick={() => setIsEndTripVisible(true)}
           >
             See trip
           </a>
@@ -169,7 +168,7 @@ const ProfiletourleaderPage = () => {
             id="collapseExample"
             data-te-collapse-item
           >
-            <div class="block rounded-lg bg-white p-6">
+            <div class="block rounded-lg bg-white p-6 ">
               <body class="antialiased test7 text-gray-900 font-sans p-6 bg-cover overflow-scroll">
                 <div class="container mx-auto my-11">
                   <div class="flex flex-wrap -mx-4">
@@ -303,20 +302,19 @@ const ProfiletourleaderPage = () => {
               </body>
             </div>
           </div>
-          {isEndTripVisible && (
-  <button
-    class="inline-block rounded-lg px-6 pb-2 pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
-    type="button"
-    data-te-collapse-init
-    data-te-ripple-init
-    data-te-ripple-color="light"
-    data-te-target="#collapseExample"
-    aria-expanded="false"
-    aria-controls="collapseExample"
-  >
-    end trip
-  </button>
-)}
+          <button
+            class="inline-block rounded-lg px-6 pb-2 pt-2.5 text-xs font-medium text-white bg-pallate-persian_green  hover:bg-pallate-blue_munsell"
+            type="button"
+            data-te-collapse-init
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            data-te-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+            // onClick={}
+          >
+            end Trip
+          </button>
         </Card>
         <div className="md:hidden mt-10"></div>
       </div>
