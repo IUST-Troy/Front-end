@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Select } from "flowbite-react";
-import imgValue from "../../Static/mylady.jpg";
+import imgValue from "../../Static/trip.jpg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BsXLg, BsMapFill, BsCalendar } from "react-icons/bs";
@@ -13,6 +13,8 @@ import { BsFillAirplaneFill } from "react-icons/bs";
 import { BsBusFrontFill } from "react-icons/bs";
 import { BsTrainFrontFill } from "react-icons/bs";
 import { BsMap } from "react-icons/bs";
+import { BsCurrencyDollar } from "react-icons/bs";
+import { BsFillCartPlusFill } from "react-icons/bs";
 
 const CreateCard = ({ items }) => {
   const [countryValue, setCountryValue] = React.useState("");
@@ -32,8 +34,6 @@ const CreateCard = ({ items }) => {
     setstartDate(selectedDate);
     setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
   };
-
-  
 
   function handleKeyPress(event) {
     const charCode = event.which ? event.which : event.keyCode;
@@ -72,9 +72,9 @@ const CreateCard = ({ items }) => {
         <Card className=" mt-24 m-5 mb-64 rounded-2xl card-bg border-pallate-persian_green backdrop-blur-sm">
           <div className="grid grid-cols-1 gap-4 ">
             <div className="grid md:grid-cols-1 md:gap-2 sm:grid-cols-1 sm:gap-2">
-              <div className="grid grid-cols-1 gap-10 p-2 justify-center justify-items-center">
+              <div className="grid gap-10 p-2 justify-center justify-items-center ">
                 <img
-                  class="w-96 h-96 mr-auto ml-auto rounded-xl"
+                  class="w-screen/2 h-96 mr-auto ml-auto rounded-xl"
                   src={imgValue}
                   alt="Default avatar"
                 ></img>
@@ -189,40 +189,36 @@ const CreateCard = ({ items }) => {
                   </div>
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                        <BsCalendar className="mr-1" />
-                        <label>departure Date :</label>
+                      <BsCalendar className="mr-1" />
+                      <label>departure Date :</label>
                     </div>
                     <DatePicker
-                        selected={new Date()}
-                        onChange={(date) =>
-                            handleBirthDateChange(date)
-                        }
-                        showMonthDropdown
-                        showYearDropdown
-                        minDate={new Date()}
-                        maxDate={new Date()}
-                        dropdownMode="select"
-                        className="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      selected={new Date()}
+                      onChange={(date) => handleBirthDateChange(date)}
+                      showMonthDropdown
+                      showYearDropdown
+                      minDate={new Date()}
+                      maxDate={new Date()}
+                      dropdownMode="select"
+                      className="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                     ></DatePicker>
-                    </div>
-                    <div className="md:w-40 w-full">
+                  </div>
+                  <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                        <BsCalendar className="mr-1" />
-                        <label>Return Date :</label>
+                      <BsCalendar className="mr-1" />
+                      <label>Return Date :</label>
                     </div>
                     <DatePicker
-                        selected={new Date()}
-                        onChange={(date) =>
-                            handleBirthDateChange(date)
-                        }
-                        showMonthDropdown
-                        showYearDropdown
-                        minDate={new Date()}
-                        maxDate={new Date()}
-                        dropdownMode="select"
-                        className="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      selected={new Date()}
+                      onChange={(date) => handleBirthDateChange(date)}
+                      showMonthDropdown
+                      showYearDropdown
+                      minDate={new Date()}
+                      maxDate={new Date()}
+                      dropdownMode="select"
+                      className="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                     ></DatePicker>
-                    </div>
+                  </div>
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsMap className="mr-1" />
@@ -269,28 +265,37 @@ const CreateCard = ({ items }) => {
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <label>Capacity :</label>
                     </div>
+                    <div className="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <span class="text-pallate-persian_green"><BsFillCartPlusFill/></span>
+                    </div>
                     <input
                       type="number"
                       id="visitors"
-                      class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2 "
                       placeholder=""
                       min={1}
                       onKeyPress={handleKeyPress}
                       required
                     ></input>
+                    </div>
                   </div>
                   <div className="grid justify-start items-center pl-1 text-gray-700">
                     <label>Price :</label>
-
+                    <div className="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <span class="text-pallate-persian_green"><BsCurrencyDollar/></span>
+                    </div>
                     <input
                       type="number"
                       id="visitors"
-                      class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2"
                       placeholder=""
                       min={1}
                       onKeyPress={handleKeyPress}
                       required
                     ></input>
+                    </div>
                   </div>
                 </div>
               </div>
