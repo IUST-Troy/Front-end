@@ -151,170 +151,161 @@ const ProfiletourleaderPage = () => {
               </div>
             </div>
           </div>
-          <a
+          <button
             class="rounded-lg px-6 pb-2 text-center pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
             data-te-collapse-init
             data-te-ripple-init
             data-te-ripple-color="light"
-            href="#collapseExample"
             role="button"
             aria-expanded="false"
-            onClick={() => setIsEndTripVisible(true)}
+            onClick={() => {
+              setIsEndTripVisible(!isEndTripVisible);
+            }}
             aria-controls="collapseExample"
           >
             See trip
-          </a>
-          <div
-            class="!visible hidden"
-            id="collapseExample"
-            data-te-collapse-item
-          >
-            <div class="block rounded-lg bg-white p-6 ">
-              <body class="antialiased test7 text-gray-900 font-sans p-6 bg-cover overflow-y-scroll">
-                <div class="container mx-auto my-11">
-                  <div class="flex flex-wrap -mx-4">
-                    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-                      <div class="relative pb-48 overflow-hidden">
-                        <img
-                          class="absolute inset-0 h-full w-full object-cover"
-                          src={imgValue}
-                          alt=""
-                        ></img>
-                      </div>
-                      <div class="p-4">
-                        <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
-                          Highlight
-                        </span>
-                        <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
-                          Highlight
-                        </span>
+          </button>
 
-                        <h2 class="mt-2 mb-2  font-bold text-white">
-                          Purus Ullamcorper Inceptos Nibh
-                        </h2>
-                        <p class="text-sm text-white">
-                          Cras justo odio, dapibus ac facilisis in, egestas eget
-                          quam. Donec ullamcorper nulla non metus auctor
-                          fringilla.
-                        </p>
-                        <div class="mt-3 flex items-center text-white">
-                          <p>7:11 am</p>
-                          <span> </span>
-                          <p>10:10 am </p>
+          {isEndTripVisible && (
+            <div
+              // class="!visible hidden"
+              id="collapseExample"
+              data-te-collapse-item
+            >
+              <div class="block rounded-lg bg-white p-6 ">
+                <body class="antialiased test7 text-gray-900 font-sans p-6 bg-cover overflow-y-scroll">
+                  <div class="container mx-auto my-11">
+                    <div class="flex flex-wrap -mx-4">
+                      <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+                        <div class="relative pb-48 overflow-hidden">
+                          <img
+                            class="absolute inset-0 h-full w-full object-cover"
+                            src={imgValue}
+                            alt=""
+                          ></img>
                         </div>
-                      </div>
-                      <span class="flex items-center mb-1"></span>
-                      <span class="flex items-center"></span>
-                    </div>
-                    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-                      <div class="relative pb-48 overflow-hidden">
-                        <img
-                          class="absolute inset-0 h-full w-full object-cover"
-                          src={imgValue}
-                          alt=""
-                        ></img>
-                      </div>
-                      <div class="p-4">
-                        <span class="mr-1 inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
-                          Highlight
-                        </span>
-                        <span class="mr-1 inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
-                          Highlight
-                        </span>
-                        <h2 class="mt-2 mb-2  font-bold text-white">
-                          Purus Ullamcorper Inceptos Nibh
-                        </h2>
-                        <p class="text-sm text-white">
-                          Cras justo odio, dapibus ac facilisis in, egestas eget
-                          quam. Donec ullamcorper nulla non metus auctor
-                          fringilla.
-                        </p>
-                        <div class="mt-3 flex items-center text-white">
-                          <p>7:11 am</p>
-                          <span> </span>
-                          <p>10:10 am </p>
+                        <div class="p-4">
+                          <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
+                            Highlight
+                          </span>
+                          <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
+                            Highlight
+                          </span>
+
+                          <h2 class="mt-2 mb-2  font-bold text-white">
+                            Purus Ullamcorper Inceptos Nibh
+                          </h2>
+                          <p class="text-sm text-white">
+                            Cras justo odio, dapibus ac facilisis in, egestas
+                            eget quam. Donec ullamcorper nulla non metus auctor
+                            fringilla.
+                          </p>
+                          <div class="mt-3 flex items-center text-white">
+                            <p>7:11 am</p>
+                            <span> </span>
+                            <p>10:10 am </p>
+                          </div>
                         </div>
+                        <span class="flex items-center mb-1"></span>
+                        <span class="flex items-center"></span>
                       </div>
-                      <span class="flex items-center mb-1"></span>
-                      <span class="flex items-center"></span>
-                    </div>
-                    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-                      <div class="relative pb-48 overflow-hidden">
-                        <img
-                          class="absolute inset-0 h-full w-full object-cover"
-                          src={imgValue}
-                          alt=""
-                        ></img>
-                      </div>
-                      <div class="p-4">
-                        <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
-                          Highlight
-                        </span>
-                        <h2 class="mt-2 mb-2  font-bold text-white">
-                          Purus Ullamcorper Inceptos Nibh
-                        </h2>
-                        <p class="text-sm text-white">
-                          Cras justo odio, dapibus ac facilisis in, egestas eget
-                          quam. Donec ullamcorper nulla non metus auctor
-                          fringilla.
-                        </p>
-                        <div class="mt-3 flex items-center text-white">
-                          <p>7:11 am</p>
-                          <span> </span>
-                          <p>10:10 am </p>
+                      <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+                        <div class="relative pb-48 overflow-hidden">
+                          <img
+                            class="absolute inset-0 h-full w-full object-cover"
+                            src={imgValue}
+                            alt=""
+                          ></img>
                         </div>
-                      </div>
-                      <span class="flex items-center mb-1"></span>
-                      <span class="flex items-center"></span>
-                    </div>
-                    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-                      <div class="relative pb-48 overflow-hidden">
-                        <img
-                          class="absolute inset-0 h-full w-full object-cover"
-                          src={imgValue}
-                          alt=""
-                        ></img>
-                      </div>
-                      <div class="p-4">
-                        <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
-                          Highlight
-                        </span>
-                        <h2 class="mt-2 mb-2  font-bold text-white">
-                          Purus Ullamcorper Inceptos Nibh
-                        </h2>
-                        <p class="text-sm text-white ">
-                          Cras justo odio, dapibus ac facilisis in, egestas eget
-                          quam. Donec ullamcorper nulla non metus auctor
-                          fringilla.
-                        </p>
-                        <div class="mt-3 flex items-center text-white">
-                          <p>7:11 am</p>
-                          <span> </span>
-                          <p>10:10 am </p>
+                        <div class="p-4">
+                          <span class="mr-1 inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
+                            Highlight
+                          </span>
+                          <span class="mr-1 inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
+                            Highlight
+                          </span>
+                          <h2 class="mt-2 mb-2  font-bold text-white">
+                            Purus Ullamcorper Inceptos Nibh
+                          </h2>
+                          <p class="text-sm text-white">
+                            Cras justo odio, dapibus ac facilisis in, egestas
+                            eget quam. Donec ullamcorper nulla non metus auctor
+                            fringilla.
+                          </p>
+                          <div class="mt-3 flex items-center text-white">
+                            <p>7:11 am</p>
+                            <span> </span>
+                            <p>10:10 am </p>
+                          </div>
                         </div>
+                        <span class="flex items-center mb-1"></span>
+                        <span class="flex items-center"></span>
                       </div>
-                      <span class="flex items-center mb-1"></span>
-                      <span class="flex items-center"></span>
+                      <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+                        <div class="relative pb-48 overflow-hidden">
+                          <img
+                            class="absolute inset-0 h-full w-full object-cover"
+                            src={imgValue}
+                            alt=""
+                          ></img>
+                        </div>
+                        <div class="p-4">
+                          <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
+                            Highlight
+                          </span>
+                          <h2 class="mt-2 mb-2  font-bold text-white">
+                            Purus Ullamcorper Inceptos Nibh
+                          </h2>
+                          <p class="text-sm text-white">
+                            Cras justo odio, dapibus ac facilisis in, egestas
+                            eget quam. Donec ullamcorper nulla non metus auctor
+                            fringilla.
+                          </p>
+                          <div class="mt-3 flex items-center text-white">
+                            <p>7:11 am</p>
+                            <span> </span>
+                            <p>10:10 am </p>
+                          </div>
+                        </div>
+                        <span class="flex items-center mb-1"></span>
+                        <span class="flex items-center"></span>
+                      </div>
+                      <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+                        <div class="relative pb-48 overflow-hidden">
+                          <img
+                            class="absolute inset-0 h-full w-full object-cover"
+                            src={imgValue}
+                            alt=""
+                          ></img>
+                        </div>
+                        <div class="p-4">
+                          <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
+                            Highlight
+                          </span>
+                          <h2 class="mt-2 mb-2  font-bold text-white">
+                            Purus Ullamcorper Inceptos Nibh
+                          </h2>
+                          <p class="text-sm text-white ">
+                            Cras justo odio, dapibus ac facilisis in, egestas
+                            eget quam. Donec ullamcorper nulla non metus auctor
+                            fringilla.
+                          </p>
+                          <div class="mt-3 flex items-center text-white">
+                            <p>7:11 am</p>
+                            <span> </span>
+                            <p>10:10 am </p>
+                          </div>
+                        </div>
+                        <span class="flex items-center mb-1"></span>
+                        <span class="flex items-center"></span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </body>
+                </body>
+              </div>
             </div>
-          </div>
-          {isEndTripVisible && (
-            <button
-              class="rounded-lg px-6 pb-2 pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
-              type="button"
-              aria-expanded="false"
-              data-te-collapse-init
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              data-te-target="#collapseExample"
-              aria-controls="collapseExample"
-            >
-              end trip
-            </button>
           )}
+
         </Card>
         <div className="md:hidden mt-10"></div>
       </div>
