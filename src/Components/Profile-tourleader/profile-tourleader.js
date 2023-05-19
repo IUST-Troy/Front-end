@@ -301,20 +301,7 @@ const ProfiletourleaderPage = () => {
               </body>
             </div>
           </div>
-          {isEndTripVisible && (
-            <button
-              class="inline-block rounded-lg px-6 pb-2 pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
-              type="button"
-              data-te-collapse-init
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              data-te-target="#collapseExample"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-            >
-              end trip
-            </button>
-          )}
+
         </Card>
         <div className="md:hidden mt-10"></div>
       </div>
