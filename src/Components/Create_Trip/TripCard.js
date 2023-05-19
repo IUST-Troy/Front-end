@@ -29,8 +29,64 @@ const CreateCard = ({ items }) => {
   const [returnDate, setReturnDate] = React.useState(new Date());
   const [startDate, setstartDate] = React.useState(new Date());
   const [birthDateISOValue, setbirthDateISOValue] = React.useState("");
-
+  const handleCountryDisChange = (event) => {
+    setCountryDisValue(event.target.value);
+  };
+  const handleCityChange = (event) => {
+    setCityValue(event.target.value);
+  };
+  const handleCityDisChange = (event) => {
+    setCityDisValue(event.target.value);
+  };
   // const [imgValue, setImgValue] = React.useState("");
+
+  const element = (
+    <>
+      <div className="md:w-40 w-full">
+        <div className="flex justify-start items-center pl-1 text-gray-700">
+          <BsMap className="mr-1" />
+          <label>Country :</label>
+        </div>
+        <Select
+          id="country"
+          class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+          value={countryDisValue}
+          onChange={handleCountryDisChange}
+        >
+          <option>Select</option>
+          {places.map((country) => {
+            return <option>{country.Name}</option>;
+          })}
+        </Select>
+      </div>
+      <div className="">
+        <div className="flex justify-start items-center pl-1 text-gray-700">
+          <BsMap className="mr-1" />
+          <label>City :</label>
+        </div>
+        <Select
+          class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+          value={cityDisValue}
+          onChange={handleCityDisChange}
+        >
+          <option>Select</option>
+          {countryDisValue === ("Select" || "" || null || undefined)
+            ? 1
+            : places.find((country) => country.Name === countryDisValue) ===
+              undefined
+            ? 1
+            : places
+                .find((country) => country.Name === countryDisValue)
+                .Cities.sort((c) => c)
+                .map((city) => {
+                  return <option>{city}</option>;
+                })}
+        </Select>
+      </div>
+    </>
+  );
+
+  const [cc, setCC] = React.useState([element]);
 
   const handleBirthDateChange = (selectedDate) => {
     setstartDate(selectedDate);
@@ -53,15 +109,7 @@ const CreateCard = ({ items }) => {
   const handleCountryChange = (event) => {
     setCountryValue(event.target.value);
   };
-  const handleCountryDisChange = (event) => {
-    setCountryDisValue(event.target.value);
-  };
-  const handleCityChange = (event) => {
-    setCityValue(event.target.value);
-  };
-  const handleCityDisChange = (event) => {
-    setCityDisValue(event.target.value);
-  };
+
   const handledepartureChange = (event) => {
     setdepartureValue(event.target.value);
   };
@@ -142,11 +190,11 @@ const CreateCard = ({ items }) => {
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <label>departure : ( </label>
-                      <BsFillAirplaneFill  />
+                      <BsFillAirplaneFill />
                       <label>,</label>
-                      <IoMdBoat/>
+                      <IoMdBoat />
                       <label>,</label>
-                      <BsBusFrontFill/>
+                      <BsBusFrontFill />
                       <label>,</label>
                       <BsTrainFrontFill />
                       <label>)</label>
@@ -167,13 +215,13 @@ const CreateCard = ({ items }) => {
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <label>Return : ( </label>
-                      <BsFillAirplaneFill/>
+                      <BsFillAirplaneFill />
                       <label>,</label>
-                      <IoMdBoat/>
+                      <IoMdBoat />
                       <label>,</label>
-                      <BsBusFrontFill/>
+                      <BsBusFrontFill />
                       <label>,</label>
-                      <BsTrainFrontFill/>
+                      <BsTrainFrontFill />
                       <label>)</label>
                     </div>
                     <Select
@@ -221,48 +269,23 @@ const CreateCard = ({ items }) => {
                       className="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                     ></DatePicker>
                   </div>
-                  <div className="md:w-40 w-full">
-                    <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <BsMap className="mr-1" />
-                      <label>Country :</label>
-                    </div>
-                    <Select
-                      id="country"
-                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                      value={countryDisValue}
-                      onChange={handleCountryDisChange}
-                    >
-                      <option>Select</option>
-                      {places.map((country) => {
-                        return <option>{country.Name}</option>;
-                      })}
-                    </Select>
-                  </div>
-                  <div className="">
-                    <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <BsMap className="mr-1" />
-                      <label>City :</label>
-                    </div>
-                    <Select
-                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                      value={cityDisValue}
-                      onChange={handleCityDisChange}
-                    >
-                      <option>Select</option>
-                      {countryDisValue === ("Select" || "" || null || undefined)
-                        ? 1
-                        : places.find(
-                            (country) => country.Name === countryDisValue
-                          ) === undefined
-                        ? 1
-                        : places
-                            .find((country) => country.Name === countryDisValue)
-                            .Cities.sort((c) => c)
-                            .map((city) => {
-                              return <option>{city}</option>;
-                            })}
-                    </Select>
-                  </div>
+                  <button onClick={() => {
+                    if(cc.length < 5) {
+                      setCC((perv) => [...perv, element])
+                    }
+                  }}>
+                    +
+                  </button>
+                  <button onClick={() => {
+                    if(cc.length > 1) {
+                      setCC(cc.filter((x,i) => cc.length-1 !== i))
+                    }
+                  }}>
+                    -
+                  </button>
+                  {cc.map((c) => {
+                    return c;
+                  })}
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsPersonFillCheck size={16} className="mr-1" />
@@ -310,35 +333,39 @@ const CreateCard = ({ items }) => {
                       <label>Capacity :</label>
                     </div>
                     <div className="relative">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <span class="text-pallate-persian_green"><BsFillCartPlusFill/></span>
-                    </div>
-                    <input
-                      type="number"
-                      id="visitors"
-                      class=" w-full md:w-80 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2 "
-                      placeholder=""
-                      min={1}
-                      onKeyPress={handleKeyPress}
-                      required
-                    ></input>
+                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <span class="text-pallate-persian_green">
+                          <BsFillCartPlusFill />
+                        </span>
+                      </div>
+                      <input
+                        type="number"
+                        id="visitors"
+                        class=" w-full md:w-80 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2 "
+                        placeholder=""
+                        min={1}
+                        onKeyPress={handleKeyPress}
+                        required
+                      ></input>
                     </div>
                   </div>
                   <div className="grid justify-start items-center pl-1 text-gray-700">
                     <label>Price :</label>
                     <div className="relative">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <span class="text-pallate-persian_green"><BsCurrencyDollar/></span>
-                    </div>
-                    <input
-                      type="number"
-                      id="visitors"
-                      class=" w-full md:w-80 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2"
-                      placeholder=""
-                      min={1}
-                      onKeyPress={handleKeyPress}
-                      required
-                    ></input>
+                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <span class="text-pallate-persian_green">
+                          <BsCurrencyDollar />
+                        </span>
+                      </div>
+                      <input
+                        type="number"
+                        id="visitors"
+                        class=" w-full md:w-80 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2"
+                        placeholder=""
+                        min={1}
+                        onKeyPress={handleKeyPress}
+                        required
+                      ></input>
                     </div>
                   </div>
                 </div>
