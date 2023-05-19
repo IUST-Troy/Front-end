@@ -263,6 +263,48 @@ const CreateCard = ({ items }) => {
                   </div>
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
+                      <BsMap className="mr-1" />
+                      <label>Organization :</label>
+                    </div>
+                    <Select
+                      id="country"
+                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      value={countryDisValue}
+                      onChange={handleCountryDisChange}
+                    >
+                      <option>Select</option>
+                      {places.map((country) => {
+                        return <option>{country.Name}</option>;
+                      })}
+                    </Select>
+                  </div>
+                  <div className="">
+                    <div className="flex justify-start items-center pl-1 text-gray-700">
+                      <BsMap className="mr-1" />
+                      <label>City :</label>
+                    </div>
+                    <Select
+                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      value={cityDisValue}
+                      onChange={handleCityDisChange}
+                    >
+                      <option>Select</option>
+                      {countryDisValue === ("Select" || "" || null || undefined)
+                        ? 1
+                        : places.find(
+                            (country) => country.Name === countryDisValue
+                          ) === undefined
+                        ? 1
+                        : places
+                            .find((country) => country.Name === countryDisValue)
+                            .Cities.sort((c) => c)
+                            .map((city) => {
+                              return <option>{city}</option>;
+                            })}
+                    </Select>
+                  </div>
+                  <div className="md:w-40 w-full">
+                    <div className="flex justify-start items-center pl-1 text-gray-700">
                       <label>Capacity :</label>
                     </div>
                     <div className="relative">
@@ -272,7 +314,7 @@ const CreateCard = ({ items }) => {
                     <input
                       type="number"
                       id="visitors"
-                      class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2 "
+                      class=" w-full md:w-80 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2 "
                       placeholder=""
                       min={1}
                       onKeyPress={handleKeyPress}
@@ -289,7 +331,7 @@ const CreateCard = ({ items }) => {
                     <input
                       type="number"
                       id="visitors"
-                      class=" w-full md:w-72 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2"
+                      class=" w-full md:w-80 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2"
                       placeholder=""
                       min={1}
                       onKeyPress={handleKeyPress}
