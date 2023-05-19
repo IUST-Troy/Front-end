@@ -15,6 +15,8 @@ import { BsTrainFrontFill } from "react-icons/bs";
 import { BsMap } from "react-icons/bs";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { BsFillCartPlusFill } from "react-icons/bs";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { BsPersonFillCheck } from "react-icons/bs";
 
 const CreateCard = ({ items }) => {
   const [countryValue, setCountryValue] = React.useState("");
@@ -102,7 +104,7 @@ const CreateCard = ({ items }) => {
                     </div>
                     <Select
                       id="country"
-                      class="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                       value={countryValue}
                       onChange={handleCountryChange}
                     >
@@ -118,7 +120,7 @@ const CreateCard = ({ items }) => {
                       <label>City :</label>
                     </div>
                     <Select
-                      class="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                       value={cityValue}
                       onChange={handleCityChange}
                     >
@@ -140,17 +142,17 @@ const CreateCard = ({ items }) => {
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <label>departure : ( </label>
-                      <BsFillAirplaneFill className="mr-1" />
+                      <BsFillAirplaneFill  />
                       <label>,</label>
-                      <IoMdBoat className="mr-1 " />
+                      <IoMdBoat/>
                       <label>,</label>
-                      <BsBusFrontFill className="mr-1 " />
+                      <BsBusFrontFill/>
                       <label>,</label>
-                      <BsTrainFrontFill className="mr-1 " />
+                      <BsTrainFrontFill />
                       <label>)</label>
                     </div>
                     <Select
-                      class="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                       value={departureValue}
                       onChange={handledepartureChange}
                     >
@@ -165,17 +167,17 @@ const CreateCard = ({ items }) => {
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <label>Return : ( </label>
-                      <BsFillAirplaneFill className="mr-1" />
+                      <BsFillAirplaneFill/>
                       <label>,</label>
-                      <IoMdBoat className="mr-1" />
+                      <IoMdBoat/>
                       <label>,</label>
-                      <BsBusFrontFill className="mr-1" />
+                      <BsBusFrontFill/>
                       <label>,</label>
-                      <BsTrainFrontFill className="mr-1" />
+                      <BsTrainFrontFill/>
                       <label>)</label>
                     </div>
                     <Select
-                      class="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                       value={returnValue}
                       onChange={handlereturnChange}
                     >
@@ -200,7 +202,7 @@ const CreateCard = ({ items }) => {
                       minDate={new Date()}
                       maxDate={new Date()}
                       dropdownMode="select"
-                      className="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      className="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                     ></DatePicker>
                   </div>
                   <div className="md:w-40 w-full">
@@ -216,7 +218,7 @@ const CreateCard = ({ items }) => {
                       minDate={new Date()}
                       maxDate={new Date()}
                       dropdownMode="select"
-                      className="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      className="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                     ></DatePicker>
                   </div>
                   <div className="md:w-40 w-full">
@@ -226,7 +228,7 @@ const CreateCard = ({ items }) => {
                     </div>
                     <Select
                       id="country"
-                      class="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                       value={countryDisValue}
                       onChange={handleCountryDisChange}
                     >
@@ -242,7 +244,7 @@ const CreateCard = ({ items }) => {
                       <label>City :</label>
                     </div>
                     <Select
-                      class="w-full md:w-72 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
+                      class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                       value={cityDisValue}
                       onChange={handleCityDisChange}
                     >
@@ -263,7 +265,7 @@ const CreateCard = ({ items }) => {
                   </div>
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <BsMap className="mr-1" />
+                      <BsPersonFillCheck size={16} className="mr-1" />
                       <label>Organization :</label>
                     </div>
                     <Select
@@ -280,8 +282,8 @@ const CreateCard = ({ items }) => {
                   </div>
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <BsMap className="mr-1" />
-                      <label>City :</label>
+                      <BsFillPeopleFill size={16} className="mr-1" />
+                      <label>TourLeader Name :</label>
                     </div>
                     <Select
                       class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
