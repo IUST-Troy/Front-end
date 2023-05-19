@@ -32,7 +32,7 @@ function App() {
         <Route path='/Profile' element={<ProfilePage/>} />
         <Route path='/Place/:id' element={<PlacePage/>} />
         <Route path='*' element={<Errornotfound/>}/>
-        <Route path='/Trip' element={<TripPage/>} />
+        <Route path='/Trip/:id' element={<TripPage/>} />
       </Routes>
     </Router>
   )
