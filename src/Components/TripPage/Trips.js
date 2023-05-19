@@ -150,5 +150,120 @@ const Trips = [
         PlaceIds: [4],
     },
 ];
+const Organizations = [
+    {
+        id: 1,
+        Name: "Travel Agancy 1",
+        TourLeaderIds: [1, 2, 3, 4, 5, 6],
+    },
+    {
+        id: 2,
+        Name: "Travel Agancy 2",
+        TourLeaderIds: [10, 11, 12],
+    },
+    {
+        id: 3,
+        Name: "Travel Agancy 3",
+        TourLeaderIds: [7, 8, 9],
+    },
+];
 
-export default Trips;
+const TourLeaders = [
+    {
+        id: 1,
+        Name: "Tour Leader 1",
+        OrganizationId: 1,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 4.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 2,
+        Name: "Tour Leader 2",
+        OrganizationId: 1,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 2.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 3,
+        Name: "Tour Leader 3",
+        OrganizationId: 1,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 3.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 4,
+        Name: "Tour Leader 4",
+        OrganizationId: 1,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 5,
+        Name: "Tour Leader 5",
+        OrganizationId: 1,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 1.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 6,
+        Name: "Tour Leader 6",
+        OrganizationId: 1,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 3.25,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 7,
+        Name: "Tour Leader 7",
+        OrganizationId: 3,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 4.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 8,
+        Name: "Tour Leader 8",
+        OrganizationId: 3,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 2.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 9,
+        Name: "Tour Leader 9",
+        OrganizationId: 3,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 3.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 10,
+        Name: "Tour Leader 10",
+        OrganizationId: 2,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 4.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 11,
+        Name: "Tour Leader 11",
+        OrganizationId: 2,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 2.5,
+        Image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 12,
+        Name: "Tour Leader 12",
+        OrganizationId: 2,
+        bio: "lorem ipsum dolor sit amet",
+        rate: 3.5,
+        Image: "https://picsum.photos/200/300",
+    },
+];
+export { Trips, Organizations, TourLeaders };
