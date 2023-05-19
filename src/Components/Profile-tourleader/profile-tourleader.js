@@ -170,7 +170,7 @@ const ProfiletourleaderPage = () => {
             data-te-collapse-item
           >
             <div class="block rounded-lg bg-white p-6">
-              <body class="antialiased test7 text-gray-900 font-sans p-6 bg-cover">
+              <body class="antialiased test7 text-gray-900 font-sans p-6 bg-cover overflow-scroll">
                 <div class="container mx-auto my-11">
                   <div class="flex flex-wrap -mx-4">
                     <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
