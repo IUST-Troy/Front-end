@@ -75,7 +75,7 @@ const TripPage = () => {
             if (i == index) {
                 return true;
             }
-            return data;
+            return false;
         });
         setOpenPopover(newArr);
     };
@@ -115,7 +115,7 @@ const TripPage = () => {
                             </div>
                         </div>
                         <div className="rounded-xl border border-pallate-persian_green date-transport-card-bg p-2">
-                            <p className="text-3xl">To:</p>
+                            <p className="text-3xl mb-2">To:</p>
                             <div className="flex items-center justify-start flex-wrap gap-2">
                                 {/* <div className="grid grid-cols-3 gap-3 items-center justify-center"> */}
                                 {dests.map((dest, index) => {
@@ -125,10 +125,10 @@ const TripPage = () => {
                                                 (index % 2 == 0
                                                     ? "bg-pallate-celeste border-pallate-persian_green"
                                                     : "bg-pallate-pink_lavender border-pallate-french_mauve") +
-                                                " p-2 border rounded-lg flex"
+                                                " py-2 px-3 border rounded-full flex"
                                             }
                                         >
-                                            <p className="text-gray-700 text-center text-2xl ">
+                                            <p className="text-gray-700 text-center  ">
                                                 {dest.city}; {dest.country}
                                             </p>
                                         </div>
