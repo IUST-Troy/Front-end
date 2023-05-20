@@ -5,12 +5,13 @@ import "../../Styles/ProfilePage/ProfilePage.scss";
 import { CiLocationOn } from "react-icons/ci";
 import { BsPersonFillCheck } from "react-icons/bs";
 import { Collapse, Ripple, initTE } from "tw-elements";
-import './test.css';
+import "./test.css";
 
 initTE({ Collapse, Ripple });
 
 const ProfiletourleaderPage = () => {
   const [isEndTripVisible, setIsEndTripVisible] = React.useState(false);
+  const [isshow, setisshow] = React.useState(false);
   return (
     <div className="grid grid-cols-1 justify-center items-center bg-cover bg-fixed overflow-auto test7">
       <div className=" grid justify-center p-10 items-center">
@@ -128,54 +129,58 @@ const ProfiletourleaderPage = () => {
                 </div>
                 <div class="border-t text-gray-200 text-center">
                   <div class="flex flex-warp justify-center">
-                    <div class="mt-5 w-auto h-auto lg:w-9/12 px-4">
+                    <div class="mt-5 w-auto h-auto lg:w-9/12 px-5">
                       <p class="text-lg leading-relaxed text-gray-700">
                         A travel lover who likes to spend his travels in
                         beautiful places and gain new experiences and apply them
                         in his life.
                       </p>
+                      <p
+                        className="p-1 text-white"
+                        role="button"
+                        onClick={() => {
+                          setisshow(!isshow);
+                        }}
+                      >
+                        read more
+                      </p>
+                      {isshow && (
+                          <div class="flex flex-wrap justify-center">
+                            <div class="w-auto h-auto lg:w-9/12 px-auto">
+                              <p class="text-lg leading-relaxed text-gray-700">
+                                example@gmail.com
+                              </p>
+                              <p class="text-lg leading-relaxed text-gray-700">
+                                +989177521289
+                              </p>
+                            </div>
+                          </div>
+                      )}
                     </div>
                   </div>
                 </div>
-                <div class="border-t text-gray-200 text-center">
-                  <div class="flex flex-wrap justify-center">
-                    <div class="mt-5  w-auto h-auto lg:w-9/12 px-auto">
-                      <p class="text-lg leading-relaxed text-gray-700">
-                        example@gmail.com
-                      </p>
-                      <p class="text-lg leading-relaxed text-gray-700">
-                        +989177521289
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <button
-            class="rounded-lg px-6 pb-2 text-center pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
-            data-te-collapse-init
-            data-te-ripple-init
-            data-te-ripple-color="light"
-            role="button"
-            aria-expanded="false"
-            onClick={() => {
-              setIsEndTripVisible(!isEndTripVisible);
-            }}
-            aria-controls="collapseExample"
-          >
-            Show Trip
-          </button>
+
+                <a
+                  class="rounded-lg px-6 mr pb-2 text-center pt-3 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
+                  data-te-collapse-init
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  role="button"
+                  aria-expanded="false"
+                  onClick={() => {
+                    setIsEndTripVisible(!isEndTripVisible);
+                  }}
+                  aria-controls="collapseExample"
+                >
+                  Show Trip
+                </a>
               </div>
             </div>
           </div>
-
-
           {isEndTripVisible && (
-            <div
-              id="collapseExample"
-              data-te-collapse-item
-            >
+            <div id="collapseExample" data-te-collapse-item>
               <div class="block rounded-xl bg-pallate-celeste/[0.4] p-6 ">
                 <body class="antialiased test7 rounded-xl text-gray-900 font-sans p-6 bg-cover overflow-y-scroll">
-                  
                   <div class="container mx-auto my-11">
                     <div class="flex flex-wrap -mx-4">
                       <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
@@ -307,7 +312,6 @@ const ProfiletourleaderPage = () => {
               </div>
             </div>
           )}
-
         </Card>
         <div className="md:hidden mt-10"></div>
       </div>
