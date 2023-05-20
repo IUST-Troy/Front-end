@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { BsXLg, BsMapFill, BsCalendar } from "react-icons/bs";
 import places from "./places";
 import transport from "./Transport ";
-import organ from './Organition'
+import organ from "./Organition";
 import moment from "moment";
 
 import { IoMdBoat } from "react-icons/io";
@@ -30,7 +30,7 @@ const CreateCard = ({ items }) => {
   const [returnValue, setreturnValue] = React.useState("");
   const [departureDate, setDepartureDate] = React.useState(new Date());
   const [returnDate, setReturnDate] = React.useState(new Date());
-  const [startDate, setstartDate] = React.useState(new Date());
+  // const [startDate, setstartDate] = React.useState(new Date());
   const [birthDateISOValue, setbirthDateISOValue] = React.useState("");
   const handleCountryDisChange = (event) => {
     setCountryDisValue(event.target.value);
@@ -42,12 +42,11 @@ const CreateCard = ({ items }) => {
     setCityDisValue(event.target.value);
   };
   const handelorgvalue = (event) => {
-    setOrganizationValue(event.target.value)
+    setOrganizationValue(event.target.value);
   };
   const handeltourleadervalue = (event) => {
-    setTourleaderValue(event.target.value)
+    setTourleaderValue(event.target.value);
   };
-
 
   const element = (
     <>
@@ -97,9 +96,13 @@ const CreateCard = ({ items }) => {
 
   const [cc, setCC] = React.useState([element]);
 
-  const handleBirthDateChange = (selectedDate) => {
-    setstartDate(selectedDate);
-    setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
+  const departureDateHandler = (selectedDate) => {
+    setDepartureDate(selectedDate)
+    // setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
+  };
+
+  const returnDateHandler = (selectedDate) => {
+    setReturnDate(selectedDate);
   };
 
   function handleKeyPress(event) {
@@ -252,15 +255,16 @@ const CreateCard = ({ items }) => {
                       <label>departure Date :</label>
                     </div>
                     <DatePicker
-                      selected={new Date()}
-                      onChange={(date) => handleBirthDateChange(date)}
+                      // selected={new Date()}
+                      selected={departureDate}
+                      onChange={(date) => departureDateHandler(date)}
                       showMonthDropdown
                       showYearDropdown
                       minDate={new Date()}
-                      maxDate={new Date()}
+                      // maxDate={new Date()}
                       dropdownMode="select"
                       className="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                    ></DatePicker>
+                    />
                   </div>
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
@@ -268,17 +272,18 @@ const CreateCard = ({ items }) => {
                       <label>Return Date :</label>
                     </div>
                     <DatePicker
-                      selected={new Date()}
-                      onChange={(date) => handleBirthDateChange(date)}
+                      // selected={new Date()}
+                      onChange={(date) => returnDateHandler(date)}
+                      selected={returnDate}
                       showMonthDropdown
                       showYearDropdown
-                      minDate={new Date()}
-                      maxDate={new Date()}
+                      minDate={departureDate}
+                      // maxDate={new Date()}
                       dropdownMode="select"
                       className="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                    ></DatePicker>
+                    />
                   </div>
-                  {/* <button className="flex" onClick={() => {
+                  <button className="flex" onClick={() => {
                     if(cc.length < 5) {
                       setCC((perv) => [...perv, element])
                     }
@@ -291,7 +296,7 @@ const CreateCard = ({ items }) => {
                     }
                   }}>
                     -
-                  </button> */}
+                  </button>
                   {cc.map((c) => {
                     return c;
                   })}
@@ -325,9 +330,8 @@ const CreateCard = ({ items }) => {
                       <option>Select</option>
                       {tourleaderValue === ("Select" || "" || null || undefined)
                         ? 1
-                        : organ.find(
-                            (x) => x.Name === tourleaderValue
-                          ) === undefined
+                        : organ.find((x) => x.Name === tourleaderValue) ===
+                          undefined
                         ? 1
                         : places
                             .find((x) => x.Name === tourleaderValue)
