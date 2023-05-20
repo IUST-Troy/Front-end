@@ -11,7 +11,7 @@ const Ecomp = ({ codv, hcodv, cdv, hcdv }) => {
     <div className="md:w-40 w-full">
       <div className="flex justify-start items-center pl-1 text-gray-700">
         <BsMap className="mr-1" />
-        <label>Country :</label>
+        <label>Country:</label>
       </div>
       <Select
         id="country"
@@ -30,7 +30,7 @@ const Ecomp = ({ codv, hcodv, cdv, hcdv }) => {
     <div className="">
       <div className="flex justify-start items-center pl-1 text-gray-700">
         <BsMap className="mr-1" />
-        <label>City :</label>
+        <label>City:</label>
       </div>
       <Select
         class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"

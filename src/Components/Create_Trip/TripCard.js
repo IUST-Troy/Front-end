@@ -7,14 +7,14 @@ import { BsXLg, BsMapFill, BsCalendar } from "react-icons/bs";
 import places from "./places";
 import transport from "./Transport ";
 import organ from "./Organition";
-import moment from "moment";
-import Ecomp from './Placecomp'
+import Ecomp from "./Placecomp";
+import './datepicker.scss'
+
 
 import { IoMdBoat } from "react-icons/io";
 import { BsFillAirplaneFill } from "react-icons/bs";
 import { BsBusFrontFill } from "react-icons/bs";
 import { BsTrainFrontFill } from "react-icons/bs";
-import { BsMap } from "react-icons/bs";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillPeopleFill } from "react-icons/bs";
@@ -47,13 +47,19 @@ const CreateCard = ({ items }) => {
   const handeltourleadervalue = (event) => {
     setTourleaderValue(event.target.value);
   };
-  const comp = (<Ecomp codv={countryDisValue} hcodv={handleCountryDisChange} cdv={cityDisValue} hcdv={handleCityDisChange} />);
+  const comp = (
+    <Ecomp
+      codv={countryDisValue}
+      hcodv={handleCountryDisChange}
+      cdv={cityDisValue}
+      hcdv={handleCityDisChange}
+    />
+  );
 
   const [cc, setCC] = React.useState([comp]);
 
   const departureDateHandler = (selectedDate) => {
-    setDepartureDate(selectedDate)
-    // setbirthDateISOValue(moment(selectedDate).format("YYYY-MM-DD"));
+    setDepartureDate(selectedDate);
   };
 
   const returnDateHandler = (selectedDate) => {
@@ -115,7 +121,7 @@ const CreateCard = ({ items }) => {
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsMapFill className="mr-1" />
-                      <label>Country :</label>
+                      <label>Country:</label>
                     </div>
                     <Select
                       id="country"
@@ -132,7 +138,7 @@ const CreateCard = ({ items }) => {
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsMapFill className="mr-1" />
-                      <label>City :</label>
+                      <label>City:</label>
                     </div>
                     <Select
                       class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
@@ -156,7 +162,7 @@ const CreateCard = ({ items }) => {
                   </div>
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <label>departure : ( </label>
+                      <label>Departure: ( </label>
                       <BsFillAirplaneFill />
                       <label>,</label>
                       <IoMdBoat />
@@ -181,7 +187,7 @@ const CreateCard = ({ items }) => {
                   </div>
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <label>Return : ( </label>
+                      <label>Return: ( </label>
                       <BsFillAirplaneFill />
                       <label>,</label>
                       <IoMdBoat />
@@ -207,16 +213,14 @@ const CreateCard = ({ items }) => {
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsCalendar className="mr-1" />
-                      <label>departure Date :</label>
+                      <label>Departure Date:</label>
                     </div>
                     <DatePicker
-                      // selected={new Date()}
                       selected={departureDate}
                       onChange={(date) => departureDateHandler(date)}
                       showMonthDropdown
                       showYearDropdown
                       minDate={new Date()}
-                      // maxDate={new Date()}
                       dropdownMode="select"
                       className="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                     />
@@ -224,44 +228,42 @@ const CreateCard = ({ items }) => {
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsCalendar className="mr-1" />
-                      <label>Return Date :</label>
+                      <label>Return Date:</label>
                     </div>
                     <DatePicker
-                      // selected={new Date()}
                       onChange={(date) => returnDateHandler(date)}
                       selected={returnDate}
                       showMonthDropdown
                       showYearDropdown
                       minDate={departureDate}
-                      // maxDate={new Date()}
                       dropdownMode="select"
                       className="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                     />
                   </div>
-                  <button className="flex" onClick={() => {
+
+                  {cc.map((c) => {
+                    return c;
+                  })}
+                  <Button className="bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell" onClick={() => {
                     if(cc.length < 5) {
-                      console.log("adding an element");
                       setCC((perv) => [...perv, comp])
                     }
                   }}>
                     +
-                  </button>
-                  <button onClick={() => {
-                    if(cc.length > 1) {
-                      setCC(cc.filter((x,i) => cc.length-1 !== i))
-                    }
-                  }}>
+                  </Button>
+                  <Button className="bg-red-500 text-white hover:bg-red-600"
+                    onClick={() => {
+                      if (cc.length > 1) {
+                        setCC(cc.filter((x, i) => cc.length - 1 !== i));
+                      }
+                    }}
+                    >
                     -
-                  </button>
-                  {/* <Ecomp codv={countryDisValue} hcodv={handleCountryDisChange} cdv={cityDisValue} hcdv={handleCityDisChange} /> */}
-                  {cc.map((c) => {
-                    console.log("mapping through cc", c);
-                    return c;
-                  })}
+                  </Button>
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsPersonFillCheck size={16} className="mr-1" />
-                      <label>Organization :</label>
+                      <label>Organization:</label>
                     </div>
                     <Select
                       id="org"
@@ -278,7 +280,7 @@ const CreateCard = ({ items }) => {
                   <div className="">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsFillPeopleFill size={16} className="mr-1" />
-                      <label>TourLeader Name :</label>
+                      <label>TourLeader Name:</label>
                     </div>
                     <Select
                       class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
@@ -301,7 +303,7 @@ const CreateCard = ({ items }) => {
                   </div>
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
-                      <label>Capacity :</label>
+                      <label>Capacity:</label>
                     </div>
                     <div className="relative">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -321,7 +323,7 @@ const CreateCard = ({ items }) => {
                     </div>
                   </div>
                   <div className="grid justify-start items-center pl-1 text-gray-700">
-                    <label>Price :</label>
+                    <label>Price:</label>
                     <div className="relative">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <span class="text-pallate-persian_green">
