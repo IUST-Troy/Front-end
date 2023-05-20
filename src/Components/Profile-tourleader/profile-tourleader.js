@@ -5,6 +5,9 @@ import "../../Styles/ProfilePage/ProfilePage.scss";
 import { CiLocationOn } from "react-icons/ci";
 import { BsPersonFillCheck } from "react-icons/bs";
 import { Collapse, Ripple, initTE } from "tw-elements";
+import { BsEnvelopeFill } from "react-icons/bs";
+import { BsTelephoneFill } from "react-icons/bs";
+import { BsArrowRightShort } from "react-icons/bs";
 import "./test.css";
 
 initTE({ Collapse, Ripple });
@@ -32,23 +35,23 @@ const ProfiletourleaderPage = () => {
                   </h3>
                   <div class="text-sm leading-normal mt-0 mb-2 text-gray-700 font-bold uppercase">
                     <span className="flex justify-center">
-                      <CiLocationOn size={20} />
+                      <CiLocationOn size={20}  />
                       <i class="text-lg text-gray-400"></i>
                       Los Angeles, California
                     </span>
                   </div>
                 </div>
-                <div class="text-gray-700">
+                <div class="text-gray-700 font-bold">
                   <span className="flex justify-center">
                     <BsPersonFillCheck size={20} />
-                    <i class="mr-1 text-lg text-gray-400"></i>
+                    <i class="mr-1 text-sm text-gray-400"></i>
                     World Medical Relief
                   </span>
                 </div>
                 <div class="flex flex-col items-center gap-2">
                   <span class="flex items-center gap-4 text-sm rounded text-slate-500">
                     <span
-                      class="flex gap-1 text-amber-400"
+                      class="flex gap-1 mt-2 text-amber-400"
                       role="img"
                       aria-label="Rating: 4 out of 5 stars"
                     >
@@ -127,8 +130,8 @@ const ProfiletourleaderPage = () => {
                     </span>
                   </span>
                 </div>
-                <div class="border-t text-gray-200 text-center">
-                  <div class="flex flex-warp justify-center">
+                <div class="border-t-2 mt-4 text-gray-200 text-center">
+                  <div class="flex flex-warp justify-center font-bold">
                     <div class="mt-5 w-auto h-auto lg:w-9/12 px-5">
                       <p class="text-lg leading-relaxed text-gray-700">
                         A travel lover who likes to spend his travels in
@@ -136,32 +139,49 @@ const ProfiletourleaderPage = () => {
                         in his life.
                       </p>
                       <p
-                        className="p-1 text-white"
+                        className="p-3 text-white"
                         role="button"
                         onClick={() => {
                           setisshow(!isshow);
                         }}
                       >
-                        read more
+                           <span className="flex justify-center font-bold">
+                              Show More
+                              <BsArrowRightShort
+                                size={30}
+                                className=" text-white"
+                              />
+                            </span>
                       </p>
                       {isshow && (
-                          <div class="flex flex-wrap justify-center">
-                            <div class="w-auto h-auto lg:w-9/12 px-auto">
-                              <p class="text-lg leading-relaxed text-gray-700">
-                                example@gmail.com
-                              </p>
-                              <p class="text-lg leading-relaxed text-gray-700">
-                                +989177521289
-                              </p>
-                            </div>
+                        <div class="flex flex-wrap justify-center gap-5">
+                          <div class="text-sm leading-relaxed  text-amber-400 font-bold up">
+                            <span className="flex justify-center">
+                              <BsEnvelopeFill
+                                size={20}
+                                className="mr-1 text-gray-700"
+                              />
+                              Example@gmail.com
+                            </span>
                           </div>
+                          <div class="text-sm leading-relaxed mb-2 text-amber-400 font-bold uppercase">
+                            <span className="flex justify-center">
+                              <BsTelephoneFill
+                                size={20}
+                                className="mr-1 text-gray-700"
+                              />
+                              +989175872963
+                            </span>
+                          </div>
+                        </div>
+
                       )}
                     </div>
                   </div>
                 </div>
 
                 <a
-                  class="rounded-lg px-6 mr pb-2 text-center pt-3 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
+                  class="rounded-lg px-6 pb-1.5 text-center font-bold pt-1.5 text-base text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
                   data-te-collapse-init
                   data-te-ripple-init
                   data-te-ripple-color="light"
@@ -179,17 +199,17 @@ const ProfiletourleaderPage = () => {
           </div>
           {isEndTripVisible && (
             <div id="collapseExample" data-te-collapse-item>
-              <div class="block rounded-xl bg-pallate-celeste/[0.4] p-6 ">
+              <div class="block rounded-xl bg-pallate-persian_green p-6 ">
                 <body class="antialiased test7 rounded-xl text-gray-900 font-sans p-6 bg-cover overflow-y-scroll">
                   <div class="container mx-auto my-11">
                     <div class="flex flex-wrap -mx-4">
                       <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
                         <div class="relative pb-48 overflow-hidden">
                           <img
-                            class="absolute inset-0 h-full w-full object-cover"
+                            class="absolute rounded-xl inset-0 h-full w-full object-cover"
                             src={imgValue}
                             alt=""
-                          ></img>
+                            ></img>
                         </div>
                         <div class="p-4">
                           <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">
@@ -219,7 +239,7 @@ const ProfiletourleaderPage = () => {
                       <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
                         <div class="relative pb-48 overflow-hidden">
                           <img
-                            class="absolute inset-0 h-full w-full object-cover"
+                            class="absolute rounded-xl inset-0 h-full w-full object-cover"
                             src={imgValue}
                             alt=""
                           ></img>
@@ -251,7 +271,7 @@ const ProfiletourleaderPage = () => {
                       <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
                         <div class="relative pb-48 overflow-hidden">
                           <img
-                            class="absolute inset-0 h-full w-full object-cover"
+                            class="absolute  rounded-xl inset-0 h-full w-full object-cover"
                             src={imgValue}
                             alt=""
                           ></img>
@@ -280,7 +300,7 @@ const ProfiletourleaderPage = () => {
                       <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
                         <div class="relative pb-48 overflow-hidden">
                           <img
-                            class="absolute inset-0 h-full w-full object-cover"
+                            class="absolute rounded-xl inset-0 h-full w-full object-cover"
                             src={imgValue}
                             alt=""
                           ></img>
