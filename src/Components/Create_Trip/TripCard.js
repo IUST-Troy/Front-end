@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { BsXLg, BsMapFill, BsCalendar } from "react-icons/bs";
 import places from "./places";
 import transport from "./Transport ";
+import organ from './Organition'
 import moment from "moment";
 
 import { IoMdBoat } from "react-icons/io";
@@ -21,6 +22,8 @@ import { BsPersonFillCheck } from "react-icons/bs";
 const CreateCard = ({ items }) => {
   const [countryValue, setCountryValue] = React.useState("");
   const [countryDisValue, setCountryDisValue] = React.useState("");
+  const [organizationValue, setOrganizationValue] = React.useState("");
+  const [tourleaderValue, setTourleaderValue] = React.useState("");
   const [cityValue, setCityValue] = React.useState("");
   const [cityDisValue, setCityDisValue] = React.useState("");
   const [departureValue, setdepartureValue] = React.useState("");
@@ -38,7 +41,13 @@ const CreateCard = ({ items }) => {
   const handleCityDisChange = (event) => {
     setCityDisValue(event.target.value);
   };
-  // const [imgValue, setImgValue] = React.useState("");
+  const handelorgvalue = (event) => {
+    setOrganizationValue(event.target.value)
+  };
+  const handeltourleadervalue = (event) => {
+    setTourleaderValue(event.target.value)
+  };
+
 
   const element = (
     <>
@@ -269,7 +278,7 @@ const CreateCard = ({ items }) => {
                       className="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
                     ></DatePicker>
                   </div>
-                  <button onClick={() => {
+                  {/* <button className="flex" onClick={() => {
                     if(cc.length < 5) {
                       setCC((perv) => [...perv, element])
                     }
@@ -282,7 +291,7 @@ const CreateCard = ({ items }) => {
                     }
                   }}>
                     -
-                  </button>
+                  </button> */}
                   {cc.map((c) => {
                     return c;
                   })}
@@ -292,14 +301,14 @@ const CreateCard = ({ items }) => {
                       <label>Organization :</label>
                     </div>
                     <Select
-                      id="country"
+                      id="org"
                       class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                      value={countryDisValue}
-                      onChange={handleCountryDisChange}
+                      value={organizationValue}
+                      onChange={handelorgvalue}
                     >
                       <option>Select</option>
-                      {places.map((country) => {
-                        return <option>{country.Name}</option>;
+                      {organ.map((x) => {
+                        return <option>{x.Name}</option>;
                       })}
                     </Select>
                   </div>
@@ -310,21 +319,21 @@ const CreateCard = ({ items }) => {
                     </div>
                     <Select
                       class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                      value={cityDisValue}
-                      onChange={handleCityDisChange}
+                      value={tourleaderValue}
+                      onChange={handeltourleadervalue}
                     >
                       <option>Select</option>
-                      {countryDisValue === ("Select" || "" || null || undefined)
+                      {tourleaderValue === ("Select" || "" || null || undefined)
                         ? 1
-                        : places.find(
-                            (country) => country.Name === countryDisValue
+                        : organ.find(
+                            (x) => x.Name === tourleaderValue
                           ) === undefined
                         ? 1
                         : places
-                            .find((country) => country.Name === countryDisValue)
-                            .Cities.sort((c) => c)
-                            .map((city) => {
-                              return <option>{city}</option>;
+                            .find((x) => x.Name === tourleaderValue)
+                            .lname.sort((c) => c)
+                            .map((y) => {
+                              return <option>{y}</option>;
                             })}
                     </Select>
                   </div>

@@ -111,6 +111,12 @@ const places = [
         Name: "Peru",
         Cities: ['Lima (Lima)', 'Arequipa (Arequipa)', 'Trujillo (La Libertad)', 'Chiclayo (Lambayeque)', 'Piura (Piura)']
     }
-].sort((country)=> country.Name)
+].sort((a, b) => a.Name.localeCompare(b.Name))
+.map((country) => ({
+  ...country,
+  Cities: country.Cities.sort((a, b) => a.localeCompare(b)),
+}));
 
 export default places
+
+
