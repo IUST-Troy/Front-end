@@ -8,6 +8,7 @@ import places from "./places";
 import transport from "./Transport ";
 import organ from "./Organition";
 import moment from "moment";
+import Ecomp from './Placecomp'
 
 import { IoMdBoat } from "react-icons/io";
 import { BsFillAirplaneFill } from "react-icons/bs";
@@ -30,9 +31,8 @@ const CreateCard = ({ items }) => {
   const [returnValue, setreturnValue] = React.useState("");
   const [departureDate, setDepartureDate] = React.useState(new Date());
   const [returnDate, setReturnDate] = React.useState(new Date());
-  // const [startDate, setstartDate] = React.useState(new Date());
-  const [birthDateISOValue, setbirthDateISOValue] = React.useState("");
   const handleCountryDisChange = (event) => {
+    console.log(event.target.value);
     setCountryDisValue(event.target.value);
   };
   const handleCityChange = (event) => {
@@ -48,53 +48,8 @@ const CreateCard = ({ items }) => {
     setTourleaderValue(event.target.value);
   };
 
-  const element = (
-    <>
-      <div className="md:w-40 w-full">
-        <div className="flex justify-start items-center pl-1 text-gray-700">
-          <BsMap className="mr-1" />
-          <label>Country :</label>
-        </div>
-        <Select
-          id="country"
-          class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-          value={countryDisValue}
-          onChange={handleCountryDisChange}
-        >
-          <option>Select</option>
-          {places.map((country) => {
-            return <option>{country.Name}</option>;
-          })}
-        </Select>
-      </div>
-      <div className="">
-        <div className="flex justify-start items-center pl-1 text-gray-700">
-          <BsMap className="mr-1" />
-          <label>City :</label>
-        </div>
-        <Select
-          class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-          value={cityDisValue}
-          onChange={handleCityDisChange}
-        >
-          <option>Select</option>
-          {countryDisValue === ("Select" || "" || null || undefined)
-            ? 1
-            : places.find((country) => country.Name === countryDisValue) ===
-              undefined
-            ? 1
-            : places
-                .find((country) => country.Name === countryDisValue)
-                .Cities.sort((c) => c)
-                .map((city) => {
-                  return <option>{city}</option>;
-                })}
-        </Select>
-      </div>
-    </>
-  );
 
-  const [cc, setCC] = React.useState([element]);
+  const [cc, setCC] = React.useState([<Ecomp codv={countryDisValue} hcodv={handleCountryDisChange} cdv={cityDisValue} hcdv={handleCityDisChange} />]);
 
   const departureDateHandler = (selectedDate) => {
     setDepartureDate(selectedDate)
@@ -285,7 +240,8 @@ const CreateCard = ({ items }) => {
                   </div>
                   <button className="flex" onClick={() => {
                     if(cc.length < 5) {
-                      setCC((perv) => [...perv, element])
+                      console.log("adding an element");
+                      setCC((perv) => [...perv, <Ecomp codv={countryDisValue} hcodv={handleCountryDisChange} cdv={cityDisValue} hcdv={handleCityDisChange} />])
                     }
                   }}>
                     +
@@ -297,7 +253,9 @@ const CreateCard = ({ items }) => {
                   }}>
                     -
                   </button>
+                  {/* <Ecomp codv={countryDisValue} hcodv={handleCountryDisChange} cdv={cityDisValue} hcdv={handleCityDisChange} /> */}
                   {cc.map((c) => {
+                    console.log("mapping through cc", c);
                     return c;
                   })}
                   <div className="md:w-40 w-full">
