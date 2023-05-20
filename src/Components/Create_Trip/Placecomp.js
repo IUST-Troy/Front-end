@@ -4,8 +4,10 @@ import { BsMap } from "react-icons/bs";
 import { Select } from "flowbite-react";
 
 const Ecomp = ({ codv, hcodv, cdv, hcdv }) => {
-  console.log("in element component");
-  <>
+  const [v,setV] = React.useState("");
+
+  console.log(codv, hcodv, cdv, hcdv);
+  return(<>
     <div className="md:w-40 w-full">
       <div className="flex justify-start items-center pl-1 text-gray-700">
         <BsMap className="mr-1" />
@@ -14,8 +16,10 @@ const Ecomp = ({ codv, hcodv, cdv, hcdv }) => {
       <Select
         id="country"
         class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-        value={codv}
-        onChange={hcodv}
+        value={
+          v
+        }
+        onChange={(e) => setV(e.target.value)}
       >
         <option>Select</option>
         {places.map((country) => {
@@ -46,7 +50,7 @@ const Ecomp = ({ codv, hcodv, cdv, hcdv }) => {
               })}
       </Select>
     </div>
-  </>;
+  </>);
 };
 
 export default Ecomp;

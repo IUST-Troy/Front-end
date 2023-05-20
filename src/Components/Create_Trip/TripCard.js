@@ -47,9 +47,9 @@ const CreateCard = ({ items }) => {
   const handeltourleadervalue = (event) => {
     setTourleaderValue(event.target.value);
   };
+  const comp = (<Ecomp codv={countryDisValue} hcodv={handleCountryDisChange} cdv={cityDisValue} hcdv={handleCityDisChange} />);
 
-
-  const [cc, setCC] = React.useState([<Ecomp codv={countryDisValue} hcodv={handleCountryDisChange} cdv={cityDisValue} hcdv={handleCityDisChange} />]);
+  const [cc, setCC] = React.useState([comp]);
 
   const departureDateHandler = (selectedDate) => {
     setDepartureDate(selectedDate)
@@ -241,7 +241,7 @@ const CreateCard = ({ items }) => {
                   <button className="flex" onClick={() => {
                     if(cc.length < 5) {
                       console.log("adding an element");
-                      setCC((perv) => [...perv, <Ecomp codv={countryDisValue} hcodv={handleCountryDisChange} cdv={cityDisValue} hcdv={handleCityDisChange} />])
+                      setCC((perv) => [...perv, comp])
                     }
                   }}>
                     +
