@@ -5,6 +5,7 @@ import "../../Styles/ProfilePage/ProfilePage.scss";
 import { CiLocationOn } from "react-icons/ci";
 import { BsPersonFillCheck } from "react-icons/bs";
 import { Collapse, Ripple, initTE } from "tw-elements";
+import './test.css';
 
 initTE({ Collapse, Ripple });
 
@@ -23,7 +24,7 @@ const ProfiletourleaderPage = () => {
                   alt="Default avatar"
                 ></img>
               </div>
-              <div className="grid grid-cols-1 mr-auto items-center text-center gap-4">
+              <div className="grid grid-cols-1 mr-auto items-center text-center">
                 <div>
                   <h3 className="flex justify-center items-center mb-2 text-black font-bold text-3xl leading-normal ">
                     Jenna Stones
@@ -31,12 +32,12 @@ const ProfiletourleaderPage = () => {
                   <div class="text-sm leading-normal mt-0 mb-2 text-gray-700 font-bold uppercase">
                     <span className="flex justify-center">
                       <CiLocationOn size={20} />
-                      <i class="mr-1 text-lg text-gray-400"></i>
+                      <i class="text-lg text-gray-400"></i>
                       Los Angeles, California
                     </span>
                   </div>
                 </div>
-                <div class="mb-2 text-gray-700">
+                <div class="text-gray-700">
                   <span className="flex justify-center">
                     <BsPersonFillCheck size={20} />
                     <i class="mr-1 text-lg text-gray-400"></i>
@@ -148,10 +149,7 @@ const ProfiletourleaderPage = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <button
+                <button
             class="rounded-lg px-6 pb-2 text-center pt-2.5 text-xs font-medium text-white bg-pallate-persian_green hover:bg-pallate-blue_munsell"
             data-te-collapse-init
             data-te-ripple-init
@@ -163,17 +161,21 @@ const ProfiletourleaderPage = () => {
             }}
             aria-controls="collapseExample"
           >
-            See trip
+            Show Trip
           </button>
+              </div>
+            </div>
+          </div>
+
 
           {isEndTripVisible && (
             <div
-              // class="!visible hidden"
               id="collapseExample"
               data-te-collapse-item
             >
-              <div class="block rounded-lg bg-white p-6 ">
-                <body class="antialiased test7 text-gray-900 font-sans p-6 bg-cover overflow-y-scroll">
+              <div class="block rounded-xl bg-pallate-celeste/[0.4] p-6 ">
+                <body class="antialiased test7 rounded-xl text-gray-900 font-sans p-6 bg-cover overflow-y-scroll">
+                  
                   <div class="container mx-auto my-11">
                     <div class="flex flex-wrap -mx-4">
                       <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
