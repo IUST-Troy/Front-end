@@ -255,12 +255,12 @@ const SearchBar = ({ setTours }) => {
           //  "rgba(186, 232, 219, 0.438)",
           minHeight: "90px",
           margin: "20px auto",
-          minWidth: "80%",
+          minWidth: "70%",
           position: "relative",
           borderRadius: "20px",
         }}
       >
-        <Grid container spacing={3}>
+        <Grid container spacing={2} alignItems="center">
           <Grid item xs={6} sm={6} md={4}>
             <Autocomplete
               disablePortal
@@ -342,14 +342,14 @@ const SearchBar = ({ setTours }) => {
 
         </Grid> */}
 
-          <Grid container spacing={1} item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <Button
               style={{
-                backgroundColor: "#1BA291ff", 
+                backgroundColor: "#1BA291ff",
                 color: "white",
                 margin: "0 auto",
                 display: "block",
-                width: "100%",
+                width: "90%",
                 borderRadius: "15px",
                 "@media (min-width:600px)": {
                   width: "auto",
