@@ -15,6 +15,7 @@ import PlacePage from './Components/PlacePage/PlacePage';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Errornotfound from './Components/404/notfound.jsx'
 import TripPage from './Components/TripPage/TripPage';
+import TripCardTourLeader from './Components/TripCard/TripCardTourLeader';
 
 
 
@@ -28,11 +29,12 @@ function App() {
         <Route path="/verification" element={<Verification />} />
         <Route path="/forget" element={<Forget />} />
         <Route path='/home' element={<HomePage />} />
-        <Route path='/tour' element={<Tour/>} />
+        <Route path='/PlacesList' element={<Tour/>} />
         <Route path='/Profile' element={<ProfilePage/>} />
         <Route path='/Place/:id' element={<PlacePage/>} />
         <Route path='*' element={<Errornotfound/>}/>
         <Route path='/Trip/:id' element={<TripPage/>} />
+        <Route path='/cardTest' element={<TripCardTourLeader/>}/>
       </Routes>
     </Router>
   )

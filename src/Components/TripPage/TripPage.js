@@ -348,7 +348,11 @@ const TripPage = () => {
                                         <p className="text-3xl text-gray-700">
                                             Return:
                                         </p>
-                                        <div className="grid grid-cols-2 gap-7 justify-between items-center">
+                                        <div className="grid grid-cols-3 gap-7 justify-between items-center">
+                                        <p className="text-gray-700 text-center ">
+                                                {tripData.Destinations[tripData.Destinations.length-1].city};{" "}
+                                                {tripData.Destinations[tripData.Destinations.length-1].country}
+                                            </p>
                                             <p className="text-gray-700 text-center text-2xl ">
                                                 {tripData.returnDate}
                                             </p>
