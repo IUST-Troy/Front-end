@@ -31,6 +31,7 @@ const CreateCard = ({ items }) => {
   const [returnValue, setreturnValue] = React.useState("");
   const [departureDate, setDepartureDate] = React.useState(new Date());
   const [returnDate, setReturnDate] = React.useState(new Date());
+  const [showfiled, setShowFileds] = React.useState(false);
   const handleCountryDisChange = (event) => {
     console.log(event.target.value);
     setCountryDisValue(event.target.value);
@@ -46,6 +47,9 @@ const CreateCard = ({ items }) => {
   };
   const handeltourleadervalue = (event) => {
     setTourleaderValue(event.target.value);
+  };
+  const handelshowfileds = (event) => {
+    setShowFileds(event.target.value);
   };
   const comp = (
     <Ecomp
@@ -93,7 +97,7 @@ const CreateCard = ({ items }) => {
     <div className="test6 grid grid-cols-1 gap-0 no-repeat p- bg-cover bg-center bg-fixed">
       <div className=" grid justify-center items-center w-full">
         <Card className=" mt-24 m-5 mb-64 rounded-2xl card-bg border-pallate-persian_green backdrop-blur-sm">
-          <div className="grid grid-cols-1 gap-4 ">
+          <div className="grid grid-cols-1">
             <div className="grid md:grid-cols-1 md:gap-2 sm:grid-cols-1 sm:gap-2">
               <div className="grid gap-10 p-2 justify-center justify-items-center ">
                 <img
@@ -241,25 +245,7 @@ const CreateCard = ({ items }) => {
                     />
                   </div>
 
-                  {cc.map((c) => {
-                    return c;
-                  })}
-                  <Button className="bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell" onClick={() => {
-                    if(cc.length < 5) {
-                      setCC((perv) => [...perv, comp])
-                    }
-                  }}>
-                    +
-                  </Button>
-                  <Button className="bg-red-500 text-white hover:bg-red-600"
-                    onClick={() => {
-                      if (cc.length > 1) {
-                        setCC(cc.filter((x, i) => cc.length - 1 !== i));
-                      }
-                    }}
-                    >
-                    -
-                  </Button>
+
                   <div className="md:w-40 w-full">
                     <div className="flex justify-start items-center pl-1 text-gray-700">
                       <BsPersonFillCheck size={16} className="mr-1" />
@@ -288,14 +274,14 @@ const CreateCard = ({ items }) => {
                       onChange={handeltourleadervalue}
                     >
                       <option>Select</option>
-                      {tourleaderValue === ("Select" || "" || null || undefined)
+                      {organizationValue === ("Select" || "" || null || undefined)
                         ? 1
-                        : organ.find((x) => x.Name === tourleaderValue) ===
+                        : organ.find((x) => x.Name === organizationValue) ===
                           undefined
                         ? 1
-                        : places
-                            .find((x) => x.Name === tourleaderValue)
-                            .lname.sort((c) => c)
+                        : organ
+                            .find((x) => x.Name === organizationValue)
+                            .Lname.sort((c) => c)
                             .map((y) => {
                               return <option>{y}</option>;
                             })}
@@ -341,15 +327,35 @@ const CreateCard = ({ items }) => {
                       ></input>
                     </div>
                   </div>
+                  { cc.map((c) => {
+                    return c;
+                  })}
+                  <Button className="bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell" onClick={() => {
+                    if(cc.length < 5) {
+                      setCC((perv) => [...perv, comp])
+                    }
+                  }}>
+                    Add a field
+                  </Button>
+                  
+                  <Button className="bg-red-500 text-white hover:bg-red-600"
+                    onClick={() => {
+                      if (cc.length > 1) {
+                        setCC(cc.filter((x, i) => cc.length - 1 !== i));
+                      }
+                    }}
+                    >
+                    Remove a field
+                  </Button>
                 </div>
               </div>
             </div>
-            <div className="grid md:grid-cols-2 grid-cols-1 justify-center items-center gap-20 pl-8 pr-8">
+            <div className="grid md:grid-cols-2 grid-cols-1 justify-center items-center pl-8 pr-8">
               <div className="grid grid-cols-2 gap-2"></div>
             </div>
           </div>
           <div className="p-2">
-            <Button className="w-full mr-auto ml-auto md:w-80 rounded-xl  bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell">
+            <Button className="w-full mr-auto ml-auto md:w-80  rounded-xl  bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell">
               Create Trip
             </Button>
           </div>

@@ -5,7 +5,7 @@ import { Select } from "flowbite-react";
 
 const Ecomp = ({ codv, hcodv, cdv, hcdv }) => {
   const [v,setV] = React.useState("");
-
+  const [c,setC] = React.useState("");
   console.log(codv, hcodv, cdv, hcdv);
   return(<>
     <div className="md:w-40 w-full">
@@ -16,9 +16,7 @@ const Ecomp = ({ codv, hcodv, cdv, hcdv }) => {
       <Select
         id="country"
         class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-        value={
-          v
-        }
+        value={v}
         onChange={(e) => setV(e.target.value)}
       >
         <option>Select</option>
@@ -34,17 +32,17 @@ const Ecomp = ({ codv, hcodv, cdv, hcdv }) => {
       </div>
       <Select
         class="w-full md:w-80 border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-        value={cdv}
-        onChange={hcdv}
+        value={c}
+        onChange={(e) => setC(e.target.value)}
       >
         <option>Select</option>
-        {codv === ("Select" || "" || null || undefined)
+        {v === ("Select" || "" || null || undefined)
           ? 1
-          : places.find((country) => country.Name === codv) === undefined
+          : places.find((country) => country.Name === v) === undefined
           ? 1
           : places
-              .find((country) => country.Name === codv)
-              .Cities.sort((c) => c)
+              .find((country) => country.Name === v)
+              .Cities.sort((x) => x)
               .map((city) => {
                 return <option>{city}</option>;
               })}
