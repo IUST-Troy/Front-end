@@ -17,7 +17,6 @@ import Errornotfound from './Components/404/notfound.jsx'
 import TripPage from './Components/TripPage/TripPage';
 import TripCardTourLeader from './Components/TripCard/TripCardTourLeader';
 import ListofTrips from './Components/ListofTrips/ListOfTrips';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CreateCard from "./Components/Create_Trip/TripCard";
 import ProfiletourleaderPage from "./Components/Profile-tourleader/profile-tourleader";
 import Tourleaderprofile from "./Components/Profile-tourleader/editprofile(tourleder)";
