@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      scale:{
+        "102" : "1.02"        
+      },
       gridTemplateColumns:{
         custom_1_2: '1fr 2fr',
         custom_1_3: '1fr 3fr',
