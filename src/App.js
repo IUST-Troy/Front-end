@@ -20,6 +20,7 @@ import ListofTrips from './Components/ListofTrips/ListOfTrips';
 import CreateCard from "./Components/Create_Trip/TripCard";
 import ProfiletourleaderPage from "./Components/Profile-tourleader/profile-tourleader";
 import Tourleaderprofile from "./Components/Profile-tourleader/editprofile(tourleder)";
+import Organization from './Components/Organization/App'
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/create-trip" element={<CreateCard />} />
         <Route path="/tourleader" element={<ProfiletourleaderPage/>}/>
         <Route path="/tourleader-profile" element={<Tourleaderprofile/>} />
+        <Route path='/organization' element={<Organization/>}/>
       </Routes>
     </Router>
   );
