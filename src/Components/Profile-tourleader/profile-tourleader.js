@@ -199,7 +199,7 @@ const ProfiletourleaderPage = () => {
           </div>
           {isEndTripVisible && (
             <div id="collapseExample" data-te-collapse-item>
-              <div class="block rounded-xl bg-pallate-persian_green p-6 ">
+              <div class="block rounded-xl p-6 ">
                 <body class="antialiased test7 rounded-xl text-gray-900 font-sans p-6 bg-cover overflow-y-scroll">
                   <div class="container mx-auto my-11">
                     <div class="flex flex-wrap -mx-4">
