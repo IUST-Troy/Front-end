@@ -23,12 +23,32 @@
     width: 100vw;
     height: 100vh;
 }
-/* 186, 232, 219, 0.638 */
+
 .test5{
     background-image: 
     linear-gradient(rgba(0, 0, 0, 0.09),
     rgba(27, 162, 144, 0.638)),
     url("../../Static/map.jpg") ;
+    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+}
+.test6{
+    background-image: url("../../Static/bgR.jpg");
+    object-fit: contain;
+    width: auto;
+    height: auto;
+}
+.test7{
+    background-image: url("../../Static/bgR.jpg");
+    object-fit: contain;
+    width: 100vm;
+    height: 100vh;
+}
+
+
+.test9{
+    background-image: url("../../Static/Wallpaper1.jpg");
     object-fit: contain;
     width: 100vw;
     height: 100vh;

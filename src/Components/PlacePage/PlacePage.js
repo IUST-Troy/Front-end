@@ -19,6 +19,7 @@ import Lottie from "react-lottie";
 import SuccessLottieOptions from "../Loading/LoadingSucess";
 import EarthLottieOptions from "../Loading/LoadingEarth";
 import axios from "axios";
+import { TbTrain, TbPlane, TbShip, TbBus } from "react-icons/tb";
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -362,10 +363,145 @@ const PlacePage = () => {
                                     </Marker>
                                 </MapContainer>
                             </div>
-                            <div className="card-bg border rounded-xl grid justify-center items-center border-pallate-persian_green ">
-                                <p className="text-4xl text-gray-700">
-                                    No tour is available for this place
-                                </p>
+                            <div className="card-bg h-[610px] comment-section overflow-y-auto border rounded-xl grid grid-cols-1 px-4 py-10  gap-4 justify-center items-start border-pallate-persian_green ">
+                                <div className="w-full grid grid-cols-4 py-7  items-center bg-pallate-celeste border-pallate-persian_green rounded-3xl border transform hover:scale-x-102 hover:scale-y-105 duration-500 ease-in-out hover:border-2">
+                                    <p className="truncate text-center text-gray-700 text-xl ">
+                                        country; city
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        YYYY-MM-DD
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        Travel Agency
+                                    </p>
+                                    <div className="grid grid-cols-1 text-gray-700 items-center content-center justify-center justify-items-center truncate text-center ">
+                                        <p className="text-5xl">
+                                            <TbShip/>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div className="w-full grid grid-cols-4 py-7  items-center bg-pallate-celeste border-pallate-persian_green rounded-3xl border transform hover:scale-x-102 hover:scale-y-105 duration-500 ease-in-out hover:border-2">
+                                    <p className="truncate text-center text-gray-700 text-xl ">
+                                        country; city
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        YYYY-MM-DD
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        Travel Agency
+                                    </p>
+                                    <div className="grid grid-cols-1 text-gray-700 items-center content-center justify-center justify-items-center truncate text-center ">
+                                        <p className="text-5xl">
+                                            <TbShip/>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div className="w-full grid grid-cols-4 py-7  items-center bg-pallate-celeste border-pallate-persian_green rounded-3xl border transform hover:scale-x-102 hover:scale-y-105 duration-500 ease-in-out hover:border-2">
+                                    <p className="truncate text-center text-gray-700 text-xl ">
+                                        country; city
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        YYYY-MM-DD
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        Travel Agency
+                                    </p>
+                                    <div className="grid grid-cols-1 text-gray-700 items-center content-center justify-center justify-items-center truncate text-center ">
+                                        <p className="text-5xl">
+                                            <TbShip/>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div className="w-full grid grid-cols-4 py-7  items-center bg-pallate-celeste border-pallate-persian_green rounded-3xl border transform hover:scale-x-102 hover:scale-y-105 duration-500 ease-in-out hover:border-2">
+                                    <p className="truncate text-center text-gray-700 text-xl ">
+                                        country; city
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        YYYY-MM-DD
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        Travel Agency
+                                    </p>
+                                    <div className="grid grid-cols-1 text-gray-700 items-center content-center justify-center justify-items-center truncate text-center ">
+                                        <p className="text-5xl">
+                                            <TbShip/>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div className="w-full grid grid-cols-4 py-7  items-center bg-pallate-celeste border-pallate-persian_green rounded-3xl border transform hover:scale-x-102 hover:scale-y-105 duration-500 ease-in-out hover:border-2">
+                                    <p className="truncate text-center text-gray-700 text-xl ">
+                                        country; city
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        YYYY-MM-DD
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        Travel Agency
+                                    </p>
+                                    <div className="grid grid-cols-1 text-gray-700 items-center content-center justify-center justify-items-center truncate text-center ">
+                                        <p className="text-5xl">
+                                            <TbShip/>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div className="w-full grid grid-cols-4 py-7  items-center bg-pallate-celeste border-pallate-persian_green rounded-3xl border transform hover:scale-x-102 hover:scale-y-105 duration-500 ease-in-out hover:border-2">
+                                    <p className="truncate text-center text-gray-700 text-xl ">
+                                        country; city
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        YYYY-MM-DD
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        Travel Agency
+                                    </p>
+                                    <div className="grid grid-cols-1 text-gray-700 items-center content-center justify-center justify-items-center truncate text-center ">
+                                        <p className="text-5xl">
+                                            <TbShip/>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div className="w-full grid grid-cols-4 py-7  items-center bg-pallate-celeste border-pallate-persian_green rounded-3xl border transform hover:scale-x-102 hover:scale-y-105 duration-500 ease-in-out hover:border-2">
+                                    <p className="truncate text-center text-gray-700 text-xl ">
+                                        country; city
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        YYYY-MM-DD
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        Travel Agency
+                                    </p>
+                                    <div className="grid grid-cols-1 text-gray-700 items-center content-center justify-center justify-items-center truncate text-center ">
+                                        <p className="text-5xl">
+                                            <TbShip/>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div className="w-full grid grid-cols-4 py-7  items-center bg-pallate-celeste border-pallate-persian_green rounded-3xl border transform hover:scale-x-102 hover:scale-y-105 duration-500 ease-in-out hover:border-2">
+                                    <p className="truncate text-center text-gray-700 text-xl ">
+                                        country; city
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        YYYY-MM-DD
+                                    </p>
+                                    <p className="truncate text-center text-xl text-gray-700">
+                                        Travel Agency
+                                    </p>
+                                    <div className="grid grid-cols-1 text-gray-700 items-center content-center justify-center justify-items-center truncate text-center ">
+                                        <p className="text-5xl">
+                                            <TbShip/>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                    
+                                
                             </div>
                         </div>
                         <FooterV2 />
