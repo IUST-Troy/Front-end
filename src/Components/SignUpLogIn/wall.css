@@ -45,6 +45,14 @@
     width: 100vm;
     height: 100vh;
 }
+.testreserve{
+    background-image: url("../../Static/bgR.jpg");
+    object-fit: contain;
+    width: 100vm;
+    height: 80vh;
+    
+    
+}
 
 
 .test9{
