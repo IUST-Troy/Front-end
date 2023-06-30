@@ -22,6 +22,7 @@ import ProfiletourleaderPage from "./Components/Profile-tourleader/profile-tourl
 import Tourleaderprofile from "./Components/Profile-tourleader/editprofile(tourleder)";
 import Organization from './Components/Organization/App'
 import Chat from './Components/Chat/App'
+import Home from './Components/Homee/App'
 
 
 
@@ -48,6 +49,8 @@ function App() {
         <Route path="/tourleader-profile" element={<Tourleaderprofile/>} />
         <Route path='/organization' element={<Organization/>}/>
         <Route path='/Chat' element={<Chat/>}/>
+        <Route path='/homee' element={<Home/>}/>
+        
         
       </Routes>
     </Router>
