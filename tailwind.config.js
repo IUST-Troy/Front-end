@@ -21,6 +21,10 @@ module.exports = {
         custom_2_3: '2fr 3fr',
         custom_3_1: '3fr 1fr'
       },
+      gridTemplateRows:{
+        custom_9_1: '9fr 1fr',
+        custom_8_1: '8fr 1fr',
+      },
       colors: {
         pallate: {
           celeste: '#BAE8DBff',

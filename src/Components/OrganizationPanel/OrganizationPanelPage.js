@@ -14,6 +14,7 @@ import {
     MdLogout,
 } from "react-icons/md";
 import Dashboard from "./Dashboard";
+import ActiveTours from "./ActiveTours";
 const OrganizationPanelPage = () => {
     const Pages = {
         Dashboard: 0,
@@ -125,7 +126,7 @@ const OrganizationPanelPage = () => {
                         </div>
                     </div>
                     {
-                        (Page === Pages.Dashboard && <Dashboard/>) || (<p>Wrong Page</p>)
+                        (Page === Pages.Dashboard && <Dashboard/>) || (Page === Pages.Active && <ActiveTours/>) || (<p>Wrong Page</p>)
                     }
                 </div>
                 <FooterV2 />
