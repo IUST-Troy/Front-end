@@ -5,7 +5,16 @@ import { BsFileEarmarkExcel as ExcelIcon } from "react-icons/bs";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import ExcellentExport from "excellentexport";
 const PassengersList = ({ TripID }) => {
+    const[Loading , setLoading] = React.useState(false)
+    React.useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 5000);
+    }, [])
     return (
+        <>
+        {!Loading && (
         <div className="card-bg rounded-2xl border border-pallate-persian_green flex flex-col p-4 items-center gap-2 h-[518px]">
             <p className="font-semibold text-3xl text-white">
                 Trip ID: {TripID}
@@ -53,6 +62,16 @@ const PassengersList = ({ TripID }) => {
                 </Table.Body>
             </Table>
         </div>
+        ) || 
+        Loading && (
+            <div className="card-bg rounded-2xl border border-pallate-persian_green flex flex-col p-4 items-center gap-2 h-[518px]">
+                <p className="font-semibold text-3xl text-white">
+                Trip ID: {TripID}
+            </p>
+                <div className="w-[749.73px] h-[440px] rounded-lg card-bg animate-pulse"></div>
+            </div>
+        )}
+        </>
     );
 };
 

@@ -15,6 +15,9 @@ import {
 } from "react-icons/md";
 import Dashboard from "./Dashboard";
 import ActiveTours from "./ActiveTours";
+import OrganizationHistory from "./OrganizationHistory";
+import TourLeaders from "./TourLeaders";
+import Revenue from "./Revenue";
 const OrganizationPanelPage = () => {
     const Pages = {
         Dashboard: 0,
@@ -125,9 +128,11 @@ const OrganizationPanelPage = () => {
                             </Tooltip>
                         </div>
                     </div>
-                    {
-                        (Page === Pages.Dashboard && <Dashboard/>) || (Page === Pages.Active && <ActiveTours/>) || (<p>Wrong Page</p>)
-                    }
+                    {(Page === Pages.Dashboard && <Dashboard />) ||
+                        (Page === Pages.Active && <ActiveTours />) ||
+                        (Page === Pages.History && <OrganizationHistory />) || 
+                        (Page === Pages.TourLeaders && <TourLeaders/>) ||
+                        (Page === Pages.Revenue && <Revenue/>)}
                 </div>
                 <FooterV2 />
             </div>
