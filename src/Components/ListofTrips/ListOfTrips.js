@@ -1,53 +1,29 @@
-import axios from "axios";
 import React from "react";
-import { Trips, TourLeaders, Organizations } from "../TripPage/Trips";
-function onlyUnique(value, index, array) {
-    return array.indexOf(value) === index;
-}
+import Wallpaper1 from "../../Static/bgR.jpg";
+import Header from "../NavigationBar/Header";
+import Navbar from "../NavigationBar/Navbar";
+import FooterV2 from "../HomePage/FooterV2";
+
 const ListofTrips = () => {
-    const initialOrigins = [{ country: "", cities: [""] }];
-    const [origins, setOrigins] = React.useState(initialOrigins);
-    const initialDestinations = [{ country: "", cities: [""] }];
-    const [destinations, setDestinations] = React.useState(initialDestinations);
-    React.useEffect(() => {
-        const originCountries = Trips.map((t) => t.Origin.country).filter(
-            onlyUnique
-        );
-        initialOrigins.pop();
-        originCountries.forEach((c) => {
-            const cities = [""];
-            cities.pop();
-            const cCountries = Trips.filter((t) => t.Origin.country === c);
-            cCountries.forEach((cc) => {
-                if (!cities.includes(cc.Origin.city)) {
-                    cities.push(cc.Origin.city);
-                }
-            });
-            initialOrigins.push({ country: c, cities: cities });
-        });
-        setOrigins(initialOrigins);
-        initialDestinations.pop();
-        const destinationsRaw = Trips.map((t) => t.Destinations).flat();
-        
-        const DestinationCountries = destinationsRaw
-            .map((d) => d.country)
-            .filter(onlyUnique);
-        DestinationCountries.forEach((dc) => {
-            const cities = [""];
-            cities.pop();
-            const dcCountries = destinationsRaw.filter((t) => t.country === dc);
-            dcCountries.forEach((dcc) => {
-                if (!cities.includes(dcc.city)) {
-                    cities.push(dcc.city);
-                }
-            });
-            initialDestinations.push({country:dc , cities:cities})
-        });
-        setDestinations(initialDestinations)
-        console.log(origins);
-        console.log(destinations);
-    }, []);
-    return <></>;
+    
+    return (
+        <>
+            <div
+                className="grid grid-cols-1 gap-0 justify-center items-center content-center"
+                style={{
+                    background: `url(${Wallpaper1}) no-repeat center center fixed`,
+                }}
+            >
+                <Header />
+                <Navbar />
+                <div className="flex flex-col  w-5/6 gap-4 mx-auto  items-center my-10">
+                    <div className="card-bg border border-pallate-persian_green rounded-2xl w-full h-14"></div>
+                    <div className="card-bg border border-pallate-persian_green rounded-2xl w-full h-96"></div>
+                </div>
+                <FooterV2/>
+            </div>
+        </>
+    );
 };
 
 export default ListofTrips;
