@@ -23,6 +23,10 @@ import Tourleaderprofile from "./Components/Profile-tourleader/editprofile(tourl
 import Organization from './Components/Organization/App'
 import Chat from './Components/Chat/App'
 
+import HistoryForNormal from './Components/HistoryForNormalUsers/App'
+
+
+
 
 
 
@@ -48,6 +52,9 @@ function App() {
         <Route path="/tourleader-profile" element={<Tourleaderprofile/>} />
         <Route path='/organization' element={<Organization/>}/>
         <Route path='/Chat' element={<Chat/>}/>
+        <Route path='/history' element={<HistoryForNormal/>}/>
+        
+        
         
       </Routes>
     </Router>
