@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from './Components/HomePage/HomePage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
+
 import Login from './Components/SignUpLogIn/login.jsx'
 import SignUp from './Components/SignUpLogIn/signup.jsx'
 import Forget from './Components/SignUpLogIn/forget.jsx'
@@ -22,7 +23,8 @@ import ProfiletourleaderPage from "./Components/Profile-tourleader/profile-tourl
 import Tourleaderprofile from "./Components/Profile-tourleader/editprofile(tourleder)";
 import Organization from './Components/Organization/App'
 import Chat from './Components/Chat/App'
-import OrganizationPanelPage from "./Components/OrganizationPanel/OrganizationPanelPage";
+import TourPanel from "./Components/OrganizationPanel/TourLeaderPanel";
+
 
 
 
@@ -49,7 +51,7 @@ function App() {
         <Route path="/tourleader-profile" element={<Tourleaderprofile/>} />
         <Route path='/organization' element={<Organization/>}/>
         <Route path='/Chat' element={<Chat/>}/>
-        <Route path="/Panel" element={<OrganizationPanelPage/>}/>
+        <Route path="/TourLeaderPanel" element={<TourPanel/>}/>
       </Routes>
     </Router>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar, Pagination as MUIPagination } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Wallpaper1 from "../../Static/bgR.jpg";
-import "../../Styles/OrganizationPanel/orgStyles.scss";
+import "../../Styles/TourLeaderPanel/tourpanel.scss";
 import { Button, Tooltip } from "flowbite-react";
 import PassengersList from "./PassengersList";
 const OrganizationHistory = () => {

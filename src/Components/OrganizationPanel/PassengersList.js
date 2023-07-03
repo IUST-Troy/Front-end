@@ -1,16 +1,106 @@
-import React from "react";
+import React , {useEffect , useState} from "react";
 import { Button, Table } from "flowbite-react";
-import "../../Styles/OrganizationPanel/orgStyles.scss";
+import "../../Styles/TourLeaderPanel/tourpanel.scss";
 import { BsFileEarmarkExcel as ExcelIcon } from "react-icons/bs";
 import { DownloadTableExcel } from "react-export-table-to-excel";
+
 import ExcellentExport from "excellentexport";
+const ExcelJS = require('exceljs');
+
 const PassengersList = ({ TripID }) => {
+    const [data , setData] =  useState([]);
+    useEffect(() => {
+        fetch("https://dummyjson.com/products")
+        .then((res) => res.json())
+        .then(async (data) => {
+            console.log(data);
+            setData(data);
+        })
+        .then((json) => console.log(json));
+    }, []);
+    const exportExcelFile = () => {
+        const workbook = new ExcelJS.Workbook();
+        const sheet = workbook.addWorksheet("report");
+        sheet.properties.defaultRowHeight = 80;
+
+        sheet.getRow(1).border = {
+            top : {style : 'thick', color : { argb : '1BA291ff'}},
+            left : {style : 'thick', color : { argb : '1BA291ff'}},
+            bottom : {style : 'thick', color : { argb : '1BA291ff'}},
+            right : {style : 'thick', color : { argb : '1BA291ff'}},
+
+        };
+        sheet.getRow(1).fill = {
+            type : 'pattern',
+            pattern : 'darkHorizontal',
+            fgColor: {argb : 'B193CFff'},
+
+        };
+
+        sheet.getRow(1).font = {
+            name:'Comic Sans MS',
+            family: 3,
+            size: 14,
+            bold:true,
+        };
+    
+        sheet.columns = [
+            {
+                header : "#",
+                key : "id",
+                width : 5
+            },
+            {
+                header : "FirstName",
+                key : "firstname",
+                width : 20
+            },
+            {
+                header : "LastName",
+                key : "lastname",
+                width : 20
+            },
+            {
+                header : "Phone No.",
+                key : "num",
+                width : 30
+            },
+            {
+                header : "NationalCode",
+                key : "national",
+                width : 30
+            },
+        ];
+
+        data?.products?.map(product => {
+            sheet.addRow({
+                id:product?.id,
+                firstname: product?.firstname,
+                lastname: product?.lastname,
+                num: product?.num,
+                national: product?.national
+            })
+        });
+
+        workbook.xlsx.writeBuffer().then(data => {
+            const blob = new Blob([data], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheet.sheet",
+            });
+            const url = window.URL.createObjectURL(blob);
+            const anchor = document.createElement('a');
+            anchor.href = url;
+            anchor.download = 'download.xlsx';
+            anchor.click();
+            window.URL.revokeObjectURL(url);
+        })
+    }
+    
     const[Loading , setLoading] = React.useState(false)
     React.useEffect(() => {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-        }, 5000);
+        }, 500);
     }, [])
     return (
         <>
@@ -46,21 +136,24 @@ const PassengersList = ({ TripID }) => {
                                 {num}
                             </Table.Cell>
                             <Table.Cell className="text-white text-lg font-semibold">
-                                Ali
+                                Pooria
                             </Table.Cell>
                             <Table.Cell className="text-white text-lg font-semibold">
-                                Alavi
+                                Rahimi
                             </Table.Cell>
                             <Table.Cell className="text-white text-lg font-semibold">
-                                09123456789
+                                09216321669
                             </Table.Cell>
                             <Table.Cell className="text-white text-lg font-semibold">
-                                1234567890
+                                02165251587
                             </Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
             </Table>
+            <Button className="bg-pallate-persian_green rounded-2xl text-white font-semibold text-lg w-96 hover:bg-pallate-blue_munsell" onClick = {exportExcelFile}>
+                                        More Info
+                                    </Button>
         </div>
         ) || 
         Loading && (
@@ -69,6 +162,7 @@ const PassengersList = ({ TripID }) => {
                 Trip ID: {TripID}
             </p>
                 <div className="w-[749.73px] h-[440px] rounded-lg card-bg animate-pulse"></div>
+                
             </div>
         )}
         </>
