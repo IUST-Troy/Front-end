@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Pagination as MUIPagination } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Wallpaper1 from "../../Static/bgR.jpg";
+import pic1 from "../../Static/bgR.jpg";
 import "../../Styles/OrganizationPanel/orgStyles.scss";
 import { Button, Tooltip } from "flowbite-react";
 import PassengersList from "./PassengersList";
@@ -34,7 +34,7 @@ const ActiveTours = () => {
                     {nums.map((num) => (
                         <div className="card-bg border border-pallate-persian_green rounded-2xl flex flex-col gap-2 pt-0 h-[480px]">
                             <img
-                                src={Wallpaper1}
+                                src={pic1}
                                 className="rounded-t-2xl h-1/3 w-full"
                             />
                             <div className="grid grid-cols-2 items-start justify-center content-center justify-items-center gap-4 p-2">
