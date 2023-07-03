@@ -9,6 +9,11 @@ import SignUp from './Components/SignUpLogIn/signup.jsx'
 import Forget from './Components/SignUpLogIn/forget.jsx'
 import Verification from './Components/SignUpLogIn/verification.jsx'
 
+import Loginother from './Components/Login_Signup_for_other//login.jsx'
+import SignUpother from './Components/Login_Signup_for_other/signup.jsx'
+import Forgetother from './Components/Login_Signup_for_other/forget.jsx'
+import Verificationother from './Components/Login_Signup_for_other/verification.jsx'
+
 import Tour from'./Components/TouristAttractionsPage/Tour'
 import ProfilePage from './Components/ProfilePage/ProfilePage';
 import PlacePage from './Components/PlacePage/PlacePage';
@@ -35,6 +40,10 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verification" element={<Verification />} />
         <Route path="/forget" element={<Forget />} />
+        <Route path="/sign-in-o" element={<Loginother />} />
+        <Route path="/sign-up-o" element={<SignUpother />} />
+        <Route path="/verification-o" element={<Verificationother />} />
+        <Route path="/forget-o" element={<Forgetother />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='/PlacesList' element={<Tour/>} />
         <Route path='/Profile' element={<ProfilePage/>} />
@@ -48,7 +57,6 @@ function App() {
         <Route path="/tourleader-profile" element={<Tourleaderprofile/>} />
         <Route path='/organization' element={<Organization/>}/>
         <Route path='/Chat' element={<Chat/>}/>
-        
       </Routes>
     </Router>
   );
