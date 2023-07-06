@@ -152,7 +152,7 @@ const PassengersList = ({ TripID }) => {
                 </Table.Body>
             </Table>
             <Button className="bg-pallate-persian_green rounded-2xl text-white font-semibold text-lg w-96 hover:bg-pallate-blue_munsell" onClick = {exportExcelFile}>
-                                        More Info
+                                        Download Excel
                                     </Button>
         </div>
         ) || 

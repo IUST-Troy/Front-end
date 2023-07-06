@@ -23,7 +23,7 @@ import ProfiletourleaderPage from "./Components/Profile-tourleader/profile-tourl
 import Tourleaderprofile from "./Components/Profile-tourleader/editprofile(tourleder)";
 import Organization from './Components/Organization/App'
 import Chat from './Components/Chat/App'
-import TourPanel from "./Components/OrganizationPanel/TourLeaderPanel";
+import TourPanel from "./Components/TourLeaderPanelPage/TourLeaderPanel";
 
 
 
