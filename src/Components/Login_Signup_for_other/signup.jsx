@@ -11,6 +11,8 @@ import { BsPersonFillLock } from "react-icons/bs";
 import { BsEnvelopeFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
 import { HiLockOpen } from "react-icons/hi";
+import { Select } from "flowbite-react";
+
 import { IoMdSend } from "react-icons/io5";
 import { Tooltip } from "flowbite-react";
 export default function Signup() {
@@ -138,7 +140,7 @@ export default function Signup() {
                 <label>Firstname</label>
               </div>
               <input
-                className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
+                className="w-full md:w-48 p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                 onChange={handleFirstName}
                 placeholder="First name"
                 value={firstNameValue}
@@ -151,47 +153,36 @@ export default function Signup() {
                 <label>Lastname</label>
               </div>
               <input
-                className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
+                className="w-full md:w-48 p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                 value={lastNameValue}
                 placeholder="Last name"
                 onChange={handleLastName}
               />
             </div>
           </div>
-          <div className="flex flex-col text-gray-500 text-lg py-2">
-            <div className="flex justify-start items-center">
-              <BsPersonFillLock className="mr-1" />
-              <label>Username</label>
+          <div className="grid md:grid-cols-2 md:gap-2 grid-cols-1">
+            <div className="flex flex-col text-gray-500 text-lg py-2">
+              <div className="flex justify-start items-center">
+                <BsPersonFillLock className="mr-1" />
+                <label>Username</label>
+              </div>
+              <input
+                className=" w-full md:w-48 p-2 rounded-xl border text-sm border-pallate-persian_green focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
+                placeholder="Username"
+              />
+              
             </div>
-            <input
-              className="p-2 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
-              value={userNameValue}
-              placeholder="Username"
-              onChange={handleUsername}
-            />
-          </div>
-          <div className="flex flex-col text-gray-500 text-lg py-2">
-            <div className="flex justify-start items-center">
-              <BsEnvelopeFill className="mr-1" />
-              <label>Email Address </label>
-              {emailErrorValue && (
-                <Tooltip content="please enter a valid email" className="ml-2">
-                  <BsPatchExclamation className="ml-2" />
-                </Tooltip>
-              )}
+            <div className="flex flex-col text-gray-500 text-lg py-2">
+              <div className="flex justify-start items-center">
+                <BsPersonFillLock className="mr-1" />
+                <label>Role</label>
+              </div>
+              <Select
+                class="p-2 w-full md:w-48 border text-sm border-pallate-persian_green focus:ring-1 rounded-xl bg-pallate-celeste_light mt-2 focus:ring-pallate-persian_green focus:border-pallate-persian_green focus:outline-none">
+          </Select>
             </div>
-            <input
-              className={`p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none  bg-pallate-celeste_light mt-2 ${
-                emailErrorValue
-                  ? "border-red-500   focus:ring-red-500 focus:border-red-500"
-                  : "border-pallate-persian_green   focus:ring-pallate-persian_green  focus:border-pallate-persian_green"
-              }   `}
-              type="email"
-              value={emailValue}
-              placeholder="Email Address"
-              onChange={handleEmail}
-            />
           </div>
+
           <div className="grid md:grid-cols-2 md:gap-2 grid-cols-1">
             <div className="flex flex-col text-gray-500 text-lg py-2">
               <div className="flex justify-start items-center">
@@ -232,6 +223,28 @@ export default function Signup() {
                 onChange={handleConfirmPassword}
               />
             </div>
+          </div>
+          <div className="flex flex-col text-gray-500 text-lg py-2">
+            <div className="flex justify-start items-center">
+              <BsEnvelopeFill className="mr-1" />
+              <label>Email Address </label>
+              {emailErrorValue && (
+                <Tooltip content="please enter a valid email" className="ml-2">
+                  <BsPatchExclamation className="ml-2" />
+                </Tooltip>
+              )}
+            </div>
+            <input
+              className={`p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none  bg-pallate-celeste_light mt-2 ${
+                emailErrorValue
+                  ? "border-red-500   focus:ring-red-500 focus:border-red-500"
+                  : "border-pallate-persian_green   focus:ring-pallate-persian_green  focus:border-pallate-persian_green"
+              }   `}
+              type="email"
+              value={emailValue}
+              placeholder="Email Address"
+              onChange={handleEmail}
+            />
           </div>
           <button
             className="w-full my-6 py-3 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
