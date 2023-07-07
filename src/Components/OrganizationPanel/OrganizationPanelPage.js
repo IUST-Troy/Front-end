@@ -12,12 +12,14 @@ import {
     MdCheck,
     MdSettings,
     MdLogout,
+    MdPersonAdd
 } from "react-icons/md";
 import Dashboard from "./Dashboard";
 import ActiveTours from "./ActiveTours";
 import OrganizationHistory from "./OrganizationHistory";
 import TourLeaders from "./TourLeaders";
 import Revenue from "./Revenue";
+import AddTourLeader from "./AddTourLeader";
 const OrganizationPanelPage = () => {
     const Pages = {
         Dashboard: 0,
@@ -25,6 +27,7 @@ const OrganizationPanelPage = () => {
         Active: 2,
         Revenue: 3,
         TourLeaders: 4,
+        AddTourLeader: 5,
     };
     const [Page, setPage] = React.useState(Pages.Dashboard);
 
@@ -106,6 +109,19 @@ const OrganizationPanelPage = () => {
                                     <p>Tour Leaders</p>
                                 </div>
                             </Button>
+                            <Button
+                                className={
+                                    Page === Pages.AddTourLeader
+                                        ? "bg-pallate-persian_green hover:bg-pallate-persian_green rounded-none w-full focus:ring-transparent focus:ring-offset-transparent !justify-start"
+                                        : "bg-transparent hover:bg-pallate-celeste_lowOp !justify-start"
+                                }
+                                onClick={() => setPage(Pages.AddTourLeader)}
+                            >
+                                <div className="text-left text-lg flex  items-center gap-2">
+                                    <MdPersonAdd />
+                                    <p className="text-sm">Add TourLeaders</p>
+                                </div>
+                            </Button>
                         </div>
                         <div className="rounded-b-2xl grid grid-cols-2 pb-4 items-center justify-center content-center justify-items-center">
                             <Tooltip
@@ -132,7 +148,8 @@ const OrganizationPanelPage = () => {
                         (Page === Pages.Active && <ActiveTours />) ||
                         (Page === Pages.History && <OrganizationHistory />) || 
                         (Page === Pages.TourLeaders && <TourLeaders/>) ||
-                        (Page === Pages.Revenue && <Revenue/>)}
+                        (Page === Pages.Revenue && <Revenue/>) ||
+                        (Page === Pages.AddTourLeader && <AddTourLeader/>)}
                 </div>
                 <FooterV2 />
             </div>
