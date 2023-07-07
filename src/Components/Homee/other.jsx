@@ -11,11 +11,15 @@ const Hero = () => {
       <div className="max-h-[500px] relative ">
         {/* Overlay */}
         <div className="absolute w-full h-full text-gray-200 max-h-[500px] bg-black/40 flex flex-col right-0 justify-center text-right">
-          <h1 className="px-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold pr-20">
-            Explore The
+        <h1 className="px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
+            Explore{" "}
           </h1>
-          <h1 className="px-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
-            <span className="text-pallate-persian_green">The Wonders</span>
+          <h1 className="px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
+            {" "}
+            <span className="text-pallate-persian_green">
+              {" "}
+              The Wonders
+            </span>{" "}
           </h1>
 
           <div className="container md:flex text-1xl font-bold dark:text-white text-white justify-end ">
@@ -26,7 +30,7 @@ const Hero = () => {
                     autoStart: true,
                     loop: true,
                     delay: 50,
-                    strings: ["Click For All Tours"],
+                    strings: ["Click For All Places"],
                   }}
                 />
               </button>

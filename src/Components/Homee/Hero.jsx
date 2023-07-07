@@ -3,6 +3,8 @@ import { IconButton, Slide } from "@mui/material";
 import { Link as Scroll } from "react-scroll";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Header from "../NavigationBar/Header";
+import hometour from "../../Static/hometour.jpg";
+import Typewriter from "typewriter-effect";
 import Navbar from "../NavigationBar/Navbar";
 import pisholi from "../../Static/pisholi4.jpg";
 
@@ -12,50 +14,33 @@ const Hero = () => {
       <div>
         <Header />
         <Navbar />
-        {/* <div className='w-full h-screen'>
-      <img
-        className='top-0 left-0 w-full h-screen object-cover'
-        src='https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg'
-        alt='/'
-      />
-      <div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
-      <div className='absolute top-0 w-full h-full flex flex-col justify-center text-white'>
-        <div className='md:left-[10%] max-w-[1100px] m-auto absolute p-4'>
-          <p>All Inclusive</p>
-          <h1 className='font-bold text-5xl md:text-7xl drop-shadow-2xl'>
-            Private Beaches & Getaways
+        <div  className=" bg-white w-full  mx-auto p-4 card-bg ">
+      <div></div>
+      <div className="max-h-[500px] relative ">
+        {/* Overlay */}
+        <div className="p-4  absolute w-full h-full text-gray-200 max-h-[500px] bg-black/40 flex flex-col justify-center">
+          <h1 className="px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
+          Private Beaches & Getaways{" "}
           </h1>
-          <p className='max-w-[600px] drop-shadow-2xl py-2 text-xl'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ut quis
-            est, id consequuntur sequi ipsum vitae sit non exercitationem.
-          </p>
-          <button className='bg-white text-black '>Reserve Now</button>
-        </div>
-      </div>
-    </div> */}
-      </div>
+        
 
-      <div className="w-full  h-screen">
-        <img
-          className="top-0 left-0 w-full h-screen object-cover "
-          src={pisholi}
-          alt="/"
-        />
-        <div className=" absolute top-0 left-0 w-full h-screen " />
-        <div className="absolute top-0 w-full h-full flex flex-col justify-end  ">
-          <div className="md:left-[10%] w-full m-auto absolute p-8  rounded-3xl text-white">
-            <h1 className="font-bold text-5xl md:text-7xl drop-shadow-2xl ">
-              Private Beaches & Getaways
+          <div className="container md:flex text-xl font-bold dark:text-white text-white">
+            <h1>
+              <button className="p-4" >
+                <Typewriter
+                  options={{
+                    autoStart: true,
+                    loop: true,
+                    delay: 50,
+                    strings: ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo utquis est, id consequuntur sequi ipsum vitae sit nonexercitationem."],
+                  }}
+                />
+              </button>
             </h1>
-            <p className="max-w-[600px] drop-shadow-2xl py-2 text-xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ut
-              quis est, id consequuntur sequi ipsum vitae sit non
-              exercitationem.
-            </p>
-
-            <div className="">
+          </div>
+          <div className="p-5">
               <Scroll to="tours-in-Seasonal" smooth={true}>
-                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-400 group-hover:from-green-400 group-hover:to-blue-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+                <button class=" relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-400 group-hover:from-green-400 group-hover:to-blue-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
                   <span class="relative px-5 py-2.5 transition-all ease-in duration-75  dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     Seasonal recommendations
                   </span>
@@ -71,7 +56,7 @@ const Hero = () => {
                 </button>
               </Scroll>
 
-              <Scroll to="tours-in-week" smooth={true}>
+              <Scroll to="tours-in-week" smooth={true} className="p-3">
                 <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-400 group-hover:from-green-400 group-hover:to-blue-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
                   <span class="relative px-5 py-2.5 transition-all ease-in duration-75  dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     Recommended place this week
@@ -105,10 +90,18 @@ const Hero = () => {
                 </button>
               </Scroll>
             </div>
-            <slide />
-          </div>
         </div>
+
+        <img
+          className="w-full max-h-[500px] object-cover"
+          src={pisholi}
+          alt="/"
+        />
       </div>
+    </div>
+      </div>
+
+
     </div>
   );
 };

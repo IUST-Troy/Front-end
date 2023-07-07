@@ -6,10 +6,10 @@ const Plan = () => {
     <div>
       <div
         id="tours-in-week"
-        className=" w-full  m-auto card-bg py-16 px-4 grid lg:grid-cols-2  gap-4"
+        className=" w-full  card-bg px-4 grid lg:grid-cols-2  gap-4 pt-6"
       >
         {/* Left Side */}
-        <div className="grid grid-cols-2 grid-rows-6 h-[80vh] card-bg rounded-2xl mt-10">
+        <div className="grid grid-cols-2 grid-rows-6 h-[80vh] card-bg rounded-2xl p-2">
           <img
             className="row-span-3 object-cover w-full h-full p-2 "
             src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1368&q=80"
@@ -37,8 +37,8 @@ const Plan = () => {
           />
         </div>
         {/* Right Side */}
-        <div className="flex flex-col h-full justify-center card-bg p-2 rounded-2xl mt-5">
-          <h3 className="text-5xl md:text-5xl font-bold">
+        <div className="flex flex-col h-full justify-center card-bg p-2  rounded-2xl ">
+          <h3 className="text-5xl md:text-5xl font-bold text-pallate-persian_green">
             Plan Your Next Trip
           </h3>
           <p className="text-2xl py-6">Get ready for your trip to Hawaii.</p>

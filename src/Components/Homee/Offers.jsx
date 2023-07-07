@@ -117,7 +117,7 @@ const Place = () => {
                       </div>
                       <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60  group-hover:rounded-2xl group-hover:to-black/70 rounded-2xl"></div>
                       <div class="absolute inset-0 flex translate-y-[50%] flex-col items-center rounded-2xl justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0  group-hover:rounded-2xl">
-                        <h1 class="font-dmserif text-2xl font-bold text-white">
+                        <h1 class="font-dmserif text-2xl font-bold text-pallate-persian_green">
                           {page.name}
                         </h1>
                         <p class="mb-3 text-xs italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-2xl">
