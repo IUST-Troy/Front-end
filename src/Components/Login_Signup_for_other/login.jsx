@@ -13,12 +13,14 @@ const profileURL = "http://mrsz.pythonanywhere.com/Profile/me/";
 const userURL = "http://mrsz.pythonanywhere.com/auth/users/me/";
 
 export default function Login() {
+    const baseLink = window.location.href;
     const [userNameValue, setUserNameValue] = React.useState("");
     const [passwordValue, setPasswordValue] = React.useState("");
     const [disabledButtonValue, setDisabledButtonValue] = React.useState(false);
     let navigate = useNavigate();
 
     React.useEffect(() => {
+        console.log(baseLink);
         if (localStorage.getItem("acctoken")) {
             navigate("/home");
         }
@@ -88,6 +90,7 @@ export default function Login() {
                         localStorage.setItem("firstname", res.data.first_name);
                         localStorage.setItem("lastname", res.data.last_name);
                         localStorage.setItem("email", res.data.email);
+                        localStorage.setItem("role" , res.data.role);
                         axios
                             .get(profileURL, {
                                 headers: {
@@ -126,9 +129,24 @@ export default function Login() {
                                     progress: undefined,
                                 });
                                 setTimeout(() => {
-                                    navigate("/home", {
-                                        preventScrollReset: false,
-                                    });
+                                    if (res.data.role === "T")
+                                    {
+                                        navigate("/tourleader-profile", {
+                                            preventScrollReset: false,
+                                        });
+                                    }
+                                    else if (res.data.role === "O")
+                                    {
+                                        navigate("/create-trip", {
+                                            preventScrollReset: false,
+                                        });
+                                    }
+                                    else if (res.data.role === "C")
+                                    {
+                                        navigate("/Chat", {
+                                            preventScrollReset: false,
+                                        });
+                                    }
                                 }, 1500);
                             })
                             .catch((err) => {
@@ -193,7 +211,7 @@ export default function Login() {
                     <p className="Already_registered text-center text-gray-500 text-lg py-2">
                         Forgot Password ?{" "}
                         <a
-                            href="/forget"
+                            href="/forget-o"
                             class="text-primary-600 hover:underline text-pallate-persian_green"
                         >
                             Click here
@@ -202,7 +220,7 @@ export default function Login() {
                     <p className="Already_registered text-center text-gray-500 text-lg py-2">
                         Dont have an account ?{" "}
                         <a
-                            href="/sign-up"
+                            href="/sign-up-o"
                             class="text-primary-600 hover:underline text-pallate-persian_green"
                         >
                             Sign Up

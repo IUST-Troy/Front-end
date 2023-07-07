@@ -19,6 +19,7 @@ export default function Signup() {
   const [firstNameValue, setFirstNameValue] = React.useState("");
   const [lastNameValue, setLastNameValue] = React.useState("");
   const [userNameValue, setUserNameValue] = React.useState("");
+  const [RoleValue , setRoleValue] = React.useState("");
   const [emailValue, setEmailValue] = React.useState("");
   const [passwordValue, setPasswordValue] = React.useState("");
   const [passwordConfirmationValue, setPasswordConfirmationValue] =
@@ -51,6 +52,11 @@ export default function Signup() {
       e.target.value.replace(/[^a-zA-Z0-9_.]/g, "").replace(/^[^a-zA-Z]/g, "")
     );
   };
+  const handleRole = (e) => {
+    e.preventDefault();
+    console.log(e);
+    setRoleValue(e.target.value);
+  };
   const handlePassword = (e) => {
     e.preventDefault();
     setPasswordValue(e.target.value);
@@ -72,6 +78,7 @@ export default function Signup() {
     const ln = lastNameValue;
     const email = emailValue;
     const username = userNameValue;
+    const rl = RoleValue;
     const password = passwordValue;
     const confirm = passwordConfirmationValue;
     console.log("got here");
@@ -83,6 +90,7 @@ export default function Signup() {
           username: username,
           first_name: fn,
           last_name: ln,
+          role:rl,
           password: password,
           re_password: confirm,
         },
@@ -105,7 +113,7 @@ export default function Signup() {
           theme: "colored",
         });
         console.log(res.data);
-        navigate("/sign-in");
+        navigate("/sign-in-o");
       })
       .catch((err) => {
         toast.error(err.message, {
@@ -169,6 +177,8 @@ export default function Signup() {
               <input
                 className=" w-full md:w-48 p-2 rounded-xl border text-sm border-pallate-persian_green focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                 placeholder="Username"
+                value={userNameValue}
+                onChange={handleUsername}
               />
               
             </div>
@@ -178,14 +188,22 @@ export default function Signup() {
                 <label>Role</label>
               </div>
               <Select
-                class="p-2 w-full md:w-48 border text-sm border-pallate-persian_green focus:ring-1 rounded-xl bg-pallate-celeste_light mt-2 focus:ring-pallate-persian_green focus:border-pallate-persian_green focus:outline-none">
-          </Select>
+                class="p-2 w-full md:w-48 border text-sm border-pallate-persian_green focus:ring-1 rounded-xl bg-pallate-celeste_light mt-2 focus:ring-pallate-persian_green focus:border-pallate-persian_green focus:outline-none"
+                value={RoleValue}
+                onChange={handleRole}
+                  // console.log(e.target.value);
+                  >
+                <option selected>Select</option>
+                <option value="C">User</option>
+                <option value="O">Org</option>
+                <option value="T">Tourleader</option>
+              </Select>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 md:gap-2 grid-cols-1">
             <div className="flex flex-col text-gray-500 text-lg py-2">
-              <div className="flex justify-start items-center">
+              <div className=" flex justify-start items-center">
                 <HiLockClosed className="mr-1" />
                 <label>Password</label>
                 {passwordErrorConfirmationValue && passwordValue.length!==0 &&(
@@ -195,9 +213,9 @@ export default function Signup() {
                 )}
               </div>
               <input
-                className={`p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none bg-pallate-celeste_light mt-2 ${
+                className={`w-full md:w-48 p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none bg-pallate-celeste_light mt-2 ${
                   passwordErrorConfirmationValue && passwordValue.length!==0
-                    ? "border-red-500   focus:ring-red-500 focus:border-red-500"
+                    ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                     : "border-pallate-persian_green   focus:ring-pallate-persian_green  focus:border-pallate-persian_green"
                 }   `}
                 type="password"
@@ -212,7 +230,7 @@ export default function Signup() {
                 <label>Confirm Password</label>
               </div>
               <input
-                className={`p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none bg-pallate-celeste_light mt-2 ${
+                className={`w-full md:w-48 p-2 rounded-xl border text-sm focus:ring-1 focus:outline-none bg-pallate-celeste_light mt-2 ${
                   passwordErrorConfirmationValue && passwordConfirmationValue.length!==0
                     ? "border-red-500   focus:ring-red-500 focus:border-red-500"
                     : "border-pallate-persian_green   focus:ring-pallate-persian_green  focus:border-pallate-persian_green"
@@ -264,7 +282,7 @@ export default function Signup() {
           <p className="Already_registered text-center text-gray-500 text-lg py-2">
             Already registered ?{" "}
             <a
-              href="/sign-in"
+              href="/sign-in-o"
               class="text-primary-600 hover:underline text-pallate-persian_green"
             >
               Click here to Login{" "}
