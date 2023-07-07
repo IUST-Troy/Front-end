@@ -1,10 +1,52 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import beachVid from '../../Static/beachVid.mp4';
 import list from "./list.json";
 import { useState } from "react";
 import UserInfo from "../NavigationBar/UserInfo";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
+import userEvent from '@testing-library/user-event';
+import useWebSocket from 'react-use-websocket';
+
+
+//socket for chat
+const client = useMemo(
+  () => WebSocket('http://5.34.192.111:8000/chat/${room}')
+  );
+
+// const client = WebSocket('');
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  console.log(event.target[0].value);
+
+  if (event.target[0].value != "") {
+    client.send(
+      JSON.stringify({
+        username : user.username,
+        user_id : user.user_id,
+        message : event.target[0].value,
+      })
+    );
+  }
+  event.target[0].value = "";         //fasele dare?
+};
+
+useEffect(() => {
+  client.onopen = () => {
+    console.log(
+      "WebSocket Client Connected")
+  };
+  client.onmessage = (message) => {
+    let dataFromServer = JSON.parse(message.data);
+    setmessage((e) => [...e,dataFromServer]);
+  };
+  client.onclose = () => {
+    console.log("WebSocket Client disConnected");
+  };
+}, [client.onmessage, client.onopen, client.onclose]
+);
+
 
 const Hero = () => {
   const [isOpenActive, setIsOpenActive] = useState(false);
