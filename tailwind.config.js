@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      textShadow: {
+        outline: '0 0 0.5rem rgba(0, 0, 0, 0.5)',
+      },
       scale:{
         "102" : "1.02"        
       },
