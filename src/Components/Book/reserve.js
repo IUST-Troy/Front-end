@@ -15,14 +15,17 @@ import imgValue from "../../Static/myl.png";
 import { BsFillAirplaneFill } from "react-icons/bs";
 import airplanpath from "../../Static/pathfinal.png";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { Button, Card, Select } from "flowbite-react";
 import { list } from "postcss";
+// import { useNavigate } from "react-router-dom";
 export default function App() {
   const [firstNameValue, setFirstNameValue] = React.useState("");
   const [lastNameValue, setLastNameValue] = React.useState("");
   const [userNameValue, setUserNameValue] = React.useState("");
   const params = useParams()
+  let navigate = useNavigate();
 
 
   const [genderValue, setGenderValue] = React.useState("");
@@ -39,15 +42,49 @@ export default function App() {
       
 
         axios.post(
-          `https://mrsz.pythonanywhere.com/reserve/${params.id}/${params.originCity}/${params.Destination[1].city}`,
+          `https://mrsz.pythonanywhere.com/reserve/${params.id}`,
           inputList, {
             headers: {
               Authorization: `JWT ${localStorage.getItem("acctoken")}`,
               "Content-Type": "application/json",
             },
           }
-        ).then( (res) => 
-        {console.log(res.data) }).catch((error)=>{console.error(error)})
+        )
+        .then((res) => {
+          toast.success("Congratulations! Your Reservation was successful! ", {
+            position: "top-center",
+            autoClose: 1500,
+            className: "toast-message",
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+          });
+          console.log(res.data);
+          
+          // Delay navigation to home after 5 seconds
+          setTimeout(() => {
+            navigate("/home");
+          }, 3000);
+        })
+        
+        .catch((err) => {
+          toast.error(err.message, {
+            position: "top-center",
+            autoClose: 1500,
+            className: "toast-message",
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+          });
+          console.log(err);
+          // window.location.replace('/sign-in')
+        });
       }
   const validateForm = () => {
     for (let i = 0; i < inputList.length; i++) {
@@ -184,7 +221,7 @@ export default function App() {
                                   
                                     className="p-2 text-gray-500 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                                     // onChange={handleFirstName && handleinputchange(e, i)}
-                                    placeholder="First name"
+                                    placeholder="Firstname"
                                     name="firstname"
                                     // value={inputList[0]}
                                     
@@ -202,7 +239,7 @@ export default function App() {
                                   <input
                                     className="p-2 text-gray-500 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                                     // value={lastNameValue}
-                                    placeholder="Last name"
+                                    placeholder="Lastname"
                                     // onChange={handleLastName}
                                     name="lastname"
                                     onChange={(e) => handleinputchange(e, i)}
@@ -214,13 +251,13 @@ export default function App() {
                                 <div className="flex flex-col text-white text-lg py-2">
                                   <div className="flex justify-start items-center">
                                   <BsPersonFillLock className="mr-1" />
-                                  <label>National Code</label>
+                                  <label>NationalCode</label>
                                   </div>
                                   <input
                                   className="p-2 text-gray-500 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                                   // value={userNameValue}
                                   name="national_code"
-                                  placeholder="national code"
+                                  placeholder="NationalCode"
                                   onChange={(e) => handleinputchange(e, i)}
                                   // onChange={handleUsername}
                                 />
