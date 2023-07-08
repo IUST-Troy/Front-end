@@ -6,7 +6,7 @@ import { BsPersonFill } from "react-icons/bs";
 import { BsPersonFillLock } from "react-icons/bs";
 import { BsXLg, BsMapFill, BsCalendar } from "react-icons/bs";
 import Wallpaper1 from "../../Static/bg.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import hihi from "../../Static/hihii.jpg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import DatePicker from "react-datepicker";
@@ -14,7 +14,7 @@ import { useState } from "react";
 import imgValue from "../../Static/myl.png";
 import { BsFillAirplaneFill } from "react-icons/bs";
 import airplanpath from "../../Static/pathfinal.png";
-
+import axios from "axios";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { Button, Card, Select } from "flowbite-react";
 import { list } from "postcss";
@@ -22,11 +22,11 @@ export default function App() {
   const [firstNameValue, setFirstNameValue] = React.useState("");
   const [lastNameValue, setLastNameValue] = React.useState("");
   const [userNameValue, setUserNameValue] = React.useState("");
- 
+  const params = useParams()
 
 
   const [genderValue, setGenderValue] = React.useState("");
-  const [inputList, setinputList]= useState([{firstName:'', lastName:'', phone:'', nationalcode:'', gender:''}]);
+  const [inputList, setinputList]= useState([{firstname:'', lastname:'', phone:'', national_code:''}]);
   const [isFormValid, setIsFormValid] = useState(true);
 
   const handleFirstName = (e) => {
@@ -34,7 +34,21 @@ export default function App() {
     setFirstNameValue(e.target.value.replace(/[^a-zA-Z]/g, ""));
   };
  
+  const reserve = () => {
+    console.log(localStorage.getItem("acctoken"));
+      
 
+        axios.post(
+          `https://mrsz.pythonanywhere.com/reserve/${params.id}/${params.originCity}/${params.Destination[1].city}`,
+          inputList, {
+            headers: {
+              Authorization: `JWT ${localStorage.getItem("acctoken")}`,
+              "Content-Type": "application/json",
+            },
+          }
+        ).then( (res) => 
+        {console.log(res.data) }).catch((error)=>{console.error(error)})
+      }
   const validateForm = () => {
     for (let i = 0; i < inputList.length; i++) {
       const { firstName, lastName, phone, nationalcode, gender } = inputList[i];
@@ -85,17 +99,17 @@ export default function App() {
   
  
   const handleaddclick = () => {
-    const isFormEmpty = inputList.some(
-      (item) =>
-        item.firstName === "" ||
-        item.lastName === "" ||
-        item.phone === "" ||
-        item.nationalcode === "" ||
-        item.gender === "Not Selected"
-    );
-    if (!isFormEmpty) {
-      setinputList([...inputList, { firstName: "", lastName: "", phone: "", nationalcode: "", gender: "" }]);
-    }
+    console.log("here");
+    // const isFormEmpty = inputList.some(
+    //   (item) =>
+    //     item.firstname === "" ||
+    //     item.lastname === "" ||
+    //     item.phone === "" ||
+    //     item.national_code === ""
+    // );
+    // if (!isFormEmpty) {
+      setinputList([...inputList, { firstname: "", lastname: "", phone: "", national_code: ""}]);
+    // }
   };
   
   const handleremove = (index) => {
@@ -127,7 +141,7 @@ export default function App() {
                       <div class=" w-full ">
                         <div className=" w-full   p-8 px-8">
                           <div className="flex">
-                            <h2 className="text-4xl w-1/2  text-pallate-persian_green font-bold text-center my-4 mt-0">
+                            <h2 className="text-4xl w-1/2  text-white font-bold text-center my-4 mt-0">
                               Reservation
                             </h2>
                             <img
@@ -136,17 +150,24 @@ export default function App() {
                               alt="Default avatar"
                             ></img>
                           </div>
-                          <div class="divide-y divide-dashed">
+                          <div class="divide-y divide-dashed text-white">
                             <div className="flex">
                               <BsFillAirplaneFill />
-                              Tehran
+                              {/* Tehran */}
+                              {params.originCity}
+                              {/* Organization:{" "}
+                        {
+                          Organizations.find(
+                            (o) => o.id === params.id  
+                          )?.Name
+                        } */}
                             </div>
 
                             <div
                               className="flex justify-end
                              right-0"
                             >
-                              Mashad
+                             {params.city}
                               <BsFillAirplaneFill />
                             </div>
                           </div>
@@ -164,7 +185,7 @@ export default function App() {
                                     className="p-2 text-gray-500 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                                     // onChange={handleFirstName && handleinputchange(e, i)}
                                     placeholder="First name"
-                                    name="firstName"
+                                    name="firstname"
                                     // value={inputList[0]}
                                     
                                     onChange={(e) => main(e, i)}
@@ -183,7 +204,7 @@ export default function App() {
                                     // value={lastNameValue}
                                     placeholder="Last name"
                                     // onChange={handleLastName}
-                                    name="lastName"
+                                    name="lastname"
                                     onChange={(e) => handleinputchange(e, i)}
                                   />
                                 </div>
@@ -198,7 +219,7 @@ export default function App() {
                                   <input
                                   className="p-2 text-gray-500 rounded-xl border text-sm border-pallate-persian_green  focus:ring-1 focus:ring-pallate-persian_green bg-pallate-celeste_light mt-2 focus:border-pallate-persian_green focus:outline-none"
                                   // value={userNameValue}
-                                  name="nationalcode"
+                                  name="national_code"
                                   placeholder="national code"
                                   onChange={(e) => handleinputchange(e, i)}
                                   // onChange={handleUsername}
@@ -225,29 +246,10 @@ export default function App() {
 
                              
 
-                              <div className="flex flex-col text-white text-lg py-2">
-                                <div className="flex justify-start items-center">
-                                  <BsGenderAmbiguous className="mr-1" />
-                                  <label>Gender:</label>
-                                </div>
-                                <Select
-                                  id="gender"
-                                  class="w-full md:w-70 text-gray-500 border-pallate-persian_green disabled:opacity-80 rounded-xl bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green"
-                                  // disabled={!isEditMode}
-                                  // value={genderValue}
-                                  // onChange={handleGenderchange}
-                                  name="gender"
-                                  onChange={(e) => handleinputchange(e, i)}
-                                >
-                                  <option>Not Selected</option>
-                                  <option>Male</option>
-                                  <option>Female</option>
-                                  
-                                </Select>
-                              </div>
+                           
                               {inputList.length - 1 === i && (
                                 <button
-                                  className="w-full my-2 py-3  bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
+                                  className="w-full my-2 py-3  bg-green-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
                               
                                   onClick={handleaddclick}
                                 >
@@ -257,7 +259,7 @@ export default function App() {
 
                               {inputList.length !== 1 && (
                                 <button
-                                  className="w-full my-2 py-3 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
+                                  className="w-full my-2 py-3 bg-red-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
                                
                                   onClick={() => handleremove(i)}
                                 >
@@ -267,17 +269,16 @@ export default function App() {
                               {inputList.length - 1 === i && (
                                 <button
                                 
-                                disabled={inputList.some(
-                                  (item) =>
-                                    item.firstName === "" ||
-                                    item.lastName === "" ||
-                                    item.phone === "" ||
-                                    item.nationalcode === "" ||
-                                    item.gender === "Not Selected"
-                                )}
+                                // disabled={inputList.some(
+                                //   (item) =>
+                                //     item.firstName === "" ||
+                                //     item.lastName === "" ||
+                                //     item.phone === "" ||
+                                //     item.nationalcode === ""
+                                // )}
                                   className="w-full my-2  py-3  bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 rounded-xl font-blod text-white "
           
-                                  onClick={handleaddclick}
+                                  onClick={reserve}
                                 >
                                   reserve
                                 </button>

@@ -106,7 +106,7 @@ const TripPage = () => {
                     },
                 })
                 .then((res) => {
-                    const raw = res.data[0][0];
+                    const raw = res.data;
                     console.log(raw);
                     let depIcon = TbBus;
                     let retIcon = TbBus;
@@ -150,9 +150,9 @@ const TripPage = () => {
                         departureTransport: depIcon,
                         returnTransport: retIcon,
                         Hotels: raw.hotel_name ? raw.hotel_name.split(",") : [],
-                        organizationName: Organizations.find(
-                            (o) => o.id === raw.organization_id
-                        ).Name,
+                        // organizationName: Organizations.find(
+                        //     (o) => o.id === raw.organization_id
+                        // ).Name,
                         Destinations: dests,
                     };
                     setTripData(trip);
@@ -167,6 +167,7 @@ const TripPage = () => {
                             })
                             .then((pRes) => {
                                 const pRaw = pRes.data;
+                                console.log(pRaw);
                                 const place = {
                                     id: pRaw.id,
                                     Name: pRaw.name,
@@ -383,7 +384,9 @@ const TripPage = () => {
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-1 justify-items-center mt-5">
-                                        <Button className="w-1/2 bg-pallate-persian_green hover:bg-pallate-blue_munsell transform hover:scale-110 transition duration-500 ease-in-out ">
+                                        <Button className="w-1/2 bg-pallate-persian_green hover:bg-pallate-blue_munsell transform hover:scale-110 transition duration-500 ease-in-out "
+                                            onClick={()=>navigate(`/book/${params.id}/${tripData.originCity}/${tripData.Destinations[1].city}`)}
+                                        >
                                             <p className="text-xl">
                                                 Reserve Now
                                             </p>

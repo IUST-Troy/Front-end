@@ -49,7 +49,7 @@ function App() {
         <Route path="/tourleader-profile" element={<Tourleaderprofile/>} />
         <Route path='/organization' element={<Organization/>}/>
         <Route path='/Chat' element={<Chat/>}/>
-        <Route path='/book' element={<Book/>}/>
+        <Route path='/book/:id/:originCity/:city' element={<Book/>}/>
         
       </Routes>
     </Router>
