@@ -20,6 +20,7 @@ import SuccessLottieOptions from "../Loading/LoadingSucess";
 import EarthLottieOptions from "../Loading/LoadingEarth";
 import axios from "axios";
 import { TbTrain, TbPlane, TbShip, TbBus } from "react-icons/tb";
+import CommentSection from "./CommentSection";
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -295,50 +296,7 @@ const PlacePage = () => {
                                 </div>
                             </div>
                             <div className="card-bg border border-pallate-persian_green rounded-xl">
-                                <div className=" comment-section overflow-y-auto grid grid-cols-1 gap-2 py-3 px-5  w-full h-[30rem] ">
-                                    {MockComments.map((c) => (
-                                        <div className="comment-bg rounded-xl  flex flex-col p-2">
-                                            <div className="flex flex-row gap-2 mb-2 items-center justify-start">
-                                                <Avatar
-                                                    src={c.avatar}
-                                                    sx={{
-                                                        width: 56,
-                                                        height: 56,
-                                                    }}
-                                                ></Avatar>
-                                                <p className="text-gray-700 text-xl">
-                                                    @{c.username}
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p className="text-gray-700 text-lg">
-                                                    {c.commnet}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="flex flex-row px-5 gap-4 mt-3">
-                                    <div class="w-full mb-4 rounded-lg comment-bg   ">
-                                        <div class="px-4 py-2 comment-bg rounded-t-lg dark:bg-gray-800">
-                                            <textarea
-                                                id="comment"
-                                                rows="2"
-                                                class="w-full px-0 text-lg text-gray-700 comment-bg border-0 focus:ring-3 focus:ring-pallate-persian_green"
-                                                placeholder="Write a comment..."
-                                                required
-                                            ></textarea>
-                                        </div>
-                                        <div class="flex items-center justify-end px-3 py-2 border-t dark:border-gray-600">
-                                            <button
-                                                type="submit"
-                                                class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-pallate-persian_green rounded-lg focus:ring-4 focus:ring-blue-200  hover:bg-pallate-blue_munsell"
-                                            >
-                                                Post comment
-                                            </button>
-                                        </div>{" "}
-                                    </div>
-                                </div>
+                                <CommentSection placeId={params.id} />
                             </div>
                         </div>
                         <div className="grid grid-cols-custom_3_2 gap-7 justify-center items-stretch w-5/6 md:w-5/6 mx-auto pb-20">

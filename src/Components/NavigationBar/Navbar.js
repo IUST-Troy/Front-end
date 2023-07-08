@@ -35,8 +35,8 @@ const Pages = [
     Icon: BsHouse,
   },
   {
-    Page: "Tours",
-    Route: "/tour/#",
+    Page: "Trips",
+    Route: "/TripsList",
     Icon: BsAirplane,
   },
   {
@@ -45,18 +45,18 @@ const Pages = [
     Icon: BsBuilding,
   },
   {
-    Page: "Blog",
-    Route: "#BLog",
+    Page: "Places",
+    Route: "/PlacesList",
     Icon: BsQuote,
   },
-  {
-    Page: "Posts",
-    Route: "#Posts",
-    Icon: BsSticky,
-  },
+  // {
+  //   Page: "Posts",
+  //   Route: "#Posts",
+  //   Icon: BsSticky,
+  // },
   {
     Page: "About Us",
-    Route: "#AboutUs",
+    Route: "/AboutUs",
     Icon: BsBricks,
   },
 ];
@@ -167,7 +167,7 @@ const Navbar = () => {
           </Menu>
         </Box>
 
-        <SearchBar></SearchBar>
+        {/* <SearchBar></SearchBar> */}
 
         <Box
           sx={{
@@ -239,14 +239,14 @@ const Navbar = () => {
             },
           }}
         >
-          <DarkModeSwitch
+          {/* <DarkModeSwitch
             checked={isDarkMode}
             onChange={handleDarkMode}
             sunColor="#BAE8DBff"
             moonColor="#BAE8DBff"
             size={35}
             style={{ marginLeft: "2rem" }}
-          />
+          /> */}
         </Grid>
        
       </Toolbar>
