@@ -52,7 +52,7 @@ function App() {
         <Route path="/tourleader-profile" element={<Tourleaderprofile/>} />
         <Route path='/organization' element={<Organization/>}/>
         <Route path='/Chat' element={<Chat/>}/>
-        <Route path="/Panel" element={(role==="O"?<OrganizationPanelPage/>:<Errornotfound/>)}/>
+        <Route path="/Panel" element={<OrganizationPanelPage/>}/>
         <Route path="/AboutUs" element={<AboutUs/>}/>
         <Route path="/Wallet" element={<Wallet/>}/>
       </Routes>
