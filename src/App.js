@@ -26,6 +26,10 @@ import AboutUs from "./Components/AboutUs/AboutUs";
 import Wallet from "./Components/Wallet/Wallet";
 import HomePage from './Components/Homee/App'
 
+import HistoryForNormal from './Components/HistoryForNormalUsers/App'
+
+
+
 
 
 
@@ -56,6 +60,8 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs/>}/>
         <Route path="/Wallet" element={<Wallet/>}/>
         <Route path='/home' element={<HomePage/>}/>
+        <Route path='/history' element={<HistoryForNormal/>}/>
+        
         
         
       </Routes>
