@@ -1,7 +1,7 @@
 import React from "react";
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import HomePage from './Components/HomePage/HomePage'
+// import HomePage from './Components/HomePage/HomePage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Login from './Components/SignUpLogIn/login.jsx'
@@ -24,6 +24,7 @@ import Chat from './Components/Chat/App'
 import OrganizationPanelPage from "./Components/OrganizationPanel/OrganizationPanelPage";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import Wallet from "./Components/Wallet/Wallet";
+import HomePage from './Components/Homee/App'
 
 
 
@@ -39,7 +40,6 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verification" element={<Verification />} />
         <Route path="/forget" element={<Forget />} />
-        <Route path='/home' element={<HomePage />} />
         <Route path='/PlacesList' element={<Tour/>} />
         <Route path='/Profile' element={<ProfilePage/>} />
         <Route path='/Place/:id' element={<PlacePage/>} />
@@ -55,6 +55,9 @@ function App() {
         <Route path="/Panel" element={(role==="O"?<OrganizationPanelPage/>:<Errornotfound/>)}/>
         <Route path="/AboutUs" element={<AboutUs/>}/>
         <Route path="/Wallet" element={<Wallet/>}/>
+        <Route path='/home' element={<HomePage/>}/>
+        
+        
       </Routes>
     </Router>
   );

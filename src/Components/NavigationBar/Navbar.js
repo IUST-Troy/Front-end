@@ -36,7 +36,7 @@ const Pages = [
   },
   {
     Page: "Trips",
-    Route: "/TripsList",
+    Route: "/TripList",
     Icon: BsAirplane,
   },
   {
@@ -100,7 +100,7 @@ const TLPages = [
   },
   {
     Page: "Trips",
-    Route: "/TripsList",
+    Route: "/TripList",
     Icon: BsAirplane,
   },
   {

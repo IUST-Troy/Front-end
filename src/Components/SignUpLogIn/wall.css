@@ -53,3 +53,13 @@
     width: 100vw;
     height: 100vh;
 }
+.testoffers {
+    background-image: url("../../Static/hometour.jpg");
+    /* background-repeat: no-repeat; */
+    object-fit: contain; 
+    width: auto;
+    height: auto;
+   
+  }
+  
+  
