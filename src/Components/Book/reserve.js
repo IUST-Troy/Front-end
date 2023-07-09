@@ -66,7 +66,7 @@ export default function App() {
           
           // Delay navigation to home after 5 seconds
           setTimeout(() => {
-            navigate("/home");
+            navigate("/history");
           }, 3000);
         })
         

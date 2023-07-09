@@ -118,6 +118,7 @@ export default function Login() {
                                         ? res.data.birth_date
                                         : "1923-01-01"
                                 );
+                                localStorage.setItem("wallet",res.data.wallet)
                                 toast.success("Sign-in Sucessful", {
                                     position: "top-center",
                                     autoClose: 1500,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Wallpaper1 from "../../Static/bgR.jpg";
 
 import Header from "../NavigationBar/Header";
@@ -9,6 +9,9 @@ import { Button } from "flowbite-react";
 const Wallet = () => {
     const [balance, setBalance] = React.useState(0);
     const [increase, setIncrease] = React.useState(0);
+    useEffect(()=>{
+        setBalance(localStorage.getItem("wallet"))
+    },[])
     const handleButtonIncrease = (val) => {
         setIncrease(val+increase);
     }
@@ -28,7 +31,7 @@ const Wallet = () => {
                             Current Balance:
                         </p>
                         <p className="text-gray-700 text-4xl font-semibold">
-                            $1000
+                            ${balance}
                         </p>
                     </div>
                     <div className="flex flex-col gap-8 justify-center items-center">

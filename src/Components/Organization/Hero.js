@@ -1,6 +1,7 @@
 import React from 'react';
 import Wallpaper1 from '../../Static/bgR.jpg'
 // import data
+import { useNavigate } from "react-router-dom";
 import { hero } from './data';
 import { IconButton } from "@mui/material";
 import { Link as Scroll } from "react-scroll";
@@ -11,6 +12,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Hero = () => {
   const { title, subtitle, buttonText } = hero;
+  const navigate = useNavigate();
   return (
     <section className='h-full max-h-[850px] w-full bg-hero bg-right lg:bg-center bg-cover bg-no-repeat text-white pt-[225px] pb-[254px] relative mb-12 lg:mb-28'
    >
@@ -26,8 +28,9 @@ const Hero = () => {
           {subtitle}
         </h2>
         {/* button */}
-        <button className='px-[35px] lg:px-[80px] py-[9px] lg:py-[16px] mb-[160px] lg:mb-[194px] text-xl rounded-md bg-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.5)] backdrop-blur-md transition'>
+        <button className='px-[35px] lg:px-[80px] py-[9px] lg:py-[16px] mb-[160px] lg:mb-[194px] text-xl rounded-md bg-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.5)] backdrop-blur-md transition' onClick={()=>navigate('/create-trip')}>
           {buttonText}
+          
          
         </button>
         <Scroll to="place-to-visit" smooth={true}>
