@@ -4,6 +4,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Wallpaper1 from "../../Static/bgR.jpg";
 import "../../Styles/OrganizationPanel/orgStyles.scss";
 import { Button, Tooltip } from "flowbite-react";
+import axios from "axios";
+
 import PassengersList from "./PassengersList";
 const OrganizationHistory = () => {
     const [PassengersListView, setPassengersListView] = React.useState(false);
@@ -11,8 +13,19 @@ const OrganizationHistory = () => {
     const [Loading, setLoading] = React.useState(false);
     const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     const avas = [1, 2, 3, 4, 5, 6, 7, 8];
+    const URL = "https://mrsz.pythonanywhere.com/history_org"
     React.useEffect(() => {
         setLoading(true);
+        axios.get(URL,{
+            headers:{
+                Authorization: `JWT ${localStorage.getItem("acctoken")}`,
+                "Content-Type" : "application/json"
+            }
+        }).then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
         setTimeout(() => {
             setLoading(false);
         }, 5000);

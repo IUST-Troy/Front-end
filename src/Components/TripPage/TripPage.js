@@ -110,20 +110,20 @@ const TripPage = () => {
                     console.log(raw);
                     let depIcon = TbBus;
                     let retIcon = TbBus;
-                    if (raw.transport.departure_transport === "train") {
+                    if (raw.transport.departure_transport === "T") {
                         depIcon = TbTrain;
                     } else if (
-                        raw.transport.departure_transport === "airplane"
+                        raw.transport.departure_transport === "A"
                     ) {
                         depIcon = TbPlane;
-                    } else if (raw.transport.departure_transport === "ship") {
+                    } else if (raw.transport.departure_transport === "S") {
                         depIcon = TbShip;
                     }
-                    if (raw.transport.return_transport === "train") {
+                    if (raw.transport.return_transport === "T") {
                         retIcon = TbTrain;
-                    } else if (raw.transport.return_transport === "airplane") {
+                    } else if (raw.transport.return_transport === "A") {
                         retIcon = TbPlane;
-                    } else if (raw.transport.return_transport === "ship") {
+                    } else if (raw.transport.return_transport === "S") {
                         retIcon = TbShip;
                     }
                     const dests = raw.destination.map((d) => {
@@ -153,6 +153,7 @@ const TripPage = () => {
                         // organizationName: Organizations.find(
                         //     (o) => o.id === raw.organization_id
                         // ).Name,
+                        organizationName: raw.org_name,
                         Destinations: dests,
                     };
                     setTripData(trip);
@@ -397,106 +398,67 @@ const TripPage = () => {
                             <div className="flex flex-col gap-3">
                                 <div className="flex flex-col gap-10 p-5 card-bg border border-pallate-persian_green rounded-xl">
                                     <div className="">
-                                        <p className="text-3xl mb-3 text-gray-700">
+                                        {/* <p className="text-3xl mb-3 text-gray-700">
                                             Tour Leaders:
-                                        </p>
+                                        </p> */}
                                         <div className="flex flex-wrap flex-row gap-2">
-                                            {tourleadersData.map(
-                                                (tourleader, index) => {
-                                                    return (
-                                                        <Popover
-                                                            open={
-                                                                openPopoverT[
-                                                                    index
-                                                                ]
-                                                            }
-                                                            placement="bottom"
-                                                        >
-                                                            <PopoverHandler
-                                                                onMouseEnter={() =>
-                                                                    openPopoverHandlerT(
-                                                                        index
-                                                                    )
-                                                                }
-                                                                onMouseLeave={() =>
-                                                                    closePopoverHandlerT(
-                                                                        index
-                                                                    )
-                                                                }
-                                                            >
-                                                                <div className="date-transport-card-bg border cursor-pointer border-pallate-persian_green items-center flex flex-row gap-2 p-2 rounded-3xl transform hover:scale-105 transition duration-500 ease-in-out hover:border-2 ">
-                                                                    {/* <Avatar src={tourleader.avatar}/> */}
-                                                                    <p className="text-gray-600 text-center text-lg">
-                                                                        {
-                                                                            tourleader.Name
-                                                                        }
-                                                                    </p>
-                                                                </div>
-                                                            </PopoverHandler>
-                                                            <PopoverContent className="bg-transparent border-none shadow-none">
-                                                                <div className="bg-pallate-celeste w-56 px-10 py-5 border border-pallate-persian_green  justify-items-center rounded-xl grid grid-cols-1 gap-3 ">
-                                                                    <Avatar
-                                                                        src={
-                                                                            tourleader.Image
-                                                                        }
-                                                                        sx={{
-                                                                            width: 125,
-                                                                            height: 125,
-                                                                        }}
-                                                                    />
-                                                                    <p className="text-gray-600 text-center text-xl font-semibold">
-                                                                        {
-                                                                            tourleader.Name
-                                                                        }
-                                                                    </p>
-                                                                    <Rating>
-                                                                        <Rating.Star
-                                                                            filled={
-                                                                                Math.floor(
-                                                                                    tourleader.rate
-                                                                                ) >=
-                                                                                1
-                                                                            }
-                                                                        />
-                                                                        <Rating.Star
-                                                                            filled={
-                                                                                Math.floor(
-                                                                                    tourleader.rate
-                                                                                ) >=
-                                                                                2
-                                                                            }
-                                                                        />
-                                                                        <Rating.Star
-                                                                            filled={
-                                                                                Math.floor(
-                                                                                    tourleader.rate
-                                                                                ) >=
-                                                                                3
-                                                                            }
-                                                                        />
-                                                                        <Rating.Star
-                                                                            filled={
-                                                                                Math.floor(
-                                                                                    tourleader.rate
-                                                                                ) >=
-                                                                                4
-                                                                            }
-                                                                        />
-                                                                        <Rating.Star
-                                                                            filled={
-                                                                                Math.floor(
-                                                                                    tourleader.rate
-                                                                                ) ==
-                                                                                5
-                                                                            }
-                                                                        />
-                                                                    </Rating>
-                                                                </div>
-                                                            </PopoverContent>
-                                                        </Popover>
-                                                    );
-                                                }
-                                            )}
+                                            {
+                                            // tourleadersData.map(
+                                            //     (tourleader, index) => {
+                                            //         return (
+                                            //             <Popover
+                                            //                 open={
+                                            //                     openPopoverT[
+                                            //                         index
+                                            //                     ]
+                                            //                 }
+                                            //                 placement="bottom"
+                                            //             >
+                                            //                 <PopoverHandler
+                                            //                     onMouseEnter={() =>
+                                            //                         openPopoverHandlerT(
+                                            //                             index
+                                            //                         )
+                                            //                     }
+                                            //                     onMouseLeave={() =>
+                                            //                         closePopoverHandlerT(
+                                            //                             index
+                                            //                         )
+                                            //                     }
+                                            //                 >
+                                            //                     <div className="date-transport-card-bg border cursor-pointer border-pallate-persian_green items-center flex flex-row gap-2 p-2 rounded-3xl transform hover:scale-105 transition duration-500 ease-in-out hover:border-2 ">
+                                            //                         {/* <Avatar src={tourleader.avatar}/> */}
+                                            //                         <p className="text-gray-600 text-center text-lg">
+                                            //                             {
+                                            //                                 tourleader.Name
+                                            //                             }
+                                            //                         </p>
+                                            //                     </div>
+                                            //                 </PopoverHandler>
+                                            //                 <PopoverContent className="bg-transparent border-none shadow-none">
+                                            //                     <div className="bg-pallate-celeste w-56 px-10 py-5 border border-pallate-persian_green  justify-items-center rounded-xl grid grid-cols-1 gap-3 ">
+                                            //                         <Avatar
+                                            //                             src={
+                                            //                                 tourleader.Image
+                                            //                             }
+                                            //                             sx={{
+                                            //                                 width: 125,
+                                            //                                 height: 125,
+                                            //                             }}
+                                            //                         />
+                                            //                         <p className="text-gray-600 text-center text-xl font-semibold">
+                                            //                             {
+                                            //                                 tourleader.Name
+                                            //                             }
+                                            //                         </p>
+                                                                    
+                                            //                     </div>
+                                            //                 </PopoverContent>
+                                            //             </Popover>
+                                            //         );
+                                            //     }
+                                            // )
+                                        }
                                         </div>
                                     </div>
                                     <div>
@@ -585,7 +547,7 @@ const TripPage = () => {
                                                                         place.Country
                                                                     }
                                                                 </p>
-                                                                <Rating className="items-center justify-center">
+                                                                {/* <Rating className="items-center justify-center">
                                                                     <Rating.Star
                                                                         filled={
                                                                             true
@@ -611,7 +573,7 @@ const TripPage = () => {
                                                                             true
                                                                         }
                                                                     />
-                                                                </Rating>
+                                                                </Rating> */}
                                                                 <div className="grid grid-cols-1">
                                                                     <p className="pl-5 text-2xl text-gray-600 text-left">
                                                                         Description:

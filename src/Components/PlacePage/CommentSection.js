@@ -108,6 +108,7 @@ const CommentSection = ({ placeId }) => {
                 </div>
             </div>
         </>
+        
     );
 };
 
