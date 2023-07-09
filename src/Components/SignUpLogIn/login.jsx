@@ -133,15 +133,18 @@ export default function Login() {
                                 setTimeout(() => {
                                     if (localStorage.getItem("role") === 'T')
                                     {
-                                        window.location.href = "/create-trip/";
+                                        navigate("/home")
+                        
                                     }
                                     else if (localStorage.getItem("role") === 'O')
                                     {
-                                        window.location.href = "/tourleader/";
+                                        
+                                        navigate("/organization")
                                     }
                                     else if (localStorage.getItem("role") === 'C')
                                     {
-                                        window.location.href = "/Chat/";
+                                        
+                                        navigate("/home")
                                     }
                                 }, 500);
                             })

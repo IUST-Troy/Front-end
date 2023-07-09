@@ -16,7 +16,7 @@ import Errornotfound from './Components/404/notfound.jsx'
 import TripPage from './Components/TripPage/TripPage';
 import TripCardTourLeader from './Components/TripCard/TripCardTourLeader';
 import ListofTrips from './Components/ListofTrips/ListOfTrips';
-import CreateCard from "./Components/Create_Trip/TripCard";
+import CreateCard from "./Components/Create_Trip/App";
 import ProfiletourleaderPage from "./Components/Profile-tourleader/profile-tourleader";
 import Tourleaderprofile from "./Components/Profile-tourleader/editprofile(tourleder)";
 import Organization from './Components/Organization/App'

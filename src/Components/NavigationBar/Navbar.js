@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   AppBar,
@@ -60,10 +60,78 @@ const Pages = [
     Icon: BsBricks,
   },
 ];
+const OrgPages = [
+  {
+    Page: "Home",
+    Route: "/organization",
+    Icon: BsHouse,
+  },
+  {
+    Page: "Trips",
+    Route: "/TripList",
+    Icon: BsAirplane,
+  },
+  {
+    Page: "Create Trip",
+    Route: "/create-trip",
+    Icon: BsBuilding,
+  },
+  {
+    Page: "Places",
+    Route: "/PlacesList",
+    Icon: BsQuote,
+  },
+  // {
+  //   Page: "Posts",
+  //   Route: "#Posts",
+  //   Icon: BsSticky,
+  // },
+  {
+    Page: "About Us",
+    Route: "/AboutUs",
+    Icon: BsBricks,
+  },
+];
+const TLPages = [
+  {
+    Page: "Home",
+    Route: "/home",
+    Icon: BsHouse,
+  },
+  {
+    Page: "Trips",
+    Route: "/TripsList",
+    Icon: BsAirplane,
+  },
+  {
+    Page: "Agencies",
+    Route: "#Agencies",
+    Icon: BsBuilding,
+  },
+  {
+    Page: "Places",
+    Route: "/PlacesList",
+    Icon: BsQuote,
+  },
+  // {
+  //   Page: "Posts",
+  //   Route: "#Posts",
+  //   Icon: BsSticky,
+  // },
+  {
+    Page: "About Us",
+    Route: "/AboutUs",
+    Icon: BsBricks,
+  },
+];
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [isDarkMode, setDarkMode] = React.useState(false);
+  const [role, setRole] = React.useState(localStorage.getItem("role"));
+  useEffect(()=>{
+    console.log(localStorage.getItem("role"));
+  },[])
   let navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -145,7 +213,26 @@ const Navbar = () => {
                 Profile
               </Typography>
             </MenuItem>
-            {Pages.map((page) => (
+            {(role==="C" && Pages.map((page) => (
+              <>
+                <MenuItem
+                  onClick={()=>navigate(page.Route)}
+                  sx={{
+                    m: (0.5, 1),
+                    borderRadius: 1.2,
+                    "&:hover": {
+                      backgroundColor: "rgba(186, 232, 219, 0.438)",
+                    },
+                  }}
+                >
+                  <ListItemIcon>{<page.Icon />}</ListItemIcon>
+                  <Typography className="menuItem-typo" textAlign="center">
+                    {page.Page}
+                  </Typography>
+                </MenuItem>
+              </>
+            )))||
+            (role==="T" && TLPages.map((page) => (
               <>
                 <MenuItem
                   onClick={handleCloseNavMenu}
@@ -163,7 +250,28 @@ const Navbar = () => {
                   </Typography>
                 </MenuItem>
               </>
-            ))}
+            )))||
+            (role==="O" && OrgPages.map((page) => (
+              <>
+                <MenuItem
+                  onClick={()=>navigate(page.Route)}
+                  sx={{
+                    m: (0.5, 1),
+                    borderRadius: 1.2,
+                    "&:hover": {
+                      backgroundColor: "rgba(186, 232, 219, 0.438)",
+                    },
+                  }}
+                >
+                  <ListItemIcon>{<page.Icon />}</ListItemIcon>
+                  <Typography className="menuItem-typo" textAlign="center">
+                    {page.Page}
+                  </Typography>
+                </MenuItem>
+              </>
+            )))
+            
+            }
           </Menu>
         </Box>
 
@@ -175,7 +283,7 @@ const Navbar = () => {
             display: { md: "block", xs: "none" },
           }}
         >
-          {Pages.map((page) => (
+          {role==="C" && Pages.map((page) => (
             <Button
               className="navbar-button"
               onClick={() => navigate(page.Route)}
@@ -190,7 +298,40 @@ const Navbar = () => {
             >
               {page.Page}
             </Button>
-          ))}
+          ))||
+          role==="T" && TLPages.map((page) => (
+            <Button
+              className="navbar-button"
+              onClick={() => navigate(page.Route)}
+              sx={{
+                fontSize: { lg: "larger", md: "large" },
+                marginRight: {
+                  xl: "4vw",
+                  lg: "2.5vw",
+                  md: "0.2vw",
+                },
+              }}
+            >
+              {page.Page}
+            </Button>
+          ))||
+          role==="O" && OrgPages.map((page) => (
+            <Button
+              className="navbar-button"
+              onClick={() => navigate(page.Route)}
+              sx={{
+                fontSize: { lg: "larger", md: "large" },
+                marginRight: {
+                  xl: "4vw",
+                  lg: "2.5vw",
+                  md: "0.2vw",
+                },
+              }}
+            >
+              {page.Page}
+            </Button>
+          ))
+          }
         </Box>
         
         <Grid 
