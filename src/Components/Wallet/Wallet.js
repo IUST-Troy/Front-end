@@ -5,6 +5,7 @@ import Header from "../NavigationBar/Header";
 import Navbar from "../NavigationBar/Navbar";
 import FooterV2 from "../HomePage/FooterV2";
 import { Button } from "flowbite-react";
+import axios from "axios";
 
 const Wallet = () => {
     const [balance, setBalance] = React.useState(0);
@@ -14,6 +15,20 @@ const Wallet = () => {
     },[])
     const handleButtonIncrease = (val) => {
         setIncrease(val+increase);
+    }
+    const handleincrease = () =>{
+        axios.post("https://mrsz.pythonanywhere.com/inc_money/",{money:increase},{
+            headers:{
+                Authorization:`JWT ${localStorage.getItem("acctoken")}`,
+                "Content-Type": "application/json"
+            }
+        }).then(res => {
+            setBalance(res.data.wallet)
+            localStorage.setItem("wallet",res.data.wallet)
+            setIncrease(0)
+        }).catch(err => {
+            console.log(err.message);
+        })
     }
     return (
         <>
@@ -44,8 +59,10 @@ const Wallet = () => {
                             <Button onClick={()=>handleButtonIncrease(1000)}>+ $1000</Button>
                         </div>
                         <div className="grid grid-cols-2 gap-4 px-8 w-full">
-                            <input type="number" min="1" step="1" value={increase} onChange={(e)=>{setIncrease(e.target.value)}} className="rounded-2xl border border-pallate-persian_green card-bg" />
-                            <Button>Add!</Button>
+                            <input type="number" min="1" step="1" value={increase} disabled={true} onChange={(e)=>{setIncrease(e.target.value)}} className="rounded-2xl border border-pallate-persian_green card-bg" />
+                            <Button
+                            onClick={()=>handleincrease()}
+                            >Add!</Button>
                         </div>
                     </div>
                 </div>

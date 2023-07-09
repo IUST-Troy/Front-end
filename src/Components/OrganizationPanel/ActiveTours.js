@@ -24,7 +24,7 @@ const ActiveTours = () => {
             },
         },
     });
-    const nums = [1, 2, 3];
+    const nums = [1];
     const avas = [1, 2, 3, 4, 5, 6, 7, 8];
     return (
         <>
@@ -41,13 +41,13 @@ const ActiveTours = () => {
                                 <div className="grid grid-cols-1 items-center justify-center">
                                     <p className="text-white italic">From:</p>
                                     <p className="text-white italic">
-                                        Country; City
+                                        France; Paris
                                     </p>
                                 </div>
                                 <div className="grid grid-cols-1 items-center justify-center">
                                     <p className="text-white italic">To:</p>
                                     <p className="text-white italic">
-                                        Country; City
+                                        Iran; Tehran
                                     </p>
                                     <p className="text-white italic">...</p>
                                 </div>
@@ -55,21 +55,21 @@ const ActiveTours = () => {
                             <div className="grid grid-cols-2 items-start justify-center content-center justify-items-center gap-4 p-2">
                                 <p className="text-white italic">Price: $60</p>
                                 <p className="text-white italic">
-                                    Passengers: 30/40
+                                    Passengers: 0/50
                                 </p>
                             </div>
                             <p className="text-xl font-semibold text-white italic text-center">
-                                Date: 28-6-2023 18:00
+                                Date: 20-7-2023 
                             </p>
                             <div className="flex flex-row overflow-x-auto TlAvatar gap-2 pb-2 px-2">
-                                {avas.map((num) => (
+                                {/* {avas.map((num) => (
                                     <Tooltip
                                         content="name surename"
                                         style="light"
                                     >
                                         <Avatar className="cursor-pointer" />
                                     </Tooltip>
-                                ))}
+                                ))} */}
                             </div>
                             <div className="flex flex-row items-center justify-center gap-3 px-3 pt-3">
                                 <Button className="bg-pallate-persian_green rounded-2xl text-white font-semibold text-lg w-full hover:bg-pallate-blue_munsell">
@@ -94,7 +94,7 @@ const ActiveTours = () => {
                             showLastButton
                             variant="text"
                             color="primary"
-                            count={10}
+                            count={1}
                             page={currentPage}
                             onChange={(e, value) => {
                                 setCurrentPage(value);

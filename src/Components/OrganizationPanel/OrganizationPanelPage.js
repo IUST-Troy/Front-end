@@ -109,7 +109,7 @@ const OrganizationPanelPage = () => {
                                     <p>Tour Leaders</p>
                                 </div>
                             </Button>
-                            <Button
+                            {/* <Button
                                 className={
                                     Page === Pages.AddTourLeader
                                         ? "bg-pallate-persian_green hover:bg-pallate-persian_green rounded-none w-full focus:ring-transparent focus:ring-offset-transparent !justify-start"
@@ -121,7 +121,7 @@ const OrganizationPanelPage = () => {
                                     <MdPersonAdd />
                                     <p className="text-sm">Add TourLeaders</p>
                                 </div>
-                            </Button>
+                            </Button> */}
                         </div>
                         <div className="rounded-b-2xl grid grid-cols-2 pb-4 items-center justify-center content-center justify-items-center">
                             <Tooltip
