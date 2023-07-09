@@ -1,12 +1,222 @@
-import React from 'react';
+import React, { createContext, useContext, useEffect, useMemo } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import beachVid from '../../Static/beachVid.mp4';
 import list from "./list.json";
 import { useState } from "react";
 import UserInfo from "../NavigationBar/UserInfo";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
+import userEvent from '@testing-library/user-event';
+import useWebSocket from 'react-use-websocket';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { w3cwebsocket } from 'websocket';
+import { ArrowBack } from '@material-ui/icons';
+import { useEffectOnce } from './useEffectOnce';
+import axios from 'axios';
+// import AuthContext from './path/to/AuthContext';
+// import AuthContext from './Components/AuthContext';
+
+// const room = {}
+// //socket for chat
+// const client = useMemo(
+//   () => WebSocket('http://5.34.192.111:8000/chat/${room}')
+//   );
+
+// const client = WebSocket('');
+// const { user } = useContext(Authcontext);
+// const useCustomHook = () => {
+//   const { user } = useContext(Authcontext);
+// }
+
+// const handleSubmit = (event) => {
+//   const { user } = useContext(Authcontext);
+//   event.preventDefault();
+//   console.log(event.target[0].value);
+
+//   if (event.target[0].value != "") {
+//     client.send(
+//       JSON.stringify({
+//         username : user.username,
+//         user_id : user.user_id,
+//         message : event.target[0].value,
+//       })
+//     );
+//   }
+//   event.target[0].value = "";         //fasele dare?
+// };
+
+// useEffect(() => {
+//   client.onopen = () => {
+//     console.log(
+//       "WebSocket Client Connected")
+//   };
+//   client.onmessage = (message) => {
+//     let dataFromServer = JSON.parse(message.data);
+//     setmessage((e) => [...e,dataFromServer]);
+//   };
+//   client.onclose = () => {
+//     console.log("WebSocket Client disConnected");
+//   };
+// }, [client.onmessage, client.onopen, client.onclose]
+// );
+const chatsroom ={
+Tehran : "Tehran"
+
+}
+
 
 const Hero = () => {
+  const acctoken = localStorage.getItem("acctoken")
+  const [room, setroom] = useState("")
+//socket for chat
+// const client = useMemo(
+//   () => WebSocket('http://5.34.192.111:8000/chat/${room}')
+//   );
+const [client, setClient] = useState(null);
+
+useEffectOnce(() => {
+  // const client_1 = new w3cwebsocket(
+  //   `wss://5.34.192.111:8000/chat/${room}`
+  // );
+  const tempClient = new WebSocket(`wss://5.34.192.111:8000/chat/alaki11`,"Authorization",`JWT ${acctoken}`)
+  tempClient.onopen = (event) => {
+    // setClient(tempClient);
+    console.log("WebSocket open succesfull")
+  };
+
+  // tempClient.onmessage = (event) => {
+  //   // fetchChatHistory(router.query.chat_id);
+  //   console.log(event);
+  // };
+  tempClient.onclose = (event) => {
+    console.log(event);
+    console.log("closed connection");
+    // startChat();
+  };
+  setClient(tempClient);
+});
+
+const startChat = (room_name) => {
+  setroom(room_name)
+  console.log(room_name)
+  console.log(`wss://5.34.192.111:8000/chat/${room}`)
+  const tempClient = new WebSocket(`wss://5.34.192.111:8000/chat/alaki11`,"Authorization",`JWT ${acctoken}`)
+  tempClient.onopen = (event) => {
+    // setClient(tempClient);
+    console.log("WebSocket open succesfull")
+  };
+  // tempClient.onmessage = (event) => {
+  //   // fetchChatHistory(router.query.chat_id);
+  //   console.log(event);
+  // };
+  tempClient.onclose = (event) => {
+    console.log(event);
+    console.log("closed connection");
+    // startChat();
+  };
+  // tempClient.onerror = (event) => {
+  //   console.log(event);
+  // };
+  setClient(tempClient)
+}
+
+// const client = useMemo(() => new WebSocket('ws://5.34.192.111:8000/chat/${room}'), [room]);
+
+const username = localStorage.getItem("username");
+// const password = localStorage.getItem("password");
+
+const [socketUrl, setSocketUrl] = useState('');
+
+  // const Authcontext = (username, email) => {
+  //   fetch('http://5.34.192.111:8000/chat', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       username,
+  //       // email,
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+
+  //       console.log(data);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
+
+  // const Authcontext = createContext();
+  
+
+
+  const [message, setmessage] = useState('');
+
+  // const { user } = useContext(Authcontext);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(event.target[0].value);
+  
+    if (event.target[0].value != "") {
+      client.send(
+        JSON.stringify({
+          username : localStorage.getItem("username"),
+          // user_id : user.user_id,
+          message : event.target[0].value,
+        })
+      );
+    }
+    event.target[0].value = "";         //fasele dare?
+  };
+
+
+
+  // useEffect(() => {
+
+  //   // const setmessage = ; // Assign a value to the 'setmessage' variable
+
+
+  //   client.onopen = () => {
+  //     console.log(
+  //       "WebSocket Client Connected")
+  //   };
+  //   client.onmessage = (message) => {
+  //     let dataFromServer = JSON.parse(message.data);
+  //     setmessage((e) => [...e,dataFromServer]);
+  //   };
+  //   client.onclose = () => {
+  //     console.log("WebSocket Client disConnected");
+  //   };
+  // }, [client.onmessage, client.onopen, client.onclose]
+  // );
+  const [room_names , setRoom_names] = useState([])
+
+  useEffect(() => {
+    console.log(room_names[1])
+  }, [room_names])
+
+  useEffect(() => {
+axios.get(
+  "http://5.34.192.111:8000/chat_room_name/" , 
+  {headers :{
+    'Content-Type' : 'application/json',
+    "Access-Control-Allow-Origin" : "*",
+    "Access-Control-Allow-Methods" : "GET,PATCH",
+}}
+)
+.then((response) => {
+setRoom_names(response.data)
+console.log("room names nama")
+console.log(response.data)
+})
+.catch((err) => {
+console.log(err)
+})
+  }, [])
+
+
   const [isOpenActive, setIsOpenActive] = useState(false);
   const [isOpenInactive, setIsOpenInActive] = useState(false);
   return (
@@ -50,22 +260,26 @@ const Hero = () => {
                 <span class="font-bold">Active Rooms</span>
               </div>
               <div class="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
+                {room_names.map((RN) => {
                 <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
-                  <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                    H
+                  <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"                  >
+                    {RN.room_name.charAt(0).toUpperCase()}
+                    r
                   </div>
-                  <div class="ml-2 text-sm font-semibold">Gilan</div>
+                  <div class="ml-2 text-sm font-semibold">{RN.room_name}</div>
                 </button>
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                })}
+
+                { <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
                   <div class="flex items-center justify-center h-8 w-8 bg-gray-200 rounded-full">
-                    M
+                    k
                   </div>
                   <div class="ml-2 text-sm font-semibold">Kish</div>
                   <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-4 w-4 rounded leading-none">
                     2
                   </div>
                 </button>
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+/*                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
                   <div class="flex items-center justify-center h-8 w-8 bg-orange-200 rounded-full">
                     P
                   </div>
@@ -82,21 +296,25 @@ const Hero = () => {
                     J
                   </div>
                   <div class="ml-2 text-sm font-semibold">Karaj</div>
-                </button>
+                </button> */}
               </div>
             </div>
-            <div class="flex flex-col mt-8 card-bg rounded-lg p-2">
+            {/* <div class="flex flex-col mt-8 card-bg rounded-lg p-2">
               <div class="flex flex-row items-center justify-between ">
                 <span class="font-bold">Inactive Rooms</span>
               </div>
               <div class="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                <button 
+                class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
+                onClick = {() => startChat(chatsroom["Tehran"])} 
+                >
+
                   <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
                     T
                   </div>
                   <div class="ml-2 text-sm font-semibold">
                     {" "}
-                     Tehran Room
+                     Tehran
                   </div>
                 </button>
                 <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
@@ -118,7 +336,7 @@ const Hero = () => {
                 </button>
                 
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div class="flex flex-col h-full p-6   ">
