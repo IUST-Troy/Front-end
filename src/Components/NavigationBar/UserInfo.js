@@ -191,7 +191,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                   <Typography className="menuItem-typo">Dashboard</Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => menuClickHandler("/profile")}
+                  onClick={() => menuClickHandler("/profile_orga")}
                   sx={{
                     m: (0.5, 1),
                     borderRadius: 1.2,

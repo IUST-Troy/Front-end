@@ -27,7 +27,7 @@ import Wallet from "./Components/Wallet/Wallet";
 import HomePage from './Components/Homee/App'
 
 import HistoryForNormal from './Components/HistoryForNormalUsers/App'
-
+import EditOrga from './Components/EditProfileOrga/App'
 
 
 
@@ -61,6 +61,8 @@ function App() {
         <Route path="/Wallet" element={<Wallet/>}/>
         <Route path='/home' element={<HomePage/>}/>
         <Route path='/history' element={<HistoryForNormal/>}/>
+        <Route path='/profile_orga' element={<EditOrga/>}/>
+
         
         
         
