@@ -23,11 +23,14 @@ import Organization from './Components/Organization/App'
 import Chat from './Components/Chat/App'
 import OrganizationPanelPage from "./Components/OrganizationPanel/OrganizationPanelPage";
 import AboutUs from "./Components/AboutUs/AboutUs";
+import Wallet from "./Components/Wallet/Wallet";
 
 
 
 
 function App() {
+  const [role, setRole] = React.useState(localStorage.getItem("role"));
+  const [token, setToken] = React.useState(localStorage.getItem("token")!=null);
   return (
     <Router>
       <Routes>
@@ -49,9 +52,9 @@ function App() {
         <Route path="/tourleader-profile" element={<Tourleaderprofile/>} />
         <Route path='/organization' element={<Organization/>}/>
         <Route path='/Chat' element={<Chat/>}/>
-        <Route path="/Panel" element={<OrganizationPanelPage/>}/>
+        <Route path="/Panel" element={(role==="O"?<OrganizationPanelPage/>:<Errornotfound/>)}/>
         <Route path="/AboutUs" element={<AboutUs/>}/>
-    
+        <Route path="/Wallet" element={<Wallet/>}/>
       </Routes>
     </Router>
   );

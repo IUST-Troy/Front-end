@@ -11,7 +11,6 @@ import "../../Styles/PlacePage/PlacePage.scss";
 import eifel from "../../Static/eiffel.jpg";
 import four from "../../Static/four.jpg";
 import Wallpaper1 from "../../Static/bgR.jpg";
-import mylady from "../../Static/mylady.jpg";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { useParams } from "react-router-dom";
@@ -21,7 +20,7 @@ import EarthLottieOptions from "../Loading/LoadingEarth";
 import axios from "axios";
 import { TbTrain, TbPlane, TbShip, TbBus } from "react-icons/tb";
 import CommentSection from "./CommentSection";
-
+import notFound from "../../Static/notfound.png"
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow,
@@ -33,9 +32,11 @@ const PlacePage = () => {
     const [loading, setLoading] = React.useState(undefined);
     const [completed, setCompleted] = React.useState(undefined);
     const [data, setData] = React.useState(undefined);
+    const [placeImages , setPlaceImages] = React.useState(undefined);
+    const baseAPIURL = `https://mrsz.pythonanywhere.com`;
     useEffect(() => {
         console.log(params.id);
-        const baseURL = `https://mrsz.pythonanywhere.com/place/Place/${params.id}`
+        const baseURL = `${baseAPIURL}/place/Place/${params.id}`
         console.log(baseURL);
         setTimeout(() => {
             axios.get(baseURL, {
@@ -64,7 +65,25 @@ const PlacePage = () => {
                 }
                 setStars(arr)
                 console.log(stars);
-                setLoading(true);
+                
+
+                axios.get(`${baseAPIURL}/place/specific_placeimage/${params.id}`, {
+                    headers: {
+                        Authorization: `JWT ${localStorage.getItem("acctoken")}`,
+                        "Content-Type": "application/json"
+                    }
+                }).then(res => {
+                    console.log(res.data);
+                    setPlaceImages(res.data)
+                    setLoading(true);
+                }).catch(err => {
+                    console.log(err.message);
+                })
+
+
+
+
+                // setLoading(true);
             }).catch(err => {
                 console.log(err.message);
             })
@@ -74,80 +93,7 @@ const PlacePage = () => {
             }, 2000);
         }, 2000);
     }, []);
-    const MockComments = [
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit",
-        },
-        {
-            username: "mmd",
-            avatar: mylady,
-            commnet:
-                "massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus viverra vitae congue eu consequat ac felis donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium",
-        },
-    ];
+    
 
     const [stars, setStars] = React.useState([
         false,
@@ -180,7 +126,22 @@ const PlacePage = () => {
         setStars(arr)
     };
     const handleRatePost =  (Rate)=> {
-        // axios.post().then(res => {}).catch(err => {})
+        axios.post(
+            `${baseAPIURL}/place/Place/${params.id}/Rate/`,{
+                place: params.id,
+                rate: Rate,
+            },
+            {
+                headers: {
+                    Authorization: `JWT ${localStorage.getItem("acctoken")}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        ).then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err.message);
+        })
         console.log(Rate);
     }
     return (
@@ -233,8 +194,15 @@ const PlacePage = () => {
                                         slideInterval={5000}
                                         className="h-96 md:w-full md:block hidden w-80 rounded-bl-none"
                                     >
-                                        <img src={eifel} />
-                                        <img src={four} />
+                                        {/* <img src={eifel} />
+                                        <img src={four} /> */}
+                                        {placeImages.length > 0 ? (
+                                            placeImages.map((image, index) => (
+                                                <img src={image.image} key={index} />
+                                            ))
+                                        ) : (
+                                            <img src={notFound} />
+                                        )}
                                     </Carousel>
                                 </div>
                                 <div className="grid md:grid-cols-custom_1_3  md:gap-0 grid-cols-1 gap-3">
@@ -281,7 +249,7 @@ const PlacePage = () => {
                                                 </p>
                                             </Rating>
                                             <p className="text-sm pt-3 pl-11 font-medium text-gray-500 dark:text-gray-400">
-                                                1,745 global ratings
+                                                {/* 1,745 global ratings */}
                                             </p>
                                         </React.Fragment>
                                     </div>

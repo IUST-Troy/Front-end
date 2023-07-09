@@ -97,8 +97,10 @@ export default function ImageCard({ tours, page, setTotalPagin, totalpagin }) {
                   onClick={() => navigate(`/Place/${item.id}`)}
                   sx={{
                     maxWidth: 645,
+                    minWidth: 300,
                     background: "rgba(0,0,0,0.5)",
                     margin: "20px",
+                    cursor: "pointer",
                     borderRadius: 5,
                     "&:hover": {
                       backgroundColor: "rgba(186, 232, 219, 0.438)",
@@ -118,15 +120,15 @@ export default function ImageCard({ tours, page, setTotalPagin, totalpagin }) {
                       gutterBottom
                       variant="h5"
                       component="h2"
-                      sx={{ textAlign: "center" }}
+                      sx={{ textAlign: "center" , color:"#FFFFFF"}}
                     >
                       {item.name}
                     </Typography>
-                    <Typography sx={{ textAlign: "center" }}>
+                    <Typography sx={{ textAlign: "center", color:"#FFFFFF" }}>
                       <IconButton
                         className="icoon"
                         sx={{
-                          color: "#fff",
+                          color: "#FFFFFF",
                         }}
                       >
                         <LocationOnIcon />
@@ -136,7 +138,7 @@ export default function ImageCard({ tours, page, setTotalPagin, totalpagin }) {
                     </Typography>
                     <Typography>
                       <Rating
-                        sx={{ color: "#fff" }}
+                        sx={{ color:"#FFFFFF" }}
                         name="half-rating-read"
                         defaultValue={item.rate}
                         precision={0.5}

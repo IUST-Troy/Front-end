@@ -54,116 +54,7 @@ const SearchBar = ({ setTours }) => {
     setIsOpen(false);
   };
 
-  // const Country = [
-  //   { label: "iran", value: "iran" },
-  //   { label: "china", value: "china" },
-  //   // { label: "  Belgium" },
-  //   // { label: "  france" },
-  // ];
-
-  // const tehran = [
-  //   { label: "tehran", value: "tehran" },
-  //   // { label: "hong kong" },
-  //   // { label: "  Brussels" },
-  //   // { label: "  Paris" },
-  // ];
-
-  // const hong_kong = [
-  //   { label: "tehran" },
-  //   { label: "hong kong", value: "hong kong" },
-  //   // { label: "  Brussels" },
-  //   // { label: "  Paris" },
-  // ];
-
-  // const City = [
-  //   { label: "tehran" },
-  //   { label: "hong kong" },
-  //   // { label: "  Brussels" },
-  //   // { label: "  Paris" },
-  // ];
-
-  // const Country = [];
-  // const City = [];
-
-  // const SearchClick = () => {
-  //   Country = document.getElementById('Country-tour').value;
-  //   City = document.getElementById('City-tour').value;
-  //   // console.log("got here");
-  //   axios
-  //     .post(
-  //       "http://mrsz.pythonanywhere.com/Country/?search=iran",
-  //       {
-  //         Country: Country,
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     )
-  //     .then((res) => {
-  //       // toast.success("", {
-  //       //   position: "top-center",
-  //       //   autoClose: 1500,
-  //       //   className: "toast-message",
-  //       //   hideProgressBar: false,
-  //       //   closeOnClick: false,
-  //       //   pauseOnHover: false,
-  //       //   draggable: false,
-  //       //   progress: undefined,
-  //       //   theme: "colored",
-  //       // });
-  //       console.log(res.data);
-  //       <PlaceToVisit />
-  //     })
-  //     .catch((err) => {
-  //             //message.error(err.message);
-  //             console.error(err);
-  //             // toast.error('',
-  //             // {
-  //             //   className:'toast-message',
-
-  //             // })
-  //       // window.location.replace('/sign-in')
-  //     });
-  //     axios
-  //     .post(
-  //       "http://mrsz.pythonanywhere.com/City/?city_name=tehran",
-  //       {
-  //         City: City
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     )
-  //     .then((res) => {
-  //       // toast.success("", {
-  //       //   position: "top-center",
-  //       //   autoClose: 1500,
-  //       //   className: "toast-message",
-  //       //   hideProgressBar: false,
-  //       //   closeOnClick: false,
-  //       //   pauseOnHover: false,
-  //       //   draggable: false,
-  //       //   progress: undefined,
-  //       //   theme: "colored",
-  //       // });
-  //       console.log(res.data);
-  //       <PlaceToVisit />
-  //     })
-  //     .catch((err) => {
-  //             //message.error(err.message);
-  //             console.error(err);
-  //             // toast.error('',
-  //             // {
-  //             //   className:'toast-message',
-
-  //             // })
-  //       // window.location.replace('/sign-in')
-  //     });
-  // };
+  
   const [select_country, setselect_country] = useState("");
   const [select_city, setSelect_city] = useState("");
   const changeSelectOptionHandler = (event, v) => {
@@ -173,20 +64,10 @@ const SearchBar = ({ setTours }) => {
     }
   };
 
-  // let type = null;
-  // if (select_country === "china") {
-  //   type = hong_kong;
-  //   console.log(type);
-  // } else {
-  //   type = tehran;
-  //   console.log(type);
-  // }
+  
 
   const SearchClick_country = (e, value) => {
-    // Country = document.getElementById('Country-tour').value;
-    // City = document.getElementById('City-tour').value;
-    // const username=document.getElementById('username-signup').value;
-    // alert("fsfdfgfzgfgfg")
+    
     axios
       .get("http://mrsz.pythonanywhere.com/Country/?search=" + value, {
         headers: { "Content-Type": "application/json" },
@@ -203,10 +84,7 @@ const SearchBar = ({ setTours }) => {
   };
 
   const onSearchCity = (e, value) => {
-    // console.log(searchResult, select_country);
-    // const selectedCountry = searchResult.filter(
-    //   (i) => i.country_name === select_country
-    // );
+    
     console.log(searchResult[0]);
     console.log(value);
     const filteredCities = searchResult[0].city_set
@@ -220,10 +98,7 @@ const SearchBar = ({ setTours }) => {
     SetCities(filteredCities);
   };
   const SearchClick_city = (e, value) => {
-    // Country = document.getElementById('Country-tour').value;
-    // City = document.getElementById('City-tour').value;
-    // const username=document.getElementById('username-signup').value;
-    // alert("fsfdfgfzgfgfg")
+    
     axios
       .get("http://mrsz.pythonanywhere.com/City/?search=" + value, {
         headers: { "Content-Type": "application/json" },

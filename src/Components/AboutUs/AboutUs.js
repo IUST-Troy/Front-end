@@ -26,8 +26,8 @@ const AboutUs = () => {
                         <p className="text-gray-700 text-4xl font-semibold">
                             About Us:
                         </p>
-                        <div className="grid grid-cols-6 gap-1">
-                            <div className="col-span-2 border border-orange-500 grid grid-cols-2 rounded-2xl p-2">
+                        <div className="grid grid-cols-6 gap-4">
+                            <div className="col-span-2 border border-orange-500 bg-orange-500/[0.1] grid grid-cols-2 rounded-2xl p-2">
                                 <div className="flex flex-col items-center">
                                     <Avatar
                                         sx={{ width: 130, height: 130 }}
@@ -47,7 +47,7 @@ const AboutUs = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="col-span-4 border grid grid-cols-4 border-blue-600 rounded-2xl p-2">
+                            <div className="col-span-4 border grid grid-cols-4 border-blue-600 bg-blue-600/[0.1] rounded-2xl p-2">
                                 <div className="flex flex-col items-center">
                                     <Avatar
                                         sx={{ width: 130, height: 130 }}

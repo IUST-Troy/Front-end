@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 import {ToastContainer, toast} from 'react-toastify'
 import MuiAlert from '@mui/material/Alert'
-import { ExitToApp, Edit, Dashboard, History } from "@material-ui/icons";
+import { ExitToApp, Edit, Dashboard, History , AccountBalanceWallet as Wallet } from "@material-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
@@ -151,7 +151,7 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                         onClose={closeMenuHandler}
                     >
                         <MenuItem
-                            onClick={()=>menuClickHandler("/dashboard")}
+                            onClick={()=>menuClickHandler("/wallet")}
                             sx={{
                                 m: (0.5, 1),
                                 borderRadius: 1.2,
@@ -162,10 +162,10 @@ const UserInfo = ({ firstName, lastName, id, avatarPath }) => {
                             }}
                         >
                             <ListItemIcon>
-                                <Dashboard />
+                                <Wallet />
                             </ListItemIcon>
                             <Typography className="menuItem-typo">
-                                DashBoard
+                                Wallet
                             </Typography>
                         </MenuItem>
                         <MenuItem

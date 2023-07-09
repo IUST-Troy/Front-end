@@ -31,6 +31,7 @@
     "react-hook-form": "^7.43.9",
     "react-hook-form-resolvers": "^0.0.1",
     "react-icons": "^4.8.0",
+    "react-input-emoji": "^5.1.1",
     "react-leaflet": "^4.2.1",
     "react-lottie": "^1.2.3",
     "react-map-gl": "^7.0.23",
