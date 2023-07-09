@@ -10,12 +10,13 @@ import Navbar from "../NavigationBar/Navbar.js";
 import FooterV2 from "../HomePage/FooterV2.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import places from "../ProfilePage/places.js";
+import { useNavigate, useParams } from "react-router-dom";
 // import { Organizations, TourLeaders } from "../TripPage/Trips.js";
 import Wallpapet1 from "../../Static/bgR.jpg";
 import notfound from "../../Static/notfound.png";
 const Place = () => {
   const [places, setPlaces] = useState([]);
-
+  let navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,10 +40,8 @@ const Place = () => {
       }
     };
 
-    fetchData(); 
-  }, []); 
-
-  
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -67,61 +66,63 @@ const Place = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 sx:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 p-5 rounded-2xl">
               {places.map((page, index) => (
                 <SwiperSlide key={index}>
-                <div className="border shadow-lg rounded-2xl hover:scale-105 duration-300">
-                  <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 group-hover:rounded-2xl rounded-2xl">
-                    
-                  <div className="h-80">
-  {page.image ? (
-    <img
-      className="w-full h-full"
-      src={`data:image/jpeg;base64,${page.image}`}
-      alt=""
-      style={{ display: "block", margin: "auto" }}
-    />
-  ) : (
-    <img
-      className="w-full h-full"
-      src={notfound}
-      alt=""
-      style={{ display: "block", margin: "auto" }}
-    />
-  )}
-</div>
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60  group-hover:rounded-2xl group-hover:to-black/70 rounded-2xl"></div>
-                    <div className="absolute inset-0 flex translate-y-[40%] flex-col items-center rounded-2xl justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0  group-hover:rounded-2xl">
-                      {page.destination.map((destination, i) => (
-                        <h1
-                          key={i}
-                          className="font-dmserif text-xl font-bold text-white"
-                        >
-                          {destination.country_name}, {destination.city_name}
-                        </h1>
-                      ))}
-                      <p className="mb-3 text-xs italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-2xl">
-                        from: {page.origin.city_name},{" "}
-                        {page.origin.country_name}
-                        <br />
-                        <div className="text-pallate-persian_green">departure_date: {page.departure_date}</div>
-                        
-                        <div className="text-red-400">return_date: {page.return_date}</div>
-                        
-                        <div>
-                          Price: ${page.Price}
-                        
-                        </div>
-                        
-                        <br />
-                       
-                        
-                        {page.Description}
-                      </p>
+                  <div className="border shadow-lg rounded-2xl hover:scale-105 duration-300">
+                    <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 group-hover:rounded-2xl rounded-2xl">
+                      <div className="h-80">
+                        {page.image ? (
+                          <img
+                            className="w-full h-full"
+                            src={`data:image/jpeg;base64,${page.image}`}
+                            alt=""
+                            style={{ display: "block", margin: "auto" }}
+                          />
+                        ) : (
+                          <img
+                            className="w-full h-full"
+                            src={notfound}
+                            alt=""
+                            style={{ display: "block", margin: "auto" }}
+                          />
+                        )}
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60  group-hover:rounded-2xl group-hover:to-black/70 rounded-2xl"></div>
+                      <div className="absolute inset-0 flex translate-y-[40%] flex-col items-center rounded-2xl justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0  group-hover:rounded-2xl">
+                        {page.destination.map((destination, i) => (
+                          <h1
+                            key={i}
+                            className="font-dmserif text-xl font-bold text-white"
+                          >
+                            {destination.country_name}, {destination.city_name}
+                          </h1>
+                        ))}
+                        <p className="mb-3 text-xs italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-2xl">
+                          from: {page.origin.city_name},{" "}
+                          {page.origin.country_name}
+                          <br />
+                          <div className="text-pallate-persian_green">
+                            departure_date: {page.departure_date}
+                          </div>
+                          <div className="text-red-400">
+                            return_date: {page.return_date}
+                          </div>
+                          <div>Price: ${page.Price}</div>
+                          <br />
+                          {page.Description}
+                        </p> <button className="card-bg rounded-2xl p-2 " onClick={()=>navigate(`/trip/${page.id}/`)}>go to trip</button>
+                      </div>
+                      
                     </div>
+                   
+                    
+
                   </div>
-                </div>
+                 
                 </SwiperSlide>
+                
               ))}
             </div>
           )}
+          
         </div>
       </div>
 

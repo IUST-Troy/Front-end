@@ -29,6 +29,7 @@ import HomePage from './Components/Homee/App'
 import HistoryForNormal from './Components/HistoryForNormalUsers/App'
 import EditOrga from './Components/EditProfileOrga/App'
 
+import Book from './Components/Book/reserve'
 
 
 
@@ -65,6 +66,7 @@ function App() {
 
         
         
+        <Route path='/book/:id/:originCity/:city' element={<Book/>}/>
         
       </Routes>
     </Router>
