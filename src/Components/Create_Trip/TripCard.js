@@ -9,8 +9,9 @@ import transport from "./Transport ";
 import organ from "./Organition";
 import Ecomp from "./Placecomp";
 import './datepicker.scss'
-
-
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { IoMdBoat } from "react-icons/io";
 import { BsFillAirplaneFill } from "react-icons/bs";
 import { BsBusFrontFill } from "react-icons/bs";
@@ -19,8 +20,12 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { BsPersonFillCheck } from "react-icons/bs";
+const tripURL = "http://mrsz.pythonanywhere.com/trip/";
+const gettrip = "http://mrsz.pythonanywhere.com/custom_countrycity/";
+
 
 const CreateCard = ({ items }) => {
+
   const [countryValue, setCountryValue] = React.useState("");
   const [countryDisValue, setCountryDisValue] = React.useState("");
   const [organizationValue, setOrganizationValue] = React.useState("");
@@ -31,7 +36,11 @@ const CreateCard = ({ items }) => {
   const [returnValue, setreturnValue] = React.useState("");
   const [departureDate, setDepartureDate] = React.useState(new Date());
   const [returnDate, setReturnDate] = React.useState(new Date());
-  const [showfiled, setShowFileds] = React.useState(false);
+  const [capacityValue , setCap] = React.useState("");
+  const [pricevalue ,  setprice] = React.useState("");
+  const [imgValue, setImgValue] = React.useState("");
+  const [allcityvalue , setallcity] = React.useState([]);
+  // const [showfiled, setShowFileds] = React.useState(false);
   const handleCountryDisChange = (event) => {
     console.log(event.target.value);
     setCountryDisValue(event.target.value);
@@ -48,8 +57,16 @@ const CreateCard = ({ items }) => {
   const handeltourleadervalue = (event) => {
     setTourleaderValue(event.target.value);
   };
-  const handelshowfileds = (event) => {
-    setShowFileds(event.target.value);
+  // const handelshowfileds = (event) => {
+  //   setShowFileds(event.target.value);
+  // };
+  const handelcapa = (e) => {
+    if(e.target.value > 0)
+      setCap(e.target.value);
+  };
+  const handelprice = (e) => {
+    if(e.target.value > 0)
+      setprice(e.target.value);
   };
   const comp = (
     <Ecomp
@@ -59,6 +76,89 @@ const CreateCard = ({ items }) => {
       hcdv={handleCityDisChange}
     />
   );
+  const handleRemoveImg = (e) => {
+    setImgValue("");
+  };
+  const handleImgValue = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+        setImgValue(reader.result);
+    };
+    console.log(imgValue);
+};
+  const handlepost = (event) => {
+    const postBody = {
+      origin: {
+        country_name:countryValue,
+        city_name:cityValue,
+      },
+      destination:{
+        country_name:countryDisValue,
+        city_name:cityDisValue,
+      },
+      departure_transport: departureValue,
+      return_transport:returnValue,
+      departure_date:departureDate,
+      return_date:returnDate,
+      capacity:capacityValue,
+      Price:pricevalue,
+      organization_id:organizationValue,
+      TourLeader_ids:tourleaderValue,
+      image:imgValue,
+  };
+  axios
+      .post(tripURL, postBody, {
+          headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        toast.success("Your trip was successfully created", {
+          position: "top-center",
+          autoClose: 1500,
+          className: "toast-message",
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+        console.log(res.data);
+      })
+      .catch((err) => {
+        toast.error(err.message, {
+          position: "top-center",
+          autoClose: 1500,
+          className: "toast-message",
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+        console.log(err)
+      });
+    };
+
+  
+
+    const Getcity = (e) => {
+      axios
+      .get(gettrip, {country_name:e}, {
+          headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        setallcity(res.data);
+        console.log(res.data)
+        })
+  
+      .catch((err) => {
+        console.log(err)
+      });
+    };
+
 
   const [cc, setCC] = React.useState([comp]);
 
@@ -70,29 +170,32 @@ const CreateCard = ({ items }) => {
     setReturnDate(selectedDate);
   };
 
-  function handleKeyPress(event) {
-    const charCode = event.which ? event.which : event.keyCode;
-    const input = event.target;
-    if (
-      charCode === 45 ||
-      (charCode === 48 && input.value.length === 0) ||
-      charCode === 101 ||
-      charCode === 46
-    ) {
-      event.preventDefault();
-    }
-  }
+  // function handleKeyPress(event) {
+  //   const charCode = event.which ? event.which : event.keyCode;
+  //   const input = event.target;
+  //   if (
+  //     charCode === 45 ||
+  //     (charCode === 48 && input.value.length === 0) ||
+  //     charCode === 101 ||
+  //     charCode === 46
+  //   ) {
+  //     event.preventDefault();
+  //   }
+  // }
+
+  
 
   const handleCountryChange = (event) => {
+    Getcity(event.target.value);
     setCountryValue(event.target.value);
   };
-
   const handledepartureChange = (event) => {
     setdepartureValue(event.target.value);
   };
   const handlereturnChange = (event) => {
     setreturnValue(event.target.value);
   };
+
   return (
     <div className="test6 grid grid-cols-1 gap-0 no-repeat p- bg-cover bg-center bg-fixed">
       <div className=" grid justify-center items-center w-full">
@@ -107,6 +210,7 @@ const CreateCard = ({ items }) => {
                 ></img>
                 <div className="flex justify-start items-center">
                   <input
+                    onChange={handleImgValue}
                     accept="image/*"
                     class="block w-full md:w-auto text-sm rounded-xl text-pallate-persian_green border border-pallate-persian_green cursor-pointer bg-pallate-celeste_light "
                     id="user_avatar"
@@ -115,6 +219,8 @@ const CreateCard = ({ items }) => {
                   <Button
                     className="rounded-2xl ml-2 bg-gray-500 hover:bg-red-600"
                     size="md"
+                    onClick={handleRemoveImg}
+
                   >
                     <BsXLg />
                   </Button>
@@ -274,6 +380,8 @@ const CreateCard = ({ items }) => {
                       onChange={handeltourleadervalue}
                     >
                       <option>Select</option>
+                      <option>Select</option>
+                      <option>Select</option>
                       {organizationValue === ("Select" || "" || null || undefined)
                         ? 1
                         : organ.find((x) => x.Name === organizationValue) ===
@@ -283,7 +391,7 @@ const CreateCard = ({ items }) => {
                             .find((x) => x.Name === organizationValue)
                             .Lname.sort((c) => c)
                             .map((y) => {
-                              return <option>{y}</option>;
+                              return <option value="{{$y}}">{y}</option>;
                             })}
                     </Select>
                   </div>
@@ -303,7 +411,7 @@ const CreateCard = ({ items }) => {
                         class=" w-full md:w-80 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2 "
                         placeholder=""
                         min={1}
-                        onKeyPress={handleKeyPress}
+                        onChange = {handelcapa}
                         required
                       ></input>
                     </div>
@@ -322,7 +430,7 @@ const CreateCard = ({ items }) => {
                         class=" w-full md:w-80 gap-4 mr-auto ml-auto border-pallate-persian_green disabled:opacity-80 rounded-lg bg-pallate-celeste_light focus:ring-pallate-persian_green focus:border-pallate-persian_green pl-8 p-2"
                         placeholder=""
                         min={1}
-                        onKeyPress={handleKeyPress}
+                        onChange = {handelprice}
                         required
                       ></input>
                     </div>
@@ -355,7 +463,9 @@ const CreateCard = ({ items }) => {
             </div>
           </div>
           <div className="p-2">
-            <Button className="w-full mr-auto ml-auto md:w-80  rounded-xl  bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell">
+            <Button className="w-full mr-auto ml-auto md:w-80  rounded-xl  bg-pallate-persian_green text-pallate-persian_green hover:bg-pallate-blue_munsell"
+              onClick={handlepost}
+            >
               Create Trip
             </Button>
           </div>
