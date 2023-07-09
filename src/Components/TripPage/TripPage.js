@@ -110,20 +110,20 @@ const TripPage = () => {
                     console.log(raw);
                     let depIcon = TbBus;
                     let retIcon = TbBus;
-                    if (raw.transport.departure_transport === "train") {
+                    if (raw.transport.departure_transport === "T") {
                         depIcon = TbTrain;
                     } else if (
-                        raw.transport.departure_transport === "airplane"
+                        raw.transport.departure_transport === "A"
                     ) {
                         depIcon = TbPlane;
-                    } else if (raw.transport.departure_transport === "ship") {
+                    } else if (raw.transport.departure_transport === "S") {
                         depIcon = TbShip;
                     }
-                    if (raw.transport.return_transport === "train") {
+                    if (raw.transport.return_transport === "T") {
                         retIcon = TbTrain;
-                    } else if (raw.transport.return_transport === "airplane") {
+                    } else if (raw.transport.return_transport === "A") {
                         retIcon = TbPlane;
-                    } else if (raw.transport.return_transport === "ship") {
+                    } else if (raw.transport.return_transport === "S") {
                         retIcon = TbShip;
                     }
                     const dests = raw.destination.map((d) => {
@@ -153,6 +153,7 @@ const TripPage = () => {
                         // organizationName: Organizations.find(
                         //     (o) => o.id === raw.organization_id
                         // ).Name,
+                        organizationName: raw.org_name,
                         Destinations: dests,
                     };
                     setTripData(trip);

@@ -70,7 +70,7 @@ const OrganizationPanelPage = () => {
                                     <p>Active Tours</p>
                                 </div>
                             </Button>
-                            <Button
+                            {/* <Button
                                 className={
                                     Page === Pages.Revenue
                                         ? "bg-pallate-persian_green hover:bg-pallate-persian_green rounded-none w-full focus:ring-transparent focus:ring-offset-transparent !justify-start"
@@ -82,7 +82,7 @@ const OrganizationPanelPage = () => {
                                     <MdCurrencyBitcoin />
                                     <p>Revenue</p>
                                 </div>
-                            </Button>
+                            </Button> */}
                             <Button
                                 className={
                                     Page === Pages.History
