@@ -13,14 +13,16 @@ const profileURL = "http://mrsz.pythonanywhere.com/Profile/me/";
 const userURL = "http://mrsz.pythonanywhere.com/auth/users/me/";
 
 export default function Login() {
+    const baseLink = window.location.href;
     const [userNameValue, setUserNameValue] = React.useState("");
     const [passwordValue, setPasswordValue] = React.useState("");
     const [disabledButtonValue, setDisabledButtonValue] = React.useState(false);
     let navigate = useNavigate();
 
     React.useEffect(() => {
+        console.log(baseLink);
         if (localStorage.getItem("acctoken")) {
-            navigate("/home");
+            window.location.href = "/home/";
         }
     }, []);
     const handleUserNameValue = (e) => {
@@ -85,9 +87,11 @@ export default function Login() {
                         },
                     })
                     .then((res) => {
+                        console.log(res.data);
                         localStorage.setItem("firstname", res.data.first_name);
                         localStorage.setItem("lastname", res.data.last_name);
                         localStorage.setItem("email", res.data.email);
+                        localStorage.setItem("role" , res.data.role);
                         axios
                             .get(profileURL, {
                                 headers: {
@@ -125,11 +129,21 @@ export default function Login() {
                                     theme: "colored",
                                     progress: undefined,
                                 });
+                                console.log(localStorage.getItem("role"));
                                 setTimeout(() => {
-                                    navigate("/home", {
-                                        preventScrollReset: false,
-                                    });
-                                }, 1500);
+                                    if (localStorage.getItem("role") === 'T')
+                                    {
+                                        window.location.href = "/create-trip/";
+                                    }
+                                    else if (localStorage.getItem("role") === 'O')
+                                    {
+                                        window.location.href = "/tourleader/";
+                                    }
+                                    else if (localStorage.getItem("role") === 'C')
+                                    {
+                                        window.location.href = "/Chat/";
+                                    }
+                                }, 500);
                             })
                             .catch((err) => {
                                 signInError(err);

@@ -8,7 +8,6 @@ import Login from './Components/SignUpLogIn/login.jsx'
 import SignUp from './Components/SignUpLogIn/signup.jsx'
 import Forget from './Components/SignUpLogIn/forget.jsx'
 import Verification from './Components/SignUpLogIn/verification.jsx'
-
 import Tour from'./Components/TouristAttractionsPage/Tour'
 import ProfilePage from './Components/ProfilePage/ProfilePage';
 import PlacePage from './Components/PlacePage/PlacePage';
@@ -52,6 +51,7 @@ function App() {
         <Route path='/Chat' element={<Chat/>}/>
         <Route path="/Panel" element={<OrganizationPanelPage/>}/>
         <Route path="/AboutUs" element={<AboutUs/>}/>
+    
       </Routes>
     </Router>
   );
